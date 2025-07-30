@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://e68lx7txcnvk" path="res://player_node.gd" id="1_nxogm"]
-[ext_resource type="Texture2D" uid="uid://ccigl4u8r5w52" path="res://icon.svg" id="2_3253y"]
+[ext_resource type="Texture2D" uid="uid://bs483l5v3y0xs" path="res://Assets/Froggy.png" id="2_nxogm"]
 
 [node name="Scene" type="Node2D"]
 
@@ -10,4 +10,4 @@ position = Vector2(500, 250)
 script = ExtResource("1_nxogm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player_Node"]
-texture = ExtResource("2_3253y")
+texture = ExtResource("2_nxogm")
