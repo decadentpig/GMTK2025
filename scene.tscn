@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=4 format=3 uid="uid://d2vvaaur2r211"]
 
-[ext_resource type="Script" uid="uid://mtmi1wy56j37" path="res://Scripts/carriage.gd" id="1_nxogm"]
-[ext_resource type="Texture2D" uid="uid://bs483l5v3y0xs" path="res://Assets/Froggy.png" id="2_3253y"]
+[ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
+[ext_resource type="Texture2D" uid="uid://ccigl4u8r5w52" path="res://icon.svg" id="2_3253y"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
 bake_interval = 0.01
@@ -10,9 +10,6 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3253y"]
-size = Vector2(66, 61)
-
 [node name="Scene" type="Node2D"]
 
 [node name="Game_Manager" type="Node2D" parent="."]
@@ -20,25 +17,12 @@ size = Vector2(66, 61)
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u3cyc")
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
-position = Vector2(120, 128)
+[node name="Train" type="PathFollow2D" parent="Path2D"]
+position = Vector2(120, 308.18)
 rotation = 1.5708
+progress = 180.18
+script = ExtResource("1_3253y")
 
-[node name="Train_Manager" type="Node2D" parent="Path2D/PathFollow2D2"]
-position = Vector2(-128, 120)
-rotation = -1.5708
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(120, 128)
-rotation = 1.5708
-script = ExtResource("1_nxogm")
-
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
-scale = Vector2(2, 2)
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/Train"]
+modulate = Color(1, 1, 1, 0.478431)
 texture = ExtResource("2_3253y")
-
-[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
-position = Vector2(-1, -17.5)
-shape = SubResource("RectangleShape2D_3253y")
