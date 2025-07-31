@@ -15,6 +15,11 @@ run/main_scene="uid://d2vvaaur2r211"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+
 [input]
 
 Move_Up={
