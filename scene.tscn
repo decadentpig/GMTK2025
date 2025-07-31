@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=13 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
+[ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://ccigl4u8r5w52" path="res://Assets/icon.svg" id="2_3253y"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
@@ -37,6 +38,7 @@ size = Vector2(101, 127)
 [node name="Scene" type="Node2D"]
 
 [node name="Game_Manager" type="Node2D" parent="."]
+script = ExtResource("1_u3cyc")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u3cyc")
