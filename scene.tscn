@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=12 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
-[ext_resource type="Texture2D" uid="uid://ccigl4u8r5w52" path="res://icon.svg" id="2_3253y"]
+[ext_resource type="Texture2D" uid="uid://ccigl4u8r5w52" path="res://Assets/icon.svg" id="2_3253y"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
 bake_interval = 0.01
@@ -9,6 +9,30 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 120, 128, 0, 0, 0, 0, 120, 412, 0, 0, 0, 0, 840, 412, 0, 0, 0, 0, 840, 128, 0, 0, 0, 0, 120, 128)
 }
 point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxogm"]
+size = Vector2(709, 92)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3253y"]
+size = Vector2(716, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3cyc"]
+size = Vector2(103, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7jmp"]
+size = Vector2(101, 286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2354"]
+size = Vector2(700, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni31j"]
+size = Vector2(698, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlvrw"]
+size = Vector2(98, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73fnb"]
+size = Vector2(101, 127)
 
 [node name="Scene" type="Node2D"]
 
@@ -26,3 +50,45 @@ script = ExtResource("1_3253y")
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/Train"]
 modulate = Color(1, 1, 1, 0.478431)
 texture = ExtResource("2_3253y")
+
+[node name="Resource_Spawns" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(484.5, 470)
+shape = SubResource("RectangleShape2D_nxogm")
+debug_color = Color(0.974071, 0, 0.429438, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(478, 68)
+shape = SubResource("RectangleShape2D_3253y")
+debug_color = Color(0.986514, 0, 0.322809, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(60.5, 270)
+shape = SubResource("RectangleShape2D_u3cyc")
+debug_color = Color(0.982268, 0, 0.36371, 0.42)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(899.5, 273)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.982404, 0, 0.362494, 0.42)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(479, 169.5)
+shape = SubResource("RectangleShape2D_y2354")
+debug_color = Color(0.976122, 0.0858292, 0.328786, 0.42)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(480, 366.5)
+shape = SubResource("RectangleShape2D_ni31j")
+debug_color = Color(0.9824, 0, 0.362526, 0.42)
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(179, 266.5)
+shape = SubResource("RectangleShape2D_xlvrw")
+debug_color = Color(0.990443, 0, 0.278272, 0.42)
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Resource_Spawns"]
+position = Vector2(776.5, 266.5)
+shape = SubResource("RectangleShape2D_73fnb")
+debug_color = Color(0.988719, 0, 0.298793, 0.42)
