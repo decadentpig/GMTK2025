@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cj45qe8guam35"
+path="res://.godot/imported/Make Selection.wav-d59af237ea1e0654e0be5a8a652f3c10.sample"
+
+[deps]
+
+source_file="res://Sounds/Make Selection.wav"
+dest_files=["res://.godot/imported/Make Selection.wav-d59af237ea1e0654e0be5a8a652f3c10.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
