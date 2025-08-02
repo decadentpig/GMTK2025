@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bs483l5v3y0xs" path="res://Assets/Froggy.png" id="2_6imej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3253y"]
-size = Vector2(66, 61)
+size = Vector2(66, 265)
 
 [node name="PathFollow2D" type="PathFollow2D"]
 rotation = 1.5708
@@ -17,5 +17,7 @@ texture = ExtResource("2_6imej")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, -17.5)
+position = Vector2(-1, -10.5)
 shape = SubResource("RectangleShape2D_3253y")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

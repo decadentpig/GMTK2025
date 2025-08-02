@@ -9,3 +9,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	progress += speed
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("Selected by player?", body.selected_by_player)

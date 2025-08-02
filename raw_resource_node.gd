@@ -6,8 +6,8 @@ var resource_type: Resource_Type = Resource_Type.NONE
 var selected_by_player: bool = false
 
 @onready var sprite2d = get_node("Sprite2D")
-@onready var wood_sprite = preload("res://Assets/placeholder_wood.png")
-@onready var metal_sprite = preload("res://Assets/placeholder_metal.png")
+@onready var wood_sprite = preload("res://Assets/Icon-Wood.png")
+@onready var metal_sprite = preload("res://Assets/Icon-Rock.png")
 
 func set_resource_type(type: String):
 	if type == "WOOD":
@@ -26,9 +26,8 @@ func toggle_player_select():
 	elif selected_by_player:
 		selected_by_player = false
 		# TODO: Change the sprite to show deselected state?
-		
 
 # Listen for player click events to toggle schedule / unschedule
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if Input.is_action_just_pressed("click"):
+	if Input.is_action_just_pressed("Click"):
 		toggle_player_select()
