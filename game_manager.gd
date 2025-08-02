@@ -6,6 +6,7 @@ const RESOURCE_SPAWN_TRACK_OFFSET = 120
 const CARRIAGE_SIZE = 128
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
+@onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
 
 func func_get_cord_for_side(side: Variant) -> int:
 	var chosen_cord = null
@@ -65,7 +66,7 @@ func spawn_resource() -> void:
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:
 		spawn_resource()
-		
+
 #
 func _ready() -> void:
 	spawn_resource()
