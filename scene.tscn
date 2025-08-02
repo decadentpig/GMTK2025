@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=8 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
@@ -12,6 +12,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 300, 320, 0, 0, 0, 0, 300, 1030, 0, 0, 0, 0, 2100, 1030, 0, 0, 0, 0, 2100, 320, 0, 0, 0, 0, 300, 320)
 }
 point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7jmp"]
+size = Vector2(128, 128)
 
 [node name="Scene" type="Node2D"]
 
@@ -222,3 +225,350 @@ script = ExtResource("1_3253y")
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/Train"]
 texture = ExtResource("4_u3cyc")
+
+[node name="Node_Spawns" type="Node2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(432, 457)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(433, 605)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(433, 752)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(433, 902)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1967, 454)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1968, 602)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D54" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2198, 216)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D55" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2231, 368)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D56" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2233, 505)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D57" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2233, 643)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D58" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2234, 783)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D59" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2235, 921)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D60" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2228, 1059)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D62" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(173, 325)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D68" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(249, 193)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D63" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(163, 593)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D69" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(164, 460)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D64" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(166, 728)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D65" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(167, 864)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D66" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(168, 1002)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D67" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(239, 1138)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D61" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2054, 1160)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1968, 749)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1968, 899)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(570, 902)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(711, 902)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(849, 903)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(987, 901)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1127, 903)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1265, 905)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1405, 904)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1546, 904)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1686, 903)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1828, 901)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D42" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(378, 1162)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D43" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1913, 1159)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D44" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(515, 1162)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D45" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(656, 1162)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D46" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(794, 1163)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D47" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(932, 1161)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D48" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1072, 1163)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D49" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1210, 1165)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D50" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1350, 1164)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D51" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1491, 1164)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D52" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1631, 1163)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D53" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1773, 1161)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(570, 455)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(711, 455)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(849, 453)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(987, 454)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1127, 456)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1265, 458)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1405, 457)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1546, 457)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1686, 456)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1828, 454)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1904, 188)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D41" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(2043, 189)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1767, 187)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1631, 191)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1494, 191)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1357, 191)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D34" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1219, 193)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D35" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(1080, 194)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D36" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(944, 192)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D37" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(806, 192)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D38" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(670, 193)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D39" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(532, 194)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="CollisionShape2D40" type="CollisionShape2D" parent="Node_Spawns"]
+position = Vector2(393, 193)
+shape = SubResource("RectangleShape2D_m7jmp")
+debug_color = Color(0.994199, 0, 0.225894, 0.42)
