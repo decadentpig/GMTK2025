@@ -15,8 +15,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	sprite.play("default")
 	progress += speed
-	
-	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# Pickup resources
@@ -76,5 +74,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and Stats.money < body.cost
 	):
 		SFXPlayer.play_failed_action()
-		
-		
