@@ -20,5 +20,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and cargo == Cargo.EMPTY
 	):
 		body.queue_free()
-	else:
-		print("Collided with", body.name, body.selected_by_player, cargo)
