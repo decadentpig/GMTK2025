@@ -8,7 +8,7 @@
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
 bake_interval = 0.01
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 120, 128, 0, 0, 0, 0, 120, 412, 0, 0, 0, 0, 840, 412, 0, 0, 0, 0, 840, 128, 0, 0, 0, 0, 120, 128)
+"points": PackedVector2Array(0, 0, 0, 0, 300, 320, 0, 0, 0, 0, 300, 1030, 0, 0, 0, 0, 2100, 1030, 0, 0, 0, 0, 2100, 320, 0, 0, 0, 0, 300, 320)
 }
 point_count = 5
 
@@ -27,7 +27,7 @@ script = ExtResource("1_u3cyc")
 curve = SubResource("Curve2D_u3cyc")
 
 [node name="Train" type="PathFollow2D" parent="Path2D"]
-position = Vector2(120, 308.18)
+position = Vector2(300, 500.18)
 rotation = 1.5708
 progress = 180.18
 script = ExtResource("1_3253y")
