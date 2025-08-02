@@ -203,12 +203,12 @@ position = Vector2(2098, 1029)
 texture = ExtResource("3_m7jmp")
 
 [node name="TrainTrack38" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
-position = Vector2(298, 1029)
+position = Vector2(302, 1027)
 rotation = 1.5708
 texture = ExtResource("3_m7jmp")
 
 [node name="TrainTrack39" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
-position = Vector2(298, 324)
+position = Vector2(301, 323)
 rotation = 3.14159
 texture = ExtResource("3_m7jmp")
 
