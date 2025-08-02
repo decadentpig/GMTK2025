@@ -7,13 +7,15 @@ var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE
 @onready var sprite2d = get_node("Sprite2D")
 @onready var resource_sprite = get_node("Resource_Sprite")
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
+@onready var wood_sprite = preload("res://Assets/Icon-Wood.png")
+@onready var metal_sprite = preload("res://Assets/Icon-Rock.png")
 
 func set_contract_type(type: GlobalVariables.RESOURCE_TYPE):
 	contract_type = type
 	if contract_type == GlobalVariables.RESOURCE_TYPE.WOOD:
-		resource_sprite.texture = GlobalVariables.wood_sprite
+		resource_sprite.texture = wood_sprite
 	elif contract_type == GlobalVariables.RESOURCE_TYPE.METAL:
-		resource_sprite.texture = GlobalVariables.RESOURCE_TYPE.METAL
+		resource_sprite.texture = metal_sprite
 	else:
 		print("Have only implemented wood and metal sprites on contract nodes! Whoops")
 
