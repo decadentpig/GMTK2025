@@ -13,7 +13,13 @@ config_version=5
 config/name="GMTK 2025 Project"
 run/main_scene="uid://d2vvaaur2r211"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/icon.svg"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="viewport"
 
 [input]
 
