@@ -13,7 +13,7 @@ func _ready() -> void:
 		var carriage = carriage_prefab.instantiate()
 		path2d.add_child.call_deferred(carriage)
 		carriage.speed = SPEED
-		carriage.progress = progress - (OFFSET * (n+1))
+		carriage.progress = (progress - 15) - (OFFSET * (n+1))
 
 func _process(delta: float) -> void:
 	progress += SPEED
