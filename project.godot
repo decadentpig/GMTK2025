@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GMTK 2025 Project"
-run/main_scene="uid://d2vvaaur2r211"
+run/main_scene="uid://h3npyt56js6a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
+
+[autoload]
+
+GlobalVariables="*res://Autoloads/global_variables.gd"
 
 [display]
 
