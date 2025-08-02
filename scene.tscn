@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=7 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
+[ext_resource type="Texture2D" uid="uid://dpnntcte1qild" path="res://Assets/Track-Straight.png" id="2_u3cyc"]
+[ext_resource type="Texture2D" uid="uid://udnpmqusbw16" path="res://Assets/Track-Curved.png" id="3_m7jmp"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
@@ -18,6 +20,199 @@ script = ExtResource("1_u3cyc")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u3cyc")
+
+[node name="Track_Sprites_Container" type="Node2D" parent="Path2D"]
+
+[node name="TrainTrack" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(301, 496)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack41" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(301, 433)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack2" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(301, 624)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack3" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(301, 752)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack4" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(301, 880)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack42" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(301, 910)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack5" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2101, 496)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack43" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2101, 436)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack6" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2101, 624)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack7" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2101, 752)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack8" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2101, 880)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack37" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2101, 910)
+rotation = 1.5708
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack9" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(429, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack10" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(556, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack11" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(682, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack12" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(806, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack13" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(930, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack14" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1057, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack15" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1182, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack16" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1308, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack17" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1435, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack18" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1562, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack19" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1691, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack20" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1818, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack21" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1944, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack44" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1977, 320)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack22" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(429, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack23" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(556, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack24" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(682, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack25" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(806, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack26" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(930, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack27" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1057, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack28" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1182, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack29" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1308, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack30" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1435, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack31" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1562, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack32" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1691, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack33" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1818, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack34" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1944, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack36" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(1977, 1029)
+texture = ExtResource("2_u3cyc")
+
+[node name="TrainTrack35" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2098, 1029)
+texture = ExtResource("3_m7jmp")
+
+[node name="TrainTrack38" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(298, 1029)
+rotation = 1.5708
+texture = ExtResource("3_m7jmp")
+
+[node name="TrainTrack39" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(298, 324)
+rotation = 3.14159
+texture = ExtResource("3_m7jmp")
+
+[node name="TrainTrack40" type="Sprite2D" parent="Path2D/Track_Sprites_Container"]
+position = Vector2(2099, 324)
+rotation = 4.71239
+texture = ExtResource("3_m7jmp")
 
 [node name="Train" type="PathFollow2D" parent="Path2D"]
 position = Vector2(300, 500.18)
