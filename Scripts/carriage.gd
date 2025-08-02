@@ -31,3 +31,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		else:
 			print("ERROR. UNEXPECTED CARGO", cargo)
 		body.queue_free()
+		
+	if (
+		body is Contract_Node
+		and body.selected_by_player
+		and cargo == body.contract_type
+	):
+		body.queue_free()
+		cargo = GlobalVariables.RESOURCE_TYPE.NONE
+		sprite2d.texture = null
