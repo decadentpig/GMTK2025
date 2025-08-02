@@ -2,9 +2,7 @@ extends Node2D
 
 class_name Raw_Resource
 
-enum Resource_Type {NONE, WOOD, METAL}
-var resource_type: Resource_Type = Resource_Type.NONE
-
+var resource_type = GlobalVariables.RESOURCE_TYPE.NONE
 var selected_by_player: bool = false
 
 @onready var sprite2d = get_node("Sprite2D")
@@ -13,15 +11,14 @@ var selected_by_player: bool = false
 
 @onready var highlight_material = preload("res://Scenes/resource_highlight_material.material")
 
-func set_resource_type(type: String):
-	if type == "WOOD":
-		resource_type = Resource_Type.WOOD
+func set_resource_type(type: GlobalVariables.RESOURCE_TYPE):
+	resource_type = type
+	if type == GlobalVariables.RESOURCE_TYPE.WOOD:
 		sprite2d.texture = wood_sprite
-	elif type == "METAL":
-		resource_type = Resource_Type.METAL
+	elif type == GlobalVariables.RESOURCE_TYPE.METAL:
 		sprite2d.texture = metal_sprite
 	else:
-		print_debug("Whoops! Tried to set a raw resource to an invalid type!")
+		print_debug("Whoops! Tried to set a raw resource to an invalid type!", type)
 
 func toggle_player_select():
 	if !selected_by_player:
@@ -35,5 +32,6 @@ func toggle_player_select():
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if Input.is_action_just_pressed("Click"):
+	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):
+		print("Clicking")
 		toggle_player_select()
