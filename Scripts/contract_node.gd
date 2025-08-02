@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name Contract_Node
+signal request_money_update(amount)
 
+const CONTRACT_MONEY = 5
 var selected_by_player: bool = false
 var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
 
@@ -26,6 +28,10 @@ func toggle_player_select():
 	elif !selected_by_player:
 		selected_by_player = true
 		sprite2d.material = highlighted_material
+		
+		
+func complete_contract() -> void:
+	emit_signal("request_money_update", 5)
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):

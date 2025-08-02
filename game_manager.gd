@@ -8,6 +8,8 @@ const CONTRACT_SPAWN_CHANCE = 0.0005
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
+@onready var money_text = get_parent().get_node("Money_Text")
+var money = 0
 
 func func_get_cord_for_side(side: Variant) -> int:
 	var chosen_cord = null
@@ -87,7 +89,12 @@ func spawn_contract() -> void:
 	var contract = contract_node_prefab.instantiate()
 	add_child(contract)
 	contract.set_contract_type(resource_type)
+	contract.request_money_update.connect(_on_request_money_update)
 	contract.position = Vector2(chosen_x, chosen_y)
+	
+func update_money(amount: int) -> void:
+	money += amount
+	money_text.text = str(money)
 
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:
@@ -96,5 +103,9 @@ func _process(delta: float) -> void:
 	if randf() < CONTRACT_SPAWN_CHANCE:
 		spawn_contract()
 #
+func _on_request_money_update(amount: int) -> void:
+	update_money(amount)
+
 func _ready() -> void:
 	spawn_resource()
+	spawn_contract()

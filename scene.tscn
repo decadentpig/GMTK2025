@@ -572,3 +572,19 @@ debug_color = Color(0.994199, 0, 0.225894, 0.42)
 position = Vector2(393, 193)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
+
+[node name="Money_Text" type="Label" parent="."]
+offset_left = 2094.0
+offset_top = 29.0
+offset_right = 2271.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="Money_Text_Label" type="Label" parent="."]
+offset_left = 1920.0
+offset_top = 28.0
+offset_right = 2121.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 40
+text = "Money: $"
