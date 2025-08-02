@@ -1,4 +1,5 @@
 extends PathFollow2D
+signal request_carriage_add()
 
 var speed = 0
 var cargo = GlobalVariables.RESOURCE_TYPE.NONE
@@ -18,6 +19,7 @@ func _process(delta: float) -> void:
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	# Pickup resources
 	if (
 		body is Raw_Resource
 		and body.selected_by_player
@@ -34,6 +36,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			print("ERROR. UNEXPECTED CARGO", cargo)
 
 		
+	# Complete contracts
 	if (
 		body is Contract_Node
 		and body.selected_by_player
@@ -43,3 +46,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		cargo = GlobalVariables.RESOURCE_TYPE.NONE
 		sprite2d.texture = null
 		body.complete_contract()
+		
+	# Buy carriages
+	if (
+		body is Carriage_Pickup_Node
+		and body.selected_by_player
+		#and Stats.money > 50
+	):
+		body.queue_free()
+		Stats.money -= 50
+		emit_signal("request_carriage_add")
+		
+		

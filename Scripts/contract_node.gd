@@ -1,6 +1,5 @@
 extends RigidBody2D
 class_name Contract_Node
-signal request_money_update(amount)
 
 const CONTRACT_MONEY = 5
 var selected_by_player: bool = false
@@ -34,7 +33,8 @@ func toggle_player_select():
 		
 func complete_contract() -> void:
 	SFXPlayer.play_contract_complete()
-	emit_signal("request_money_update", 5)
+	Stats.money += CONTRACT_MONEY
+	Stats.contracts_complete += 1
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):
