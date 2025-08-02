@@ -18,6 +18,8 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 GlobalVariables="*res://Autoloads/global_variables.gd"
+MusicPlayer="*res://Autoloads/music_player.gd"
+SFXPlayer="*res://Autoloads/sfx_player.gd"
 
 [display]
 

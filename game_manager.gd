@@ -109,3 +109,4 @@ func _on_request_money_update(amount: int) -> void:
 func _ready() -> void:
 	spawn_resource()
 	spawn_contract()
+	MusicPlayer.play_background_music()

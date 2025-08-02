@@ -24,13 +24,16 @@ func set_contract_type(type: GlobalVariables.RESOURCE_TYPE):
 func toggle_player_select():
 	if selected_by_player:
 		selected_by_player = false
+		SFXPlayer.play_make_selection()
 		sprite2d.material = null
 	elif !selected_by_player:
 		selected_by_player = true
+		SFXPlayer.play_make_selection()
 		sprite2d.material = highlighted_material
 		
 		
 func complete_contract() -> void:
+	SFXPlayer.play_contract_complete()
 	emit_signal("request_money_update", 5)
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:

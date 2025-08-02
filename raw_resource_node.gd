@@ -34,4 +34,5 @@ func toggle_player_select():
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):
 		print("Clicking")
+		SFXPlayer.play_make_selection()
 		toggle_player_select()
