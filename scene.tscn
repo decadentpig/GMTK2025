@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=5 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
-[ext_resource type="PackedScene" uid="uid://cfe4u6g7o2k7b" path="res://Scenes/raw_resource_prefab.tscn" id="1_m7jmp"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
 
@@ -13,12 +12,6 @@ _data = {
 point_count = 5
 
 [node name="Scene" type="Node2D"]
-
-[node name="Raw_Resource_Node" parent="." instance=ExtResource("1_m7jmp")]
-position = Vector2(334, 459)
-
-[node name="Raw_Resource_Node2" parent="." instance=ExtResource("1_m7jmp")]
-position = Vector2(697, 453)
 
 [node name="Game_Manager" type="Node2D" parent="."]
 script = ExtResource("1_u3cyc")
