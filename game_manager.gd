@@ -4,7 +4,6 @@ extends Node2D
 const RESOURCE_SPAWN_CHANCE = 0.01 # FULL SPEEEED
 const RESOURCE_SPAWN_TRACK_OFFSET = 120
 const CARRIAGE_SIZE = 128
-const RESOURCE_TYPES = ["WOOD", "METAL"]
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 
@@ -52,10 +51,10 @@ func spawn_resource() -> void:
 	# Choose spawn location on side
 	var chosen_x = func_get_cord_for_side(chosen_side["x"])
 	var chosen_y = func_get_cord_for_side(chosen_side["y"])
-	
 	# Choose resouce type
-	var resource_type_index = randi() % RESOURCE_TYPES.size()
-	var resource_type = RESOURCE_TYPES[resource_type_index]
+	var resources = [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL]
+	var resource_type_index = randi() % resources.size()
+	var resource_type = resources[resource_type_index]
 	
 	# Spawn on grid 
 	var resource = raw_resource_prefab.instantiate()
