@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://r11cppd6bih2" path="res://Assets/Icon-Wood.png" id="2_nadkk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nadkk"]
-size = Vector2(62, 66)
+size = Vector2(94, 91)
 
 [node name="Raw_Resource_Node" type="RigidBody2D"]
 input_pickable = true
@@ -15,6 +15,7 @@ script = ExtResource("1_nadkk")
 texture = ExtResource("2_nadkk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_nadkk")
 debug_color = Color(0.978587, 0.103414, 0.263825, 0.42)
 

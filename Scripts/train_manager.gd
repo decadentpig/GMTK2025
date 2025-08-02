@@ -1,7 +1,7 @@
 extends PathFollow2D
 
 const SPEED = 3
-const DEFAULT_CARRIAGES = 10
+const DEFAULT_CARRIAGES = 3
 const OFFSET = 125
 
 @onready var path2d = get_parent()
