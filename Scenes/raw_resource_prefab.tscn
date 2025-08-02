@@ -16,12 +16,14 @@ script = ExtResource("1_nadkk")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_5juve")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nadkk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_nadkk")
 debug_color = Color(0.978587, 0.103414, 0.263825, 0.42)
 
