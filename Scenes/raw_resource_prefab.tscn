@@ -1,19 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfe4u6g7o2k7b"]
+[gd_scene load_steps=5 format=3 uid="uid://cfe4u6g7o2k7b"]
 
 [ext_resource type="Script" uid="uid://dfqg6yvq74v70" path="res://raw_resource_node.gd" id="1_nadkk"]
 [ext_resource type="Texture2D" uid="uid://r11cppd6bih2" path="res://Assets/Icon-Wood.png" id="2_nadkk"]
-[ext_resource type="Shader" uid="uid://71awc1dhjc8j" path="res://Scenes/resource_highlight_shader.gdshader" id="2_oydtf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5juve"]
 size = Vector2(62, 64)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_42twa"]
-shader = ExtResource("2_oydtf")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/width = 1.0
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nadkk"]
 size = Vector2(62, 66)
@@ -29,7 +20,6 @@ visible = false
 shape = SubResource("RectangleShape2D_5juve")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_42twa")
 texture = ExtResource("2_nadkk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
