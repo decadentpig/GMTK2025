@@ -4,6 +4,7 @@ extends Node2D
 const RESOURCE_SPAWN_CHANCE = 0.01 # FULL SPEEEED
 const RESOURCE_SPAWN_TRACK_OFFSET = 120
 const CARRIAGE_SIZE = 128
+const CONTRACT_SPAWN_CHANCE = 0.0005
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
@@ -17,9 +18,9 @@ func func_get_cord_for_side(side: Variant) -> int:
 	else:
 		print("ERROR", side)
 		return 0
-		
-
-func spawn_resource() -> void:
+	
+	
+func get_item_spawn_location() -> Array:
 	var top_left_point = {"x": 300, "y": 320}
 	var bottom_left_point = {"x": 300, "y": 1030}
 	var bottom_right_point = {"x": 2100, "y": 1030}
@@ -52,16 +53,42 @@ func spawn_resource() -> void:
 	# Choose spawn location on side
 	var chosen_x = func_get_cord_for_side(chosen_side["x"])
 	var chosen_y = func_get_cord_for_side(chosen_side["y"])
-	# Choose resouce type
+	
+	return [chosen_x, chosen_y]
+	
+func get_random_resource() -> GlobalVariables.RESOURCE_TYPE:
 	var resources = [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL]
 	var resource_type_index = randi() % resources.size()
-	var resource_type = resources[resource_type_index]
+	return resources[resource_type_index]
+
+func spawn_resource() -> void:
+	var spawn_location = get_item_spawn_location()
+	var chosen_x = spawn_location[0]
+	var chosen_y = spawn_location[1]
 	
+	# Choose resouce type
+	var resource_type = get_random_resource()
+
 	# Spawn on grid 
 	var resource = raw_resource_prefab.instantiate()
 	add_child(resource)
 	resource.set_resource_type(resource_type)
 	resource.position = Vector2(chosen_x, chosen_y)
+	
+func spawn_contract() -> void:
+	var spawn_location = get_item_spawn_location()
+	var chosen_x = spawn_location[0]
+	var chosen_y = spawn_location[1]
+	
+	# Choose resouce type
+	var resource_type = get_random_resource()
+
+	# Spawn on grid 
+	var resource = raw_resource_prefab.instantiate()
+	add_child(resource)
+	resource.set_resource_type(resource_type)
+	resource.position = Vector2(chosen_x, chosen_y)
+
 
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:

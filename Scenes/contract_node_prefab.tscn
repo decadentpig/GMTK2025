@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsp25msidv50r"]
+[gd_scene load_steps=4 format=3 uid="uid://sxkq3ocwt4ox"]
 
-[ext_resource type="Script" uid="uid://bbw1uxq61h1fd" path="res://Scripts/contract_node.gd" id="1_5p8iy"]
+[ext_resource type="Script" path="res://Scripts/contract_node.gd" id="1_5p8iy"]
 [ext_resource type="Texture2D" uid="uid://bcr0elw31uwe5" path="res://Assets/Customer-Speechbox.png" id="2_2yvq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ni31j"]
