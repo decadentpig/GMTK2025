@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsvps6y0glkn5"]
 
 [ext_resource type="Script" uid="uid://bct85s5p5bdwa" path="res://Scenes/carriage_pickup.gd" id="1_los3g"]
-[ext_resource type="Texture2D" uid="uid://ckc1aaucxtm4u" path="res://Assets/Icon-Crate.png" id="1_s2whb"]
+[ext_resource type="Texture2D" uid="uid://c33e3ltuborvh" path="res://Assets/Icon-Carriage.png" id="2_los3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_los3g"]
 size = Vector2(64, 64)
@@ -13,15 +13,15 @@ gravity_scale = 0.0
 script = ExtResource("1_los3g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_s2whb")
+texture = ExtResource("2_los3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_los3g")
 
 [node name="Cost" type="Label" parent="."]
-offset_left = -18.0
+offset_left = -13.0
 offset_top = -13.0
-offset_right = 22.0
+offset_right = 16.0
 offset_bottom = 10.0
 theme_override_colors/font_color = Color(0, 0.839216, 0, 1)
 text = "$50"

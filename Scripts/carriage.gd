@@ -51,7 +51,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (
 		body is Carriage_Pickup_Node
 		and body.selected_by_player
-		#and Stats.money > 50
+		and Stats.money > 50
 	):
 		body.queue_free()
 		Stats.money -= 50

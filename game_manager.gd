@@ -110,7 +110,7 @@ func _process(delta: float) -> void:
 		
 	if (
 		randf() < CARRIAGE_SPAWN_CHANCE
-		#and Stats.contracts_complete > CARRIAGE_SPAWN_AFTER_CONTRACTS
+		and Stats.contracts_complete > CARRIAGE_SPAWN_AFTER_CONTRACTS
 	):
 		spawn_carriage()
 #
