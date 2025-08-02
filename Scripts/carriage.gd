@@ -24,6 +24,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and cargo == GlobalVariables.RESOURCE_TYPE.NONE
 	):
 		body.queue_free()
+		SFXPlayer.play_pickup_resource()
 		cargo = body.resource_type
 		if cargo == GlobalVariables.RESOURCE_TYPE.WOOD:
 			sprite2d.texture = wood_sprite
