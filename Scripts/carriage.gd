@@ -13,8 +13,6 @@ var cargo = GlobalVariables.RESOURCE_TYPE.NONE
 func _process(delta: float) -> void:
 	sprite.play("default")
 	progress += speed
-	
-	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# Pickup resources
@@ -32,6 +30,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			sprite2d.texture = metal_sprite
 		else:
 			print("ERROR. UNEXPECTED CARGO", cargo)
+	elif (
+		body is Raw_Resource
+		and body.selected_by_player
+		and cargo != GlobalVariables.RESOURCE_TYPE.NONE
+	):
+		SFXPlayer.play_failed_action()
 
 		
 	# Complete contracts
@@ -41,9 +45,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and cargo == body.contract_type
 	):
 		body.queue_free()
+		SFXPlayer.play_contract_complete()
 		cargo = GlobalVariables.RESOURCE_TYPE.NONE
 		sprite2d.texture = null
 		body.complete_contract()
+	elif (
+		body is Contract_Node
+		and body.selected_by_player
+		and cargo != body.contract_type
+	):
+		SFXPlayer.play_failed_action()
 		
 	# Buy carriages
 	if (
@@ -52,8 +63,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and Stats.money >= body.cost
 	):
 		body.queue_free()
+		SFXPlayer.play_pickup_resource()
 		Stats.money -= body.cost
 		Stats.available_carriages -= 1
 		emit_signal("request_carriage_add")
-		
-		
+	elif (
+		body is Carriage_Pickup_Node
+		and body.selected_by_player
+		and Stats.money < body.cost
+	):
+		SFXPlayer.play_failed_action()
