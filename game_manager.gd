@@ -5,8 +5,7 @@ const RESOURCE_SPAWN_CHANCE = 0.001
 const RESOURCE_SPAWN_TRACK_OFFSET = 120
 const CARRIAGE_SIZE = 128
 const CONTRACT_SPAWN_CHANCE = 0.0005
-#const CARRIAGE_SPAWN_CHANCE = 0.0001
-const CARRIAGE_SPAWN_CHANCE = 0.01
+const CARRIAGE_SPAWN_CHANCE = 0.0001
 const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")

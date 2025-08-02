@@ -4,7 +4,7 @@ class_name Carriage_Pickup_Node
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
 @onready var sprite2d = get_node("Sprite2D")
 
-var cost = 50
+var cost = 30
 var selected_by_player: bool = false
 
 func toggle_player_select():
