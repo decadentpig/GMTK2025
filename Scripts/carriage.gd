@@ -23,6 +23,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and body.selected_by_player
 		and cargo == GlobalVariables.RESOURCE_TYPE.NONE
 	):
+		body.queue_free()
 		cargo = body.resource_type
 		if cargo == GlobalVariables.RESOURCE_TYPE.WOOD:
 			sprite2d.texture = wood_sprite
@@ -30,7 +31,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			sprite2d.texture = metal_sprite
 		else:
 			print("ERROR. UNEXPECTED CARGO", cargo)
-		body.queue_free()
+
 		
 	if (
 		body is Contract_Node
@@ -40,3 +41,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.queue_free()
 		cargo = GlobalVariables.RESOURCE_TYPE.NONE
 		sprite2d.texture = null
+		body.complete_contract()
