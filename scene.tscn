@@ -42,6 +42,8 @@ script = ExtResource("4_m7jmp")
 [node name="Sprite2D" type="Sprite2D" parent="Contract_Node"]
 texture = ExtResource("5_y2354")
 
+[node name="Resource_Sprite" type="Sprite2D" parent="Contract_Node"]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Contract_Node"]
 position = Vector2(1, 3)
 shape = SubResource("RectangleShape2D_ni31j")

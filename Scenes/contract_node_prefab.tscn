@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsp25msidv50r"]
+
+[ext_resource type="Script" uid="uid://bbw1uxq61h1fd" path="res://Scripts/contract_node.gd" id="1_5p8iy"]
+[ext_resource type="Texture2D" uid="uid://bcr0elw31uwe5" path="res://Assets/Customer-Speechbox.png" id="2_2yvq6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni31j"]
+size = Vector2(116, 120)
+
+[node name="Contract_Node" type="RigidBody2D"]
+input_pickable = true
+gravity_scale = 0.0
+script = ExtResource("1_5p8iy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2yvq6")
+
+[node name="Resource_Sprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3)
+shape = SubResource("RectangleShape2D_ni31j")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

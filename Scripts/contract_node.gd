@@ -4,7 +4,7 @@ class_name Contract_Node
 var selected_by_player: bool = false
 
 @onready var sprite2d = get_node("Sprite2D")
-
+@onready var resource_sprite = get_node("Resource_Sprite")
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
 
 func toggle_player_select():
