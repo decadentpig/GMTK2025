@@ -84,16 +84,17 @@ func spawn_contract() -> void:
 	var resource_type = get_random_resource()
 
 	# Spawn on grid 
-	var resource = raw_resource_prefab.instantiate()
-	add_child(resource)
-	resource.set_resource_type(resource_type)
-	resource.position = Vector2(chosen_x, chosen_y)
-
+	var contract = contract_node_prefab.instantiate()
+	add_child(contract)
+	contract.set_contract_type(resource_type)
+	contract.position = Vector2(chosen_x, chosen_y)
 
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:
 		spawn_resource()
-
+		
+	if randf() < CONTRACT_SPAWN_CHANCE:
+		spawn_contract()
 #
 func _ready() -> void:
 	spawn_resource()
