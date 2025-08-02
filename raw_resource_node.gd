@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Raw_Resource
+
 enum Resource_Type {NONE, WOOD, METAL}
 var resource_type: Resource_Type = Resource_Type.NONE
 
@@ -31,7 +33,7 @@ func toggle_player_select():
 		sprite2d.material = null
 		print("Switched resource to unselected!")
 
-# Listen for player click events to toggle schedule / unschedule
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("Click"):
 		toggle_player_select()

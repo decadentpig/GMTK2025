@@ -14,5 +14,11 @@ func _process(delta: float) -> void:
 	progress += speed
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass
-	#print("Selected by player?", body.selected_by_player)
+	if (
+		body is Raw_Resource
+		and body.selected_by_player
+		and cargo == Cargo.EMPTY
+	):
+		body.queue_free()
+	else:
+		print("Collided with", body.name, body.selected_by_player, cargo)
