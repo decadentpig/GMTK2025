@@ -1,21 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfe4u6g7o2k7b"]
+[gd_scene load_steps=5 format=3 uid="uid://cfe4u6g7o2k7b"]
 
 [ext_resource type="Script" uid="uid://dfqg6yvq74v70" path="res://raw_resource_node.gd" id="1_nadkk"]
-[ext_resource type="Texture2D" uid="uid://c8jmvxhq0s6c4" path="res://Assets/placeholder_wood.png" id="2_oydtf"]
+[ext_resource type="Texture2D" uid="uid://r11cppd6bih2" path="res://Assets/Icon-Wood.png" id="2_nadkk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5juve"]
-size = Vector2(57, 56)
+size = Vector2(62, 64)
 
-[node name="Raw_Resource_Node" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nadkk"]
+size = Vector2(62, 66)
+
+[node name="Raw_Resource_Node" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource("1_nadkk")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.5, 4)
 shape = SubResource("RectangleShape2D_5juve")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_oydtf")
+texture = ExtResource("2_nadkk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nadkk")
+debug_color = Color(0.978587, 0.103414, 0.263825, 0.42)
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
