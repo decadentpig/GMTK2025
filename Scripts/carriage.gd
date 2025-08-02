@@ -9,8 +9,6 @@ var cargo = GlobalVariables.RESOURCE_TYPE.NONE
 @onready var wood_sprite = preload("res://Assets/Icon-Wood.png")
 @onready var metal_sprite = preload("res://Assets/Icon-Rock.png")
 
-func _ready() -> void:
-	print_debug("Carriage Progress", progress)
 
 func _process(delta: float) -> void:
 	sprite.play("default")
@@ -51,10 +49,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (
 		body is Carriage_Pickup_Node
 		and body.selected_by_player
-		and Stats.money > body.cost
+		and Stats.money >= body.cost
 	):
 		body.queue_free()
 		Stats.money -= body.cost
+		Stats.available_carriages -= 1
 		emit_signal("request_carriage_add")
 		
 		

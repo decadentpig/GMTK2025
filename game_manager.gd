@@ -1,11 +1,11 @@
 extends Node2D
 
-const RESOURCE_SPAWN_CHANCE = 0.001
+const RESOURCE_SPAWN_CHANCE = 0.002
 #const RESOURCE_SPAWN_CHANCE = 0.01 # FULL SPEEEED
 const RESOURCE_SPAWN_TRACK_OFFSET = 120
 const CARRIAGE_SIZE = 128
-const CONTRACT_SPAWN_CHANCE = 0.0005
-const CARRIAGE_SPAWN_CHANCE = 0.0001
+const CONTRACT_SPAWN_CHANCE = 0.001
+const CARRIAGE_SPAWN_CHANCE = 0.0002
 const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
@@ -97,8 +97,10 @@ func spawn_carriage() -> void:
 	var chosen_x = spawn_location[0]
 	var chosen_y = spawn_location[1]
 	var carriage_pickup_node = carriage_pickup_node_prefab.instantiate()
+	carriage_pickup_node.cost = Stats.num_carriages * 10 
 	add_child(carriage_pickup_node)
 	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
+	Stats.available_carriages += 1
 
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:
@@ -110,6 +112,7 @@ func _process(delta: float) -> void:
 	if (
 		randf() < CARRIAGE_SPAWN_CHANCE
 		and Stats.contracts_complete > CARRIAGE_SPAWN_AFTER_CONTRACTS
+		and Stats.available_carriages < GlobalVariables.MAX_CARRIAGE_PICKUPS
 	):
 		spawn_carriage()
 #

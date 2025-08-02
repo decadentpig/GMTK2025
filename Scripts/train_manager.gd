@@ -16,6 +16,7 @@ func create_carriage() -> void:
 	carriage.progress = (progress - 15) - (OFFSET * (num_carriages+1))
 	carriage.request_carriage_add.connect(_on_request_carriage_add)
 	num_carriages += 1
+	Stats.num_carriages += 1
 
 func _ready() -> void:
 	progress = 100 * DEFAULT_CARRIAGES
