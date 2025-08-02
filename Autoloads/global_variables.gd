@@ -12,7 +12,7 @@ extends Node
 @onready var audio_bg_track = preload("res://Sounds/ClockWork (BG music).mp3")
 @onready var audio_contract_complete = preload("res://Sounds/Drop Off Contract.wav")
 @onready var audio_factory_complete = preload("res://Sounds/Factory Complete.wav")
-@onready var audio_failed_action = preload("res://Sounds/Failed : Not Allowed.wav")
+@onready var audio_failed_action = preload("res://Sounds/Failed Not Allowed.wav")
 @onready var audio_make_selection = preload("res://Sounds/Make Selection.wav")
 @onready var audio_pickup_resource = preload("res://Sounds/Pickup Resources.wav")
 @onready var audio_start_factory = preload("res://Sounds/Start Factory.wav")
