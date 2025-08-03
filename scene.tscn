@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=13 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
+[ext_resource type="Texture2D" uid="uid://8sw8ysvs5ggl" path="res://Assets/Background.png" id="1_xlvrw"]
 [ext_resource type="Texture2D" uid="uid://dpnntcte1qild" path="res://Assets/Track-Straight.png" id="2_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://udnpmqusbw16" path="res://Assets/Track-Curved.png" id="3_m7jmp"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
@@ -25,6 +26,11 @@ size = Vector2(128, 128)
 size = Vector2(128, 128)
 
 [node name="Scene" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 2400.0
+offset_bottom = 1350.0
+texture = ExtResource("1_xlvrw")
 
 [node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node")]
 script = ExtResource("1_u3cyc")
