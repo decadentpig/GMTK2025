@@ -123,8 +123,11 @@ func spawn_resource(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) 
 	resource.position = Vector2(chosen_x, chosen_y)
 	
 func spawn_contract(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) -> void:
-	var chosen_x = pos.x
-	var chosen_y = pos.y
+	const CONTRACTS_X_OFFSET = 0
+	const CONTRACTS_Y_OFFSET = 32
+	
+	var chosen_x = pos.x - CONTRACTS_X_OFFSET
+	var chosen_y = pos.y - CONTRACTS_Y_OFFSET
 	
 	# Spawn on grid 
 	var contract = contract_node_prefab.instantiate()

@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dpnntcte1qild" path="res://Assets/Track-Straight.png" id="2_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://udnpmqusbw16" path="res://Assets/Track-Curved.png" id="3_m7jmp"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
-[ext_resource type="Script" path="res://checkpoint_node.gd" id="6_y2354"]
-[ext_resource type="Script" path="res://Scripts/contract_houses.gd" id="7_5juve"]
+[ext_resource type="Script" uid="uid://c6flyx4fgnuos" path="res://checkpoint_node.gd" id="6_y2354"]
+[ext_resource type="Script" uid="uid://dbdxnncj8vik1" path="res://Scripts/contract_houses.gd" id="7_5juve"]
 [ext_resource type="Texture2D" uid="uid://5ocrh8uklhdo" path="res://Assets/Taxgate.png" id="7_xlvrw"]
 [ext_resource type="Texture2D" uid="uid://bbm7ben5vfs2c" path="res://Assets/House1.png" id="8_fy5k1"]
 
@@ -75,14 +75,6 @@ size = Vector2(128, 128)
 offset_right = 2400.0
 offset_bottom = 1350.0
 texture = ExtResource("1_xlvrw")
-
-[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns", "contract_spawns", "factory_spawns")]
-script = ExtResource("1_u3cyc")
-ui_layer = NodePath("../UI_Layer")
-checkpoint_node = NodePath("../Checkpoint_Node")
-node_spawns = NodePath("../Node_Spawns")
-contract_spawns = NodePath("../Contract_Spawns")
-factory_spawns = NodePath("../Factory_Spawns")
 
 [node name="Upper_Decorative" type="Node2D" parent="."]
 
@@ -686,6 +678,14 @@ position = Vector2(584, 487)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
+
+[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns", "contract_spawns", "factory_spawns")]
+script = ExtResource("1_u3cyc")
+ui_layer = NodePath("../UI_Layer")
+checkpoint_node = NodePath("../Checkpoint_Node")
+node_spawns = NodePath("../Node_Spawns")
+contract_spawns = NodePath("../Contract_Spawns")
+factory_spawns = NodePath("../Factory_Spawns")
 
 [node name="Money_Text" type="Label" parent="."]
 offset_left = 2094.0
