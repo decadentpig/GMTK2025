@@ -76,12 +76,6 @@ offset_right = 2400.0
 offset_bottom = 1350.0
 texture = ExtResource("1_xlvrw")
 
-[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns")]
-script = ExtResource("1_u3cyc")
-ui_layer = NodePath("../UI_Layer")
-checkpoint_node = NodePath("../Checkpoint_Node")
-node_spawns = NodePath("../Node_Spawns")
-
 [node name="Upper_Decorative" type="Node2D" parent="."]
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -685,6 +679,14 @@ shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
+[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns", "contract_spawns", "factory_spawns")]
+script = ExtResource("1_u3cyc")
+ui_layer = NodePath("../UI_Layer")
+checkpoint_node = NodePath("../Checkpoint_Node")
+node_spawns = NodePath("../Node_Spawns")
+contract_spawns = NodePath("../Contract_Spawns")
+factory_spawns = NodePath("../Factory_Spawns")
+
 [node name="Money_Text" type="Label" parent="."]
 offset_left = 2094.0
 offset_top = 29.0
@@ -700,6 +702,14 @@ offset_right = 2121.0
 offset_bottom = 101.0
 theme_override_font_sizes/font_size = 40
 text = "Money: $"
+
+[node name="Phase_Label" type="Label" parent="."]
+offset_left = 1922.0
+offset_top = 78.0
+offset_right = 2116.0
+offset_bottom = 133.0
+theme_override_font_sizes/font_size = 40
+text = "Phase"
 
 [node name="Checkpoint_Node" type="Area2D" parent="."]
 position = Vector2(302, 878)

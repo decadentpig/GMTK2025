@@ -1,11 +1,11 @@
 extends Node
 
-const DEFAULT_MONEY = 5
+const DEFAULT_MONEY = 15
 const DEFAULT_CONTRACTS_COMPLETE = 0
 const DEFAULT_NUM_CARRIAGES = 0
 const DEFAULT_AVAILABLE_CARRIAGES = 0
 
-var money = 5
+var money = DEFAULT_MONEY
 var contracts_complete = 0
 var num_carriages = 0
 var available_carriages = 0
