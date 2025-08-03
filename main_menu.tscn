@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://h3npyt56js6a"]
+[gd_scene load_steps=7 format=3 uid="uid://h3npyt56js6a"]
 
 [ext_resource type="Script" uid="uid://b01333watfjur" path="res://Scripts/main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://8sw8ysvs5ggl" path="res://Assets/Background.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://b2qbpwbjvqu67" path="res://Assets/Game-Title.png" id="3_jix8l"]
+[ext_resource type="Texture2D" uid="uid://bspiqrsp0y3ti" path="res://Assets/Button-Newgame-unhovered.png" id="4_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://cy3pdhoowx2en" path="res://Assets/Button-Newgame-clicked.png" id="5_qe12f"]
+[ext_resource type="Texture2D" uid="uid://bepka5v0qks30" path="res://Assets/Button-Newgame-hovered.png" id="6_8qtwp"]
 
 [node name="Main_Menu" type="Node2D"]
 script = ExtResource("1_06t4h")
@@ -38,13 +41,14 @@ text = "Music / SFX Credits to:
 - JDSherbert
 - FableFly Music"
 
-[node name="New_Game_Button" type="Button" parent="."]
-offset_left = 908.0
-offset_top = 943.0
-offset_right = 1458.0
-offset_bottom = 1088.0
-theme_override_font_sizes/font_size = 100
-text = "NEW GAME"
+[node name="New_Game_Button" type="TextureButton" parent="."]
+offset_left = 914.0
+offset_top = 983.0
+offset_right = 1484.0
+offset_bottom = 1143.0
+texture_normal = ExtResource("4_nlkkf")
+texture_pressed = ExtResource("5_qe12f")
+texture_hover = ExtResource("6_8qtwp")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="New_Game_Button" to="." method="_on_new_game_button_pressed"]
