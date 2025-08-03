@@ -703,6 +703,7 @@ theme_override_font_sizes/font_size = 40
 text = "0"
 
 [node name="Phase_Label" type="Label" parent="."]
+visible = false
 offset_left = 1922.0
 offset_top = 78.0
 offset_right = 2116.0

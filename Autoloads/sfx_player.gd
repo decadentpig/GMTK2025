@@ -7,6 +7,17 @@ extends AudioStreamPlayer2D
 @onready var audio_pickup_resource = preload("res://Sounds/Pickup Resources.wav")
 @onready var audio_start_factory = preload("res://Sounds/Start Factory.wav")
 
+@onready var audio_earned_money = preload("res://Sounds/Contract_Sound.wav")
+@onready var audio_lost_money = preload("res://Sounds/Tax_Sound.wav")
+
+func play_audio_earned_money():
+	stream = audio_earned_money
+	play()
+
+func play_audio_lost_money():
+	stream = audio_lost_money
+	play()
+
 func play_contract_complete():
 	stream = audio_contract_complete
 	play()

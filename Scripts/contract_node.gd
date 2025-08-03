@@ -59,7 +59,7 @@ func toggle_player_select():
 		sprite2d.material = highlighted_material
 
 func complete_contract() -> void:
-	SFXPlayer.play_contract_complete()
+	SFXPlayer.play_audio_earned_money()
 	Stats.money += contract_money
 	Stats.contracts_complete += 1
 	

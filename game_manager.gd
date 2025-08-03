@@ -238,6 +238,8 @@ func resolve_checkpoint():
 	var str = '- $' + str(checkpoint_tax)
 	create_floating_text(Vector2(x,y), str, Color.RED, 120)
 	
+	SFXPlayer.play_audio_lost_money()
+	
 	# Each time we pass the checkpoint, increase the tax based on phase
 	if current_phase == GAME_PHASE.PHASE1:
 		checkpoint_tax += PHASE1_TAX_INCREASE

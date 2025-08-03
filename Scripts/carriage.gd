@@ -71,7 +71,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and cargo == body.contract_type
 	):
 		body.queue_free()
-		SFXPlayer.play_contract_complete()
+		SFXPlayer.play_audio_earned_money()
 		cargo = GlobalVariables.RESOURCE_TYPE.NONE
 		sprite2d.texture = null
 		body.complete_contract()
@@ -89,7 +89,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and Stats.money >= body.cost
 	):
 		body.queue_free()
-		SFXPlayer.play_pickup_resource()
+		SFXPlayer.play_audio_lost_money()
 		Stats.money -= body.cost
 		Stats.available_carriages -= 1
 		emit_signal("request_carriage_add")
