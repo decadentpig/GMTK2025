@@ -5,13 +5,15 @@ const RESOURCE_SPAWN_CHANCE = 0.002
 #const RESOURCE_SPAWN_CHANCE = 0.01 # FULL SPEEEED
 const RESOURCE_SPAWN_TRACK_OFFSET = 120
 const CARRIAGE_SIZE = 128
-const CONTRACT_SPAWN_CHANCE = 0.001
+const CONTRACT_SPAWN_CHANCE = 0.0015
+const FACTORY_SPAWN_CHANCE = 0.0005 # TEMPORARY!!
 const CARRIAGE_SPAWN_CHANCE = 0.0002
 const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
 @onready var carriage_pickup_node_prefab = preload("res://Scenes/carriage_pickup_prefab.tscn")
+@onready var factory_node_prefab = preload("res://Scenes/factory_node_prefab.tscn")
 @onready var money_text = get_parent().get_node("Money_Text")
 
 @export var ui_layer: CanvasLayer
@@ -73,7 +75,26 @@ func get_item_spawn_location() -> Array:
 	#var chosen_y = func_get_cord_for_side(chosen_side["y"])
 	#
 	#return [chosen_x, chosen_y]
+
+func get_random_factory() -> GlobalVariables.FACTORY_TYPE:
+	var factories = [GlobalVariables.FACTORY_TYPE.PLANK, GlobalVariables.FACTORY_TYPE.INGOT, GlobalVariables.FACTORY_TYPE.CRATE, GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER]
+	var factory_type_index = randi() % factories.size()
+	return factories[factory_type_index]
+
+func spawn_factory() -> void:
+	var spawn_location = get_item_spawn_location()
+	var chosen_x = spawn_location[0]
+	var chosen_y = spawn_location[1]
 	
+	# Choose factory type
+	var factory_type = get_random_factory()
+	
+	# Spawn on grid
+	var factory = factory_node_prefab.instantiate()
+	add_child(factory)
+	factory.set_factory_type(factory_type)
+	factory.position = Vector2(chosen_x, chosen_y)
+
 func get_random_resource() -> GlobalVariables.RESOURCE_TYPE:
 	var resources = [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL]
 	var resource_type_index = randi() % resources.size()
@@ -146,7 +167,10 @@ func _process(delta: float) -> void:
 		
 	if randf() < CONTRACT_SPAWN_CHANCE:
 		spawn_contract()
-		
+	
+	if randf() < FACTORY_SPAWN_CHANCE:
+		spawn_factory()
+	
 	if (
 		randf() < CARRIAGE_SPAWN_CHANCE
 		and Stats.contracts_complete > CARRIAGE_SPAWN_AFTER_CONTRACTS
