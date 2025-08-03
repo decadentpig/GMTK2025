@@ -38,6 +38,8 @@ const PHASE7_TAX_INCREASE = 1
 @export var contract_spawns: Node2D
 @export var factory_spawns: Node2D
 
+@export var next_tax_label: Label
+
 func func_get_cord_for_side(side: Variant) -> int:
 	if typeof(side) == TYPE_INT:
 		return side
@@ -1079,6 +1081,7 @@ func process_finite_state_machine():
 
 func _process(delta: float) -> void:
 	money_text.text = str(Stats.money)
+	next_tax_label.text = '($' + str(checkpoint_tax) + ')'
 
 func _physics_process(delta: float) -> void:
 	process_finite_state_machine()
