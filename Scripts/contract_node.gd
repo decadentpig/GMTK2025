@@ -1,15 +1,21 @@
 extends RigidBody2D
 class_name Contract_Node
 
-const CONTRACT_MONEY = 5
+var contract_money: int = 0
+
+const WOOD_MONEY = 5
+const METAL_MONEY = 5
+const PLANK_MONEY = 15
+const INGOT_MONEY = 15
+const CRATE_MONEY = 25
+const SHIPPING_CONTAINER_MONEY = 50
+
 var selected_by_player: bool = false
 var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
 
 @onready var sprite2d = get_node("Sprite2D")
 @onready var resource_sprite = get_node("Resource_Sprite")
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
-@onready var wood_sprite = preload("res://Assets/Icon-Wood.png")
-@onready var metal_sprite = preload("res://Assets/Icon-Rock.png")
 
 var game_manager: Game_Manager = null
 
@@ -19,9 +25,23 @@ func initialise(game_manager: Game_Manager):
 func set_contract_type(type: GlobalVariables.RESOURCE_TYPE):
 	contract_type = type
 	if contract_type == GlobalVariables.RESOURCE_TYPE.WOOD:
-		resource_sprite.texture = wood_sprite
+		resource_sprite.texture = GlobalVariables.wood_sprite
+		contract_money = WOOD_MONEY
 	elif contract_type == GlobalVariables.RESOURCE_TYPE.METAL:
-		resource_sprite.texture = metal_sprite
+		resource_sprite.texture = GlobalVariables.metal_sprite
+		contract_money = METAL_MONEY
+	elif contract_type == GlobalVariables.RESOURCE_TYPE.PLANK:
+		resource_sprite.texture = GlobalVariables.plank_sprite
+		contract_money = PLANK_MONEY
+	elif contract_type == GlobalVariables.RESOURCE_TYPE.INGOT:
+		resource_sprite.texture = GlobalVariables.ingot_sprite
+		contract_money = INGOT_MONEY
+	elif contract_type == GlobalVariables.RESOURCE_TYPE.CRATE:
+		resource_sprite.texture = GlobalVariables.crate_sprite
+		contract_money = CRATE_MONEY
+	elif contract_type == GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER:
+		resource_sprite.texture = GlobalVariables.shipping_container_sprite
+		contract_money = SHIPPING_CONTAINER_MONEY
 	else:
 		print("Have only implemented wood and metal sprites on contract nodes! Whoops")
 
@@ -37,10 +57,10 @@ func toggle_player_select():
 
 func complete_contract() -> void:
 	SFXPlayer.play_contract_complete()
-	Stats.money += CONTRACT_MONEY
+	Stats.money += contract_money
 	Stats.contracts_complete += 1
 	
-	var str = '+ $' + str(CONTRACT_MONEY)
+	var str = '+ $' + str(contract_money)
 	var x = position.x - 64
 	var y = position.y - 64
 	game_manager.create_floating_text(Vector2(x,y), str, Color.GREEN, 120)

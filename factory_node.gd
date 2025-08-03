@@ -25,6 +25,11 @@ var resources_invested: Array[GlobalVariables.RESOURCE_TYPE] = []
 @onready var progress_bar = get_node("Control").get_node("ProgressBar")
 @onready var smoke_animation = get_node("Smoke_Animation")
 
+@onready var chibi_wood = preload("res://Assets/Chibi-Wood.png")
+@onready var chibi_metal = preload("res://Assets/Chibi-Rock.png")
+@onready var chibi_plank = preload("res://Assets/Chibi-Planks.png")
+@onready var chibi_ingot = preload("res://Assets/Chibi-Ingot.png")
+
 func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	factory_type = type
 	
@@ -48,7 +53,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# PLANK RECIPE: 1 Wood = 1 Plank
 		
 		# Generate recipe icons
-		single_input_sprite.texture = GlobalVariables.wood_sprite
+		single_input_sprite.texture = chibi_wood
 		single_input_sprite.visible = true
 		
 		# Generate output icon (lower opacity by default)
@@ -58,7 +63,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# INGOT RECIPE: 1 Metal = 1 Ingot
 		
 		# Generate recipe icons
-		single_input_sprite.texture = GlobalVariables.metal_sprite
+		single_input_sprite.texture = chibi_metal
 		single_input_sprite.visible = true
 		
 		# Generate output icon (lower opacity by default)
@@ -68,10 +73,10 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# CRATE RECIPE: 1 Metal, 1 Wood = 1 Crate
 		
 		# Generate recipe icons (half opacity by default)
-		left_input_sprite.texture = GlobalVariables.wood_sprite
+		left_input_sprite.texture = chibi_wood
 		left_input_sprite.visible = true
 		
-		right_input_sprite.texture = GlobalVariables.metal_sprite
+		right_input_sprite.texture = chibi_metal
 		right_input_sprite.visible = true
 		
 		# Generate output icon (half opacity by default)
@@ -81,10 +86,10 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# SHIPPING CONT. RECIPE: 1 Plank, 1 Ingot = 1 Shipping Container
 		
 		# Generate recipe icons (half opacity by default)
-		left_input_sprite.texture = GlobalVariables.plank_sprite
+		left_input_sprite.texture = chibi_plank
 		left_input_sprite.visible = true
 		
-		right_input_sprite.texture = GlobalVariables.ingot_sprite
+		right_input_sprite.texture = chibi_ingot
 		right_input_sprite.visible = true
 		
 		# Generate output icon (half opacity by default)
