@@ -272,9 +272,8 @@ bg_color = Color(0.311764, 0.707032, 0, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_owsfw")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_o3ars")
 
-[node name="Factory_Node" type="RigidBody2D"]
+[node name="Factory_Node" type="StaticBody2D"]
 input_pickable = true
-gravity_scale = 0.0
 script = ExtResource("1_nt4t2")
 
 [node name="Smoke_Animation" type="AnimatedSprite2D" parent="."]

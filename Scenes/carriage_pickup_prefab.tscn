@@ -6,10 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_los3g"]
 size = Vector2(64, 64)
 
-[node name="Carriage_Pickup_Node" type="RigidBody2D"]
+[node name="Carriage_Pickup_Node" type="StaticBody2D"]
 position = Vector2(0, 1)
 input_pickable = true
-gravity_scale = 0.0
 script = ExtResource("1_los3g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 class_name Factory_Node
 
 var factory_type: GlobalVariables.FACTORY_TYPE = GlobalVariables.FACTORY_TYPE.NONE

@@ -6,9 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ni31j"]
 size = Vector2(116, 120)
 
-[node name="Contract_Node" type="RigidBody2D"]
+[node name="Contract_Node" type="StaticBody2D"]
 input_pickable = true
-gravity_scale = 0.0
 script = ExtResource("1_5p8iy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
