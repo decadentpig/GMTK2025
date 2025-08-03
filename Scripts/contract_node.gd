@@ -16,6 +16,7 @@ var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE
 @onready var sprite2d = get_node("Sprite2D")
 @onready var resource_sprite = get_node("Resource_Sprite")
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
+@onready var contract_value = get_node("Contract_Value")
 
 var game_manager: Game_Manager = null
 
@@ -44,6 +45,8 @@ func set_contract_type(type: GlobalVariables.RESOURCE_TYPE):
 		contract_money = SHIPPING_CONTAINER_MONEY
 	else:
 		print("Have only implemented wood and metal sprites on contract nodes! Whoops")
+
+	contract_value.text = '($' + str(contract_money) + ')'
 
 func toggle_player_select():
 	if selected_by_player:
