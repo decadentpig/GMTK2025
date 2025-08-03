@@ -16,12 +16,12 @@ var num_loops_since_phase_change = -1
 
 var checkpoint_tax = 1
 const PHASE1_TAX_INCREASE = 1
-const PHASE2_TAX_INCREASE = 2
-const PHASE3_TAX_INCREASE = 3
-const PHASE4_TAX_INCREASE = 5
-const PHASE5_TAX_INCREASE = 10
-const PHASE6_TAX_INCREASE = 15
-const PHASE7_TAX_INCREASE = 20
+const PHASE2_TAX_INCREASE = 1
+const PHASE3_TAX_INCREASE = 1
+const PHASE4_TAX_INCREASE = 1
+const PHASE5_TAX_INCREASE = 1
+const PHASE6_TAX_INCREASE = 1
+const PHASE7_TAX_INCREASE = 1
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
@@ -123,12 +123,9 @@ func spawn_resource(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) 
 	resource.set_resource_type(resource_type)
 	resource.position = Vector2(chosen_x, chosen_y)
 	
-func spawn_contract(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) -> void:
-	const CONTRACTS_X_OFFSET = 0
-	const CONTRACTS_Y_OFFSET = 32
-	
-	var chosen_x = pos.x - CONTRACTS_X_OFFSET
-	var chosen_y = pos.y - CONTRACTS_Y_OFFSET
+func spawn_contract(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) -> void:	
+	var chosen_x = pos.x
+	var chosen_y = pos.y
 	
 	# Spawn on grid 
 	var contract = contract_node_prefab.instantiate()
@@ -229,7 +226,7 @@ func process_finite_state_machine():
 		var num_wood = 0
 		var num_contracts = 0
 		var used_locations = []
-		
+
 		for child in get_children():
 			if (
 				child is Raw_Resource
@@ -914,7 +911,7 @@ func process_finite_state_machine():
 	const PHASE7_CRATE_FACTORY_RAND_CHANCE = 0.004
 	const PHASE7_SHIPPING_CONTAINER_FACTORY_RAND_CHANCE = 0.004
 	
-	if current_phase == GAME_PHASE.PHASE6:
+	if current_phase == GAME_PHASE.PHASE7:
 		var num_wood = 0
 		var num_metal = 0
 		var num_contracts = 0
