@@ -46,6 +46,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		# PLANK RECIPE: 1 Wood = 1 Plank
+		output_resource = GlobalVariables.RESOURCE_TYPE.PLANK
 		
 		# Generate recipe icons
 		single_input_sprite.texture = GlobalVariables.wood_sprite
@@ -56,6 +57,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		output_sprite.visible = true
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
 		# INGOT RECIPE: 1 Metal = 1 Ingot
+		output_resource = GlobalVariables.RESOURCE_TYPE.INGOT
 		
 		# Generate recipe icons
 		single_input_sprite.texture = GlobalVariables.metal_sprite
@@ -66,6 +68,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		output_sprite.visible = true
 	elif factory_type == GlobalVariables.FACTORY_TYPE.CRATE:
 		# CRATE RECIPE: 1 Metal, 1 Wood = 1 Crate
+		output_resource = GlobalVariables.RESOURCE_TYPE.CRATE
 		
 		# Generate recipe icons (half opacity by default)
 		left_input_sprite.texture = GlobalVariables.wood_sprite
@@ -79,6 +82,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		output_sprite.visible = true
 	elif factory_type == GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER:
 		# SHIPPING CONT. RECIPE: 1 Plank, 1 Ingot = 1 Shipping Container
+		output_resource = GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER
 		
 		# Generate recipe icons (half opacity by default)
 		left_input_sprite.texture = GlobalVariables.plank_sprite
@@ -222,11 +226,10 @@ func run_factory(delta):
 		# If process completed, clean up factory and present output
 		if processing_percentage >= 100:
 			# Ready! Pass the created resource into the completion method
-			complete_output_resource(GlobalVariables.RESOURCE_TYPE.PLANK)
+			complete_output_resource(output_resource)
 
 func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
 	# Set the output resource
-	output_resource = type
 	has_output = true
 	
 	# Maximum opacity on output resource
