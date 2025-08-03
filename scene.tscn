@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=12 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://dpnntcte1qild" path="res://Assets/Track-Straight.png" id="2_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://udnpmqusbw16" path="res://Assets/Track-Curved.png" id="3_m7jmp"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
+[ext_resource type="Script" uid="uid://c6flyx4fgnuos" path="res://checkpoint_node.gd" id="6_y2354"]
+[ext_resource type="Texture2D" uid="uid://5ocrh8uklhdo" path="res://Assets/Taxgate.png" id="7_xlvrw"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
 bake_interval = 0.01
@@ -13,13 +15,21 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2354"]
+size = Vector2(154, 128)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7jmp"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni31j"]
 size = Vector2(128, 128)
 
 [node name="Scene" type="Node2D"]
 
-[node name="Game_Manager" type="Node2D" parent="."]
+[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node")]
 script = ExtResource("1_u3cyc")
+ui_layer = NodePath("../UI_Layer")
+checkpoint_node = NodePath("../Checkpoint_Node")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u3cyc")
@@ -217,14 +227,21 @@ position = Vector2(2099, 324)
 rotation = 4.71239
 texture = ExtResource("3_m7jmp")
 
-[node name="Train" type="PathFollow2D" parent="Path2D"]
+[node name="Train" type="PathFollow2D" parent="Path2D" node_paths=PackedStringArray("game_manager")]
 position = Vector2(300, 500.18)
 rotation = 1.5708
 progress = 180.18
 script = ExtResource("1_3253y")
+game_manager = NodePath("../../Game_Manager")
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/Train"]
 texture = ExtResource("4_u3cyc")
+
+[node name="Area2D" type="Area2D" parent="Path2D/Train"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/Train/Area2D"]
+position = Vector2(-1.1799, 0)
+shape = SubResource("RectangleShape2D_y2354")
 
 [node name="Node_Spawns" type="Node2D" parent="."]
 
@@ -588,3 +605,20 @@ offset_right = 2121.0
 offset_bottom = 101.0
 theme_override_font_sizes/font_size = 40
 text = "Money: $"
+
+[node name="Checkpoint_Node" type="Area2D" parent="."]
+position = Vector2(302, 878)
+script = ExtResource("6_y2354")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint_Node"]
+position = Vector2(-2, -5)
+shape = SubResource("RectangleShape2D_ni31j")
+debug_color = Color(0.685806, 0.500514, 0, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint_Node"]
+position = Vector2(-1, -27)
+texture = ExtResource("7_xlvrw")
+
+[node name="UI_Layer" type="CanvasLayer" parent="."]
+
+[connection signal="area_entered" from="Path2D/Train/Area2D" to="Path2D/Train" method="_on_area_2d_area_entered"]

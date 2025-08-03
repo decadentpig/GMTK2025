@@ -10,9 +10,9 @@ var cargo = GlobalVariables.RESOURCE_TYPE.NONE
 @onready var metal_sprite = preload("res://Assets/Icon-Rock.png")
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	sprite.play("default")
-	progress += speed
+	progress += speed * delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# Pickup resources

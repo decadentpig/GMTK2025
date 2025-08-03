@@ -13,6 +13,10 @@ const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 @onready var carriage_pickup_node_prefab = preload("res://Scenes/carriage_pickup_prefab.tscn")
 @onready var money_text = get_parent().get_node("Money_Text")
 
+@export var ui_layer: CanvasLayer
+@onready var floating_text_prefab = preload("res://Scenes/floating_text_prefab.tscn")
+@export var checkpoint_node: Checkpoint_Node
+
 func func_get_cord_for_side(side: Variant) -> int:
 	if typeof(side) == TYPE_INT:
 		return side
@@ -21,8 +25,7 @@ func func_get_cord_for_side(side: Variant) -> int:
 	else:
 		print("ERROR", side)
 		return 0
-	
-	
+
 func get_item_spawn_location() -> Array:
 	var top_left_point = {"x": 300, "y": 320}
 	var bottom_left_point = {"x": 300, "y": 1030}
@@ -101,6 +104,23 @@ func spawn_carriage() -> void:
 	add_child(carriage_pickup_node)
 	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
 	Stats.available_carriages += 1
+
+func resolve_checkpoint():
+	var checkpoint_tax = 1
+	Stats.money -= checkpoint_tax
+	
+	var text = floating_text_prefab.instantiate()
+	ui_layer.add_child(text)
+	var y = checkpoint_node.position.y - 64
+	var x = checkpoint_node.position.x - 64
+	var str = '- $' + str(checkpoint_tax)
+	text.setup_floating_text(Vector2(x,y), str, Color.RED, 120)
+	
+	if Stats.money >= 1:
+		print("Paid the toll!")
+	else:
+		print("Lost the game!")
+		get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:
