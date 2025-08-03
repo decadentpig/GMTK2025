@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=22 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dpnntcte1qild" path="res://Assets/Track-Straight.png" id="2_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://udnpmqusbw16" path="res://Assets/Track-Curved.png" id="3_m7jmp"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
-[ext_resource type="Script" uid="uid://c6flyx4fgnuos" path="res://checkpoint_node.gd" id="6_y2354"]
-[ext_resource type="Script" uid="uid://dbdxnncj8vik1" path="res://Scripts/contract_houses.gd" id="7_5juve"]
+[ext_resource type="Script" path="res://checkpoint_node.gd" id="6_y2354"]
+[ext_resource type="Script" path="res://Scripts/contract_houses.gd" id="7_5juve"]
 [ext_resource type="Texture2D" uid="uid://5ocrh8uklhdo" path="res://Assets/Taxgate.png" id="7_xlvrw"]
 [ext_resource type="Texture2D" uid="uid://bbm7ben5vfs2c" path="res://Assets/House1.png" id="8_fy5k1"]
 
@@ -17,6 +17,42 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 300, 320, 0, 0, 0, 0, 300, 1030, 0, 0, 0, 0, 2100, 1030, 0, 0, 0, 0, 2100, 320, 0, 0, 0, 0, 300, 320)
 }
 point_count = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5juve"]
+atlas = ExtResource("4_u3cyc")
+region = Rect2(0, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy5k1"]
+atlas = ExtResource("4_u3cyc")
+region = Rect2(160, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c1cw"]
+atlas = ExtResource("4_u3cyc")
+region = Rect2(320, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akxrc"]
+atlas = ExtResource("4_u3cyc")
+region = Rect2(480, 0, 160, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gu47o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5juve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy5k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c1cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akxrc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2354"]
 size = Vector2(154, 128)
@@ -253,8 +289,9 @@ progress = 180.18
 script = ExtResource("1_3253y")
 game_manager = NodePath("../../Game_Manager")
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/Train"]
-texture = ExtResource("4_u3cyc")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Path2D/Train"]
+sprite_frames = SubResource("SpriteFrames_gu47o")
+autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="Path2D/Train"]
 

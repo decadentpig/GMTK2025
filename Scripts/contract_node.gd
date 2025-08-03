@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 class_name Contract_Node
 
 var contract_money: int = 0
