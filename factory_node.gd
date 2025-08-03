@@ -125,8 +125,6 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			single_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
 			
-			if selected_by_player:
-				toggle_factory_select()
 		else:
 			SFXPlayer.play_failed_action()
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
@@ -134,9 +132,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			single_input_sprite.modulate.a = 255
 			single_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
-			
-			if selected_by_player:
-				toggle_factory_select()
+
 		else:
 			SFXPlayer.play_failed_action()
 	elif factory_type == GlobalVariables.FACTORY_TYPE.CRATE:
@@ -147,9 +143,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			left_input_sprite.modulate.a = 255
 			left_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
-			
-			if selected_by_player:
-				toggle_factory_select()
+
 		elif (
 			type == GlobalVariables.RESOURCE_TYPE.METAL
 			and type not in resources_invested
@@ -158,8 +152,6 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			right_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
 			
-			if selected_by_player:
-				toggle_factory_select()
 		else:
 			SFXPlayer.play_failed_action()
 	elif factory_type == GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER:
@@ -171,8 +163,6 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			left_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.PLANK)
 			
-			if selected_by_player:
-				toggle_factory_select()
 		elif (
 			type == GlobalVariables.RESOURCE_TYPE.INGOT
 			and type not in resources_invested
@@ -181,8 +171,6 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			right_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.INGOT)
 			
-			if selected_by_player:
-				toggle_factory_select()
 		else:
 			SFXPlayer.play_failed_action()
 	else:

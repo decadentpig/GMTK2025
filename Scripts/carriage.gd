@@ -104,3 +104,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				sprite2d.texture = GlobalVariables.crate_sprite
 			elif cargo == GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER:
 				sprite2d.texture = GlobalVariables.shipping_container_sprite
+				
+			if body.selected_by_player:
+				body.toggle_factory_select()
