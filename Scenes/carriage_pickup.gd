@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 class_name Carriage_Pickup_Node
 
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
