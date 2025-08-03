@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqnpvm0ednoqy"]
+
+[ext_resource type="Script" uid="uid://21q2b35v5t41" path="res://Scripts/game_over.gd" id="1_y26ei"]
+
+[node name="Main_Menu" type="Node2D"]
+script = ExtResource("1_y26ei")
+
+[node name="Game_Title" type="Label" parent="."]
+offset_left = 615.0
+offset_top = 75.0
+offset_right = 1762.0
+offset_bottom = 348.0
+theme_override_font_sizes/font_size = 200
+text = "GAME OVER"
+
+[node name="By_Line" type="Label" parent="."]
+offset_left = 530.0
+offset_top = 331.0
+offset_right = 1861.0
+offset_bottom = 398.0
+theme_override_font_sizes/font_size = 48
+text = "GMTK Game Jam 2025 Submission - Harry, Elliott & Jordan"
+
+[node name="Credits" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 1092.0
+offset_right = 372.0
+offset_bottom = 1317.0
+theme_override_font_sizes/font_size = 36
+text = "Music Credits to:
+- JHawk Studios
+- JDSherbert
+- FableFly Music"
+
+[node name="New_Game_Button" type="Button" parent="."]
+offset_left = 908.0
+offset_top = 731.0
+offset_right = 1458.0
+offset_bottom = 876.0
+theme_override_font_sizes/font_size = 100
+text = "NEW GAME"
+metadata/_edit_use_anchors_ = true
+
+[node name="Loops_Label" type="Label" parent="."]
+offset_left = 1014.0
+offset_top = 503.0
+offset_right = 1366.0
+offset_bottom = 599.0
+theme_override_font_sizes/font_size = 70
+text = "Loops: "
+
+[connection signal="pressed" from="New_Game_Button" to="." method="_on_new_game_button_pressed"]
