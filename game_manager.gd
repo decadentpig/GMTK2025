@@ -17,6 +17,7 @@ const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 @export var ui_layer: CanvasLayer
 @onready var floating_text_prefab = preload("res://Scenes/floating_text_prefab.tscn")
 @export var checkpoint_node: Checkpoint_Node
+@export var node_spawns: Node2D
 
 func func_get_cord_for_side(side: Variant) -> int:
 	if typeof(side) == TYPE_INT:
@@ -28,40 +29,50 @@ func func_get_cord_for_side(side: Variant) -> int:
 		return 0
 
 func get_item_spawn_location() -> Array:
-	var top_left_point = {"x": 300, "y": 320}
-	var bottom_left_point = {"x": 300, "y": 1030}
-	var bottom_right_point = {"x": 2100, "y": 1030}
-	var top_right_point = {"x": 2100, "y": 320}
+	if node_spawns.get_child_count() == 0:
+		print("Error! Could not find children in Node Spawns")
+		return [0, 0]
 	
-	var sides = [
-		# Outer left
-		{"x": top_left_point["x"] - RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_left_point["y"] + CARRIAGE_SIZE, bottom_left_point["y"] - CARRIAGE_SIZE]},
-		# Inner left
-		{"x": top_left_point["x"] + RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_left_point["y"] + CARRIAGE_SIZE, bottom_left_point["y"] - CARRIAGE_SIZE]},
-		# Outer bottom
-		{"x": [bottom_left_point["x"] + CARRIAGE_SIZE, bottom_right_point["x"] - CARRIAGE_SIZE], "y": bottom_left_point["y"] + RESOURCE_SPAWN_TRACK_OFFSET},
-		# Inner bottom
-		{"x": [bottom_left_point["x"] + CARRIAGE_SIZE, bottom_right_point["x"] - CARRIAGE_SIZE], "y": bottom_left_point["y"] - RESOURCE_SPAWN_TRACK_OFFSET},
-		# Outer right
-		{"x": bottom_right_point["x"] + RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_right_point["y"] + CARRIAGE_SIZE, bottom_right_point["y"] - CARRIAGE_SIZE]},
-		# Inner right
-		{"x": bottom_right_point["x"] - RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_right_point["y"] + CARRIAGE_SIZE, bottom_right_point["y"] - CARRIAGE_SIZE]},
-		# Outer top
-		{"x": [top_left_point["x"] + CARRIAGE_SIZE, top_right_point["x"] - CARRIAGE_SIZE], "y": top_right_point["y"] - RESOURCE_SPAWN_TRACK_OFFSET},
-		# Inner top
-		{"x": [top_left_point["x"] + CARRIAGE_SIZE, top_right_point["x"] - CARRIAGE_SIZE], "y": top_right_point["y"] + RESOURCE_SPAWN_TRACK_OFFSET},
-	]
+	var random_index = randi() % node_spawns.get_child_count()
+	var spawn = node_spawns.get_child(random_index)
 	
-		
-	# Pick side that resource spawns on
-	var random_side_index = randi() % sides.size()
-	var chosen_side = sides[random_side_index]
-	
-	# Choose spawn location on side
-	var chosen_x = func_get_cord_for_side(chosen_side["x"])
-	var chosen_y = func_get_cord_for_side(chosen_side["y"])
-	
-	return [chosen_x, chosen_y]
+	return [spawn.position.x, spawn.position.y]
+
+#func get_item_spawn_location() -> Array:
+	#var top_left_point = {"x": 300, "y": 320}
+	#var bottom_left_point = {"x": 300, "y": 1030}
+	#var bottom_right_point = {"x": 2100, "y": 1030}
+	#var top_right_point = {"x": 2100, "y": 320}
+	#
+	#var sides = [
+		## Outer left
+		#{"x": top_left_point["x"] - RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_left_point["y"] + CARRIAGE_SIZE, bottom_left_point["y"] - CARRIAGE_SIZE]},
+		## Inner left
+		#{"x": top_left_point["x"] + RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_left_point["y"] + CARRIAGE_SIZE, bottom_left_point["y"] - CARRIAGE_SIZE]},
+		## Outer bottom
+		#{"x": [bottom_left_point["x"] + CARRIAGE_SIZE, bottom_right_point["x"] - CARRIAGE_SIZE], "y": bottom_left_point["y"] + RESOURCE_SPAWN_TRACK_OFFSET},
+		## Inner bottom
+		#{"x": [bottom_left_point["x"] + CARRIAGE_SIZE, bottom_right_point["x"] - CARRIAGE_SIZE], "y": bottom_left_point["y"] - RESOURCE_SPAWN_TRACK_OFFSET},
+		## Outer right
+		#{"x": bottom_right_point["x"] + RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_right_point["y"] + CARRIAGE_SIZE, bottom_right_point["y"] - CARRIAGE_SIZE]},
+		## Inner right
+		#{"x": bottom_right_point["x"] - RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_right_point["y"] + CARRIAGE_SIZE, bottom_right_point["y"] - CARRIAGE_SIZE]},
+		## Outer top
+		#{"x": [top_left_point["x"] + CARRIAGE_SIZE, top_right_point["x"] - CARRIAGE_SIZE], "y": top_right_point["y"] - RESOURCE_SPAWN_TRACK_OFFSET},
+		## Inner top
+		#{"x": [top_left_point["x"] + CARRIAGE_SIZE, top_right_point["x"] - CARRIAGE_SIZE], "y": top_right_point["y"] + RESOURCE_SPAWN_TRACK_OFFSET},
+	#]
+	#
+		#
+	## Pick side that resource spawns on
+	#var random_side_index = randi() % sides.size()
+	#var chosen_side = sides[random_side_index]
+	#
+	## Choose spawn location on side
+	#var chosen_x = func_get_cord_for_side(chosen_side["x"])
+	#var chosen_y = func_get_cord_for_side(chosen_side["y"])
+	#
+	#return [chosen_x, chosen_y]
 	
 func get_random_resource() -> GlobalVariables.RESOURCE_TYPE:
 	var resources = [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL]
