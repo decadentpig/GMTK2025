@@ -257,8 +257,8 @@ func resolve_checkpoint():
 	# TODO: Visually notify player of tax increase
 	
 	if Stats.money >= 1:
-		print("Paid the toll!")
-		# TODO: Add a sound for lost moneu
+		# TODO: Add a sound for lost money
+		pass
 	else:
 		print("Lost the game!")
 		Stats.previous_game_loops = Stats.total_loops
