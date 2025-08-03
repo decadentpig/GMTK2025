@@ -279,7 +279,8 @@ script = ExtResource("1_nt4t2")
 visible = false
 position = Vector2(-43, -112)
 sprite_frames = SubResource("SpriteFrames_wr6sp")
-frame_progress = 0.859662
+autoplay = "default"
+frame_progress = 0.383225
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nt4t2")
