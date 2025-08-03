@@ -7,7 +7,6 @@ var cargo = GlobalVariables.RESOURCE_TYPE.NONE
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var sprite2d = get_node("Sprite2D")
 
-
 func _physics_process(delta: float) -> void:
 	sprite.play("default")
 	progress += speed * delta
@@ -79,6 +78,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	):
 		if body.accepting_inputs:
 			body.insert_resource(cargo)
+			cargo = GlobalVariables.RESOURCE_TYPE.NONE
+			sprite2d.texture = null
 		elif body.has_output and cargo == GlobalVariables.RESOURCE_TYPE.NONE:
 			cargo = body.output_resource
 			
@@ -87,14 +88,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			
 			# Set resource sprite in carriage
 			if cargo == GlobalVariables.RESOURCE_TYPE.WOOD:
-				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.WOOD
+				sprite2d.texture = GlobalVariables.wood_sprite
 			elif cargo == GlobalVariables.RESOURCE_TYPE.METAL:
-				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.METAL
+				sprite2d.texture = GlobalVariables.metal_sprite
 			elif cargo == GlobalVariables.RESOURCE_TYPE.PLANK:
-				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.PLANK
+				sprite2d.texture = GlobalVariables.plank_sprite
 			elif cargo == GlobalVariables.RESOURCE_TYPE.INGOT:
-				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.INGOT
+				sprite2d.texture = GlobalVariables.ingot_sprite
 			elif cargo == GlobalVariables.RESOURCE_TYPE.CRATE:
-				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.CRATE
+				sprite2d.texture = GlobalVariables.crate_sprite
 			elif cargo == GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER:
-				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER
+				sprite2d.texture = GlobalVariables.shipping_container_sprite
