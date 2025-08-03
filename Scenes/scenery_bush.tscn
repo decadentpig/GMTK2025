@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://boo13sswtxj1n"]
+
+[ext_resource type="Texture2D" uid="uid://cflqc4g6pwxx4" path="res://Assets/Scenery-Bush.png" id="1_ka7fn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vew5c"]
+atlas = ExtResource("1_ka7fn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdygh"]
+atlas = ExtResource("1_ka7fn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xvqc"]
+atlas = ExtResource("1_ka7fn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxknx"]
+atlas = ExtResource("1_ka7fn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp6x7"]
+atlas = ExtResource("1_ka7fn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v16n6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vew5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdygh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xvqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxknx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp6x7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SceneryBush" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_v16n6")
+autoplay = "default"
+frame_progress = 0.230548

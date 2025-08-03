@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqlld65ime8ub"]
+
+[ext_resource type="Texture2D" uid="uid://rw760xkx254k" path="res://Assets/Scenery-Bush2.png" id="1_r1igq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_250h4"]
+atlas = ExtResource("1_r1igq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq4vw"]
+atlas = ExtResource("1_r1igq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cono"]
+atlas = ExtResource("1_r1igq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j306j"]
+atlas = ExtResource("1_r1igq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mjyh"]
+atlas = ExtResource("1_r1igq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0ohh"]
+atlas = ExtResource("1_r1igq")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4kxl"]
+atlas = ExtResource("1_r1igq")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41lgr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_250h4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq4vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cono")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j306j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mjyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0ohh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4kxl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SceneryBush" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_41lgr")
+autoplay = "default"
