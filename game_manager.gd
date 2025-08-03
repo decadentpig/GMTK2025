@@ -1,18 +1,19 @@
 extends Node2D
 
-const RESOURCE_SPAWN_CHANCE = 0.001
+const RESOURCE_SPAWN_CHANCE = 0.002
 #const RESOURCE_SPAWN_CHANCE = 0.01 # FULL SPEEEED
 const RESOURCE_SPAWN_TRACK_OFFSET = 120
 const CARRIAGE_SIZE = 128
-const CONTRACT_SPAWN_CHANCE = 0.0005
+const CONTRACT_SPAWN_CHANCE = 0.001
+const CARRIAGE_SPAWN_CHANCE = 0.0002
+const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
+@onready var carriage_pickup_node_prefab = preload("res://Scenes/carriage_pickup_prefab.tscn")
 @onready var money_text = get_parent().get_node("Money_Text")
-var money = 0
 
 func func_get_cord_for_side(side: Variant) -> int:
-	var chosen_cord = null
 	if typeof(side) == TYPE_INT:
 		return side
 	elif typeof(side) == TYPE_ARRAY:
@@ -89,12 +90,17 @@ func spawn_contract() -> void:
 	var contract = contract_node_prefab.instantiate()
 	add_child(contract)
 	contract.set_contract_type(resource_type)
-	contract.request_money_update.connect(_on_request_money_update)
 	contract.position = Vector2(chosen_x, chosen_y)
 	
-func update_money(amount: int) -> void:
-	money += amount
-	money_text.text = str(money)
+func spawn_carriage() -> void:
+	var spawn_location = get_item_spawn_location()
+	var chosen_x = spawn_location[0]
+	var chosen_y = spawn_location[1]
+	var carriage_pickup_node = carriage_pickup_node_prefab.instantiate()
+	carriage_pickup_node.cost = Stats.num_carriages * 10 
+	add_child(carriage_pickup_node)
+	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
+	Stats.available_carriages += 1
 
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:
@@ -102,9 +108,15 @@ func _process(delta: float) -> void:
 		
 	if randf() < CONTRACT_SPAWN_CHANCE:
 		spawn_contract()
+		
+	if (
+		randf() < CARRIAGE_SPAWN_CHANCE
+		and Stats.contracts_complete > CARRIAGE_SPAWN_AFTER_CONTRACTS
+		and Stats.available_carriages < GlobalVariables.MAX_CARRIAGE_PICKUPS
+	):
+		spawn_carriage()
 #
-func _on_request_money_update(amount: int) -> void:
-	update_money(amount)
+	money_text.text = str(Stats.money)
 
 func _ready() -> void:
 	spawn_resource()
