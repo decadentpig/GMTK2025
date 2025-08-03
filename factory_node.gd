@@ -7,7 +7,7 @@ var accepting_inputs: bool = true
 var has_output: bool = false
 
 var processing_percentage: float = 0.0
-const PROCESSING_STEP = 50
+const PROCESSING_STEP = 25
 
 var output_resource: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
 
@@ -216,9 +216,6 @@ func run_factory(delta):
 		# Do not accept new inputs
 		accepting_inputs = false
 		
-		# Show smoke animation
-		smoke_animation.visible = true
-		
 		# Progress the factory dependent on time (not frames)
 		processing_percentage += PROCESSING_STEP * delta
 		
@@ -241,6 +238,9 @@ func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
 	# Clear the resources_invested
 	resources_invested = []
 	
+	# Turn off smoke
+	smoke_animation.visible = false
+	
 	# Reduce opacity on input icons
 	single_input_sprite.modulate.a = 128
 	left_input_sprite.modulate.a = 128
@@ -257,3 +257,6 @@ func _process(delta):
 	# Process the factory each frame
 	run_factory(delta)
 	progress_bar.value = processing_percentage
+	
+	if progress_bar.value > 0 and progress_bar.value < 100:
+		smoke_animation.visible = true
