@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dpnntcte1qild" path="res://Assets/Track-Straight.png" id="2_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://udnpmqusbw16" path="res://Assets/Track-Curved.png" id="3_m7jmp"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
-[ext_resource type="Script" path="res://checkpoint_node.gd" id="6_y2354"]
-[ext_resource type="Script" path="res://Scripts/contract_houses.gd" id="7_5juve"]
+[ext_resource type="Script" uid="uid://c6flyx4fgnuos" path="res://checkpoint_node.gd" id="6_y2354"]
+[ext_resource type="Script" uid="uid://dbdxnncj8vik1" path="res://Scripts/contract_houses.gd" id="7_5juve"]
 [ext_resource type="Texture2D" uid="uid://5ocrh8uklhdo" path="res://Assets/Taxgate.png" id="7_xlvrw"]
 [ext_resource type="Texture2D" uid="uid://bbm7ben5vfs2c" path="res://Assets/House1.png" id="8_fy5k1"]
 
