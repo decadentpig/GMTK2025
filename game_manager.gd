@@ -22,7 +22,10 @@ var current_phase: GAME_PHASE = GAME_PHASE.PHASE1
 @export var ui_layer: CanvasLayer
 @onready var floating_text_prefab = preload("res://Scenes/floating_text_prefab.tscn")
 @export var checkpoint_node: Checkpoint_Node
+
 @export var node_spawns: Node2D
+@export var contract_spawns: Node2D
+@export var factory_spawns: Node2D
 
 func func_get_cord_for_side(side: Variant) -> int:
 	if typeof(side) == TYPE_INT:
@@ -103,28 +106,20 @@ func get_random_resource() -> GlobalVariables.RESOURCE_TYPE:
 	var resource_type_index = randi() % resources.size()
 	return resources[resource_type_index]
 
-func spawn_resource() -> void:
-	var spawn_location = get_item_spawn_location()
-	var chosen_x = spawn_location[0]
-	var chosen_y = spawn_location[1]
+func spawn_resource(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) -> void:
+	var chosen_x = pos.x
+	var chosen_y = pos.y
 	
-	# Choose resouce type
-	var resource_type = get_random_resource()
-
 	# Spawn on grid 
 	var resource = raw_resource_prefab.instantiate()
 	add_child(resource)
 	resource.set_resource_type(resource_type)
 	resource.position = Vector2(chosen_x, chosen_y)
 	
-func spawn_contract() -> void:
-	var spawn_location = get_item_spawn_location()
-	var chosen_x = spawn_location[0]
-	var chosen_y = spawn_location[1]
+func spawn_contract(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) -> void:
+	var chosen_x = pos.x
+	var chosen_y = pos.y
 	
-	# Choose resouce type
-	var resource_type = get_random_resource()
-
 	# Spawn on grid 
 	var contract = contract_node_prefab.instantiate()
 	add_child(contract)
@@ -170,8 +165,58 @@ func process_finite_state_machine():
 	# Contracts: Wood
 	# Factories: (none)
 	# Rent Increase Per Lap: 2
+	
+	# PHASE 1 CONSTANTS
+	const PHASE1_MAX_CONTRACTS = 3
+	const PHASE1_MAX_NUM_WOOD = 2
+	const PHASE1_WOOD_RAND_CHANCE = 0.002
+	const PHASE1_CONTRACT_RAND_CHANCE = 0.002
+	
 	if current_phase == GAME_PHASE.PHASE1:
-		pass
+		# 1. Check how many wood nodes exist to be picked up, and their locations
+		var num_wood = 0
+		var num_contracts = 0
+		var used_locations = []
+		
+		for child in get_children():
+			if (
+				child is Raw_Resource
+				and child.resource_type == GlobalVariables.RESOURCE_TYPE.WOOD
+			):
+				num_wood += 1
+				used_locations.append(child.position)
+			elif (
+				child is Contract_Node
+			):
+				num_contracts += 1
+				used_locations.append(child.position)
+		
+		# Spawn Wood resources if within limits
+		if num_wood < PHASE1_MAX_NUM_WOOD and randf() < PHASE1_WOOD_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_resource(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
+		
+		# Spawn Contracts if within limits
+		if num_contracts < PHASE1_MAX_CONTRACTS and randf() < PHASE1_CONTRACT_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
+				var spawn = contract_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_contract(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
+	
 	
 	# PHASE 2
 	# Resource Spawns: Wood, Metal
@@ -228,25 +273,14 @@ func _process(delta: float) -> void:
 	process_finite_state_machine()
 
 	
-	if randf() < RESOURCE_SPAWN_CHANCE:
-		spawn_resource()
-		
-	if randf() < CONTRACT_SPAWN_CHANCE:
-		spawn_contract()
-	
-	if randf() < FACTORY_SPAWN_CHANCE:
-		spawn_factory()
-	
-	if (
-		randf() < CARRIAGE_SPAWN_CHANCE
-		and Stats.contracts_complete > CARRIAGE_SPAWN_AFTER_CONTRACTS
-		and Stats.available_carriages < GlobalVariables.MAX_CARRIAGE_PICKUPS
-	):
-		spawn_carriage()
+	#if (
+		#randf() < CARRIAGE_SPAWN_CHANCE
+		#and Stats.contracts_complete > CARRIAGE_SPAWN_AFTER_CONTRACTS
+		#and Stats.available_carriages < GlobalVariables.MAX_CARRIAGE_PICKUPS
+	#):
+		#spawn_carriage()
 #
 	money_text.text = str(Stats.money)
 
 func _ready() -> void:
-	spawn_resource()
-	spawn_contract()
 	MusicPlayer.play_background_music()

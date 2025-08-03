@@ -40,11 +40,13 @@ offset_right = 2400.0
 offset_bottom = 1350.0
 texture = ExtResource("1_xlvrw")
 
-[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns")]
+[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns", "contract_spawns", "factory_spawns")]
 script = ExtResource("1_u3cyc")
 ui_layer = NodePath("../UI_Layer")
 checkpoint_node = NodePath("../Checkpoint_Node")
 node_spawns = NodePath("../Node_Spawns")
+contract_spawns = NodePath("../Contract_Spawns")
+factory_spawns = NodePath("../Factory_Spawns")
 
 [node name="Upper_Decorative" type="Node2D" parent="."]
 
