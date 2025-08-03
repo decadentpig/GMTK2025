@@ -10,6 +10,9 @@ const FACTORY_SPAWN_CHANCE = 0.0005 # TEMPORARY!!
 const CARRIAGE_SPAWN_CHANCE = 0.0002
 const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 
+enum GAME_PHASE {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
+var current_phase: GAME_PHASE = GAME_PHASE.PHASE1
+
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
 @onready var carriage_pickup_node_prefab = preload("res://Scenes/carriage_pickup_prefab.tscn")
@@ -161,7 +164,70 @@ func create_floating_text(pos: Vector2, text: String, color: Color, frames: int)
 	ui_layer.add_child(floating_text)
 	floating_text.setup_floating_text(pos, text, color, frames)
 
+func process_finite_state_machine():
+	# PHASE 1
+	# Resource Spawns: Wood
+	# Contracts: Wood
+	# Factories: (none)
+	# Rent Increase Per Lap: 2
+	if current_phase == GAME_PHASE.PHASE1:
+		pass
+	
+	# PHASE 2
+	# Resource Spawns: Wood, Metal
+	# Contracts: Wood, Metal
+	# Factories (none)
+	# Rent Increase Per Lap: 5
+	if current_phase == GAME_PHASE.PHASE2:
+		pass
+
+	# PHASE 3
+	# Resource Spawns: Wood, Metal, Carriages
+	# Contracts: Wood, Metal
+	# Factories: (none)
+	# Rent Increase Per Lap: 5
+	if current_phase == GAME_PHASE.PHASE3:
+		pass
+
+	# PHASE 4
+	# Resource Spawns: Wood, Metal
+	# Contracts: Wood, Metal, Planks
+	# Factories: Planks
+	# Rent Increase Per Lap: 10
+	if current_phase == GAME_PHASE.PHASE4:
+		pass
+	
+	# PHASE 5
+	# Resource Spawns: Wood, Metal
+	# Contracts: Wood, Metal, Planks, Ingots
+	# Factories: Planks, Ingots
+	# Rent Increase Per Lap: 20
+	if current_phase == GAME_PHASE.PHASE5:
+		pass
+	
+	# PHASE 6
+	# Resource Spawns: Wood, Metal
+	# Contracts: Wood, Metal, Planks, Ingots, Crates
+	# Factories: Planks, Ingots, Crates
+	# Rent Increase Per Lap: 30
+	if current_phase == GAME_PHASE.PHASE6:
+		pass
+	
+	# PHASE 7
+	# Resource Spawns: Wood, Metal
+	# Contracts: Wood, Metal, Planks, Ingots, Crates, Shipping Containers
+	# Factories: Planks, Ingots, Crates, Shipping Containers
+	# Rent Increase Per Lap: 50
+	if current_phase == GAME_PHASE.PHASE7:
+		pass
+	
+	pass
+
 func _process(delta: float) -> void:
+	# TODO: Change state / phase based on ??
+	process_finite_state_machine()
+
+	
 	if randf() < RESOURCE_SPAWN_CHANCE:
 		spawn_resource()
 		

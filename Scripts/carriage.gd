@@ -71,15 +71,20 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	):
 		SFXPlayer.play_failed_action()
 	
-	# Drop-off resources to factory
 	if (
 		body is Factory_Node
 		and body.selected_by_player
 	):
-		if body.accepting_inputs:
+		# Drop-off resources to factory
+		if (
+			body.accepting_inputs 
+			and cargo in body.resources_accepted 
+			and cargo not in body.resources_invested
+		):
 			body.insert_resource(cargo)
 			cargo = GlobalVariables.RESOURCE_TYPE.NONE
 			sprite2d.texture = null
+		# Pickup resources from factory
 		elif body.has_output and cargo == GlobalVariables.RESOURCE_TYPE.NONE:
 			cargo = body.output_resource
 			
@@ -99,3 +104,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				sprite2d.texture = GlobalVariables.crate_sprite
 			elif cargo == GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER:
 				sprite2d.texture = GlobalVariables.shipping_container_sprite
+				
+			if body.selected_by_player:
+				body.toggle_factory_select()
