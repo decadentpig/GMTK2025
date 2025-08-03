@@ -712,7 +712,7 @@ theme_override_font_sizes/font_size = 40
 text = "Phase"
 
 [node name="Checkpoint_Node" type="Area2D" parent="."]
-position = Vector2(302, 878)
+position = Vector2(302, 861)
 script = ExtResource("6_y2354")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint_Node"]
@@ -2275,35 +2275,35 @@ texture = ExtResource("11_17rhs")
 position = Vector2(2324, 796)
 texture = ExtResource("17_aobyt")
 
-[node name="Tree44" type="Sprite2D" parent="."]
+[node name="Tree385" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(500, 20)
 texture = ExtResource("15_302uq")
 
-[node name="Tree47" type="Sprite2D" parent="."]
+[node name="Tree386" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(671, 6)
 texture = ExtResource("17_aobyt")
 
-[node name="Tree62" type="Sprite2D" parent="."]
+[node name="Tree387" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(701, -29)
 texture = ExtResource("10_5juve")
 
-[node name="Tree63" type="Sprite2D" parent="."]
+[node name="Tree388" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(751, -31)
 texture = ExtResource("16_1q4c1")
 
-[node name="Tree64" type="Sprite2D" parent="."]
+[node name="Tree389" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(762, 6)
 texture = ExtResource("16_1q4c1")
 
-[node name="Tree65" type="Sprite2D" parent="."]
+[node name="Tree390" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(725, -9)
 texture = ExtResource("17_aobyt")
 
-[node name="Tree66" type="Sprite2D" parent="."]
+[node name="Tree391" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(743, 27)
 texture = ExtResource("17_aobyt")
 
-[node name="Tree67" type="Sprite2D" parent="."]
+[node name="Tree392" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(706, 27)
 texture = ExtResource("14_xpof7")
 
