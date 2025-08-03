@@ -618,72 +618,73 @@ texture = ExtResource("7_fy5k1")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1141, 118)
+position = Vector2(1137, 117)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1008, 123)
+position = Vector2(1007, 116)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(706, 826)
+position = Vector2(706, 829)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(984, 824)
+position = Vector2(984, 827)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1611, 823)
+position = Vector2(1609, 822)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1542, 450)
+position = Vector2(1548, 446)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(2230, 711)
+position = Vector2(2235, 709)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(137, 817)
+position = Vector2(141, 815)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1135, 1162)
+position = Vector2(1134, 1158)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(587, 451)
+position = Vector2(584, 448)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
-[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns", "contract_spawns", "factory_spawns")]
+[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns", "contract_spawns", "factory_spawns", "next_tax_label")]
 script = ExtResource("1_u3cyc")
 ui_layer = NodePath("../UI_Layer")
 checkpoint_node = NodePath("../Checkpoint_Node")
 node_spawns = NodePath("../Node_Spawns")
 contract_spawns = NodePath("../Contract_Spawns")
 factory_spawns = NodePath("../Factory_Spawns")
+next_tax_label = NodePath("../Checkpoint_Node/Next_Tax_Label")
 
 [node name="Money_Text" type="Label" parent="."]
 offset_left = 2094.0
@@ -722,6 +723,17 @@ debug_color = Color(0.685806, 0.500514, 0, 0.42)
 [node name="Sprite2D" type="Sprite2D" parent="Checkpoint_Node"]
 position = Vector2(-1, -27)
 texture = ExtResource("7_xlvrw")
+
+[node name="Next_Tax_Label" type="Label" parent="Checkpoint_Node"]
+custom_minimum_size = Vector2(128, 0)
+offset_left = -66.0
+offset_top = -18.0
+offset_right = 62.0
+offset_bottom = 5.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "($???)"
+horizontal_alignment = 1
 
 [node name="UI_Layer" type="CanvasLayer" parent="."]
 
