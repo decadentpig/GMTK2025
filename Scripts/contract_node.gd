@@ -11,6 +11,11 @@ var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE
 @onready var wood_sprite = preload("res://Assets/Icon-Wood.png")
 @onready var metal_sprite = preload("res://Assets/Icon-Rock.png")
 
+var game_manager: Game_Manager = null
+
+func initialise(game_manager: Game_Manager):
+	self.game_manager = game_manager
+
 func set_contract_type(type: GlobalVariables.RESOURCE_TYPE):
 	contract_type = type
 	if contract_type == GlobalVariables.RESOURCE_TYPE.WOOD:
@@ -29,12 +34,16 @@ func toggle_player_select():
 		selected_by_player = true
 		SFXPlayer.play_make_selection()
 		sprite2d.material = highlighted_material
-		
-		
+
 func complete_contract() -> void:
 	SFXPlayer.play_contract_complete()
 	Stats.money += CONTRACT_MONEY
 	Stats.contracts_complete += 1
+	
+	var str = '+ $' + str(CONTRACT_MONEY)
+	var x = position.x - 64
+	var y = position.y - 64
+	game_manager.create_floating_text(Vector2(x,y), str, Color.GREEN, 120)
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):

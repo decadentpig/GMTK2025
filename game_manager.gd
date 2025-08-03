@@ -1,4 +1,5 @@
 extends Node2D
+class_name Game_Manager
 
 const RESOURCE_SPAWN_CHANCE = 0.002
 #const RESOURCE_SPAWN_CHANCE = 0.01 # FULL SPEEEED
@@ -93,6 +94,7 @@ func spawn_contract() -> void:
 	var contract = contract_node_prefab.instantiate()
 	add_child(contract)
 	contract.set_contract_type(resource_type)
+	contract.initialise(self)
 	contract.position = Vector2(chosen_x, chosen_y)
 	
 func spawn_carriage() -> void:
@@ -109,18 +111,23 @@ func resolve_checkpoint():
 	var checkpoint_tax = 1
 	Stats.money -= checkpoint_tax
 	
-	var text = floating_text_prefab.instantiate()
-	ui_layer.add_child(text)
-	var y = checkpoint_node.position.y - 64
+	
+	var y = checkpoint_node.position.y - 128
 	var x = checkpoint_node.position.x - 64
 	var str = '- $' + str(checkpoint_tax)
-	text.setup_floating_text(Vector2(x,y), str, Color.RED, 120)
+	create_floating_text(Vector2(x,y), str, Color.RED, 120)
 	
 	if Stats.money >= 1:
 		print("Paid the toll!")
 	else:
 		print("Lost the game!")
+		Stats.apply_defaults()
 		get_tree().change_scene_to_file("res://main_menu.tscn")
+
+func create_floating_text(pos: Vector2, text: String, color: Color, frames: int):
+	var floating_text = floating_text_prefab.instantiate()
+	ui_layer.add_child(floating_text)
+	floating_text.setup_floating_text(pos, text, color, frames)
 
 func _process(delta: float) -> void:
 	if randf() < RESOURCE_SPAWN_CHANCE:
