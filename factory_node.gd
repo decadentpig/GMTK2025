@@ -3,6 +3,14 @@ class_name Factory_Node
 
 var factory_type: GlobalVariables.FACTORY_TYPE = GlobalVariables.FACTORY_TYPE.NONE
 
+var accepting_inputs: bool = true
+var has_output: bool = false
+
+var processing_percentage: int = 0
+const PROCESSING_STEP = 10
+
+var output_resource: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
+
 var selected_by_player: bool = false
 var resources_invested: Array[GlobalVariables.RESOURCE_TYPE] = []
 
@@ -14,19 +22,24 @@ var resources_invested: Array[GlobalVariables.RESOURCE_TYPE] = []
 @onready var right_input_sprite = get_node("Right_Input_Sprite")
 @onready var output_sprite = get_node("Output_Sprite")
 
-@onready var plank_sprite = preload("res://Assets/Factory1.png")
-@onready var ingot_sprite = preload("res://Assets/Factory2.png")
-@onready var crate_sprite = preload("res://Assets/Factory3.png")
-@onready var shipping_container_sprite = preload("res://Assets/Factory4.png")
+@onready var progress_bar = get_node("ProgressBar")
 
 func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	factory_type = type
 	
+	# Add defaults so this function can be reused each time factory resets
+	accepting_inputs = true
+	has_output = false
+	processing_percentage = 0
+	output_resource = GlobalVariables.RESOURCE_TYPE.NONE
+	
+	output_sprite.modulate.a = 128
+	single_input_sprite.modulate.a = 128
+	left_input_sprite.modulate.a = 128
+	right_input_sprite.modulate.a = 128
+	
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		# PLANK RECIPE: 1 Wood = 1 Plank
-		
-		# Select correct factory sprite
-		sprite2d.texture = plank_sprite
 		
 		# Generate recipe icons
 		single_input_sprite.texture = GlobalVariables.wood_sprite
@@ -38,11 +51,8 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
 		# INGOT RECIPE: 1 Metal = 1 Ingot
 		
-		# Select correct factory sprite
-		sprite2d.texture = ingot_sprite
-		
 		# Generate recipe icons
-		single_input_sprite.texture = GlobalVariables.ingot_sprite
+		single_input_sprite.texture = GlobalVariables.metal_sprite
 		single_input_sprite.visible = true
 		
 		# Generate output icon (lower opacity by default)
@@ -50,9 +60,6 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		output_sprite.visible = true
 	elif factory_type == GlobalVariables.FACTORY_TYPE.CRATE:
 		# CRATE RECIPE: 1 Metal, 1 Wood = 1 Crate
-		
-		# Select correct factory sprite
-		sprite2d.texture = crate_sprite
 		
 		# Generate recipe icons (half opacity by default)
 		left_input_sprite.texture = GlobalVariables.wood_sprite
@@ -66,9 +73,6 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		output_sprite.visible = true
 	elif factory_type == GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER:
 		# SHIPPING CONT. RECIPE: 1 Plank, 1 Ingot = 1 Shipping Container
-		
-		# Select correct factory sprite
-		sprite2d.texture = shipping_container_sprite
 		
 		# Generate recipe icons (half opacity by default)
 		left_input_sprite.texture = GlobalVariables.plank_sprite
@@ -88,32 +92,62 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 	
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		if type == GlobalVariables.RESOURCE_TYPE.WOOD:
-			print("Successfully gave wood to plank factory!")
-			pass #TODO: Success!
+			single_input_sprite.modulate.a = 255
+			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
+			
+			if selected_by_player:
+				toggle_factory_select()
 		else:
 			SFXPlayer.play_failed_action()
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
 		if type == GlobalVariables.RESOURCE_TYPE.METAL:
-			print("Successfully gave metal to ingot factory!")
-			pass # TODO: Success!
+			single_input_sprite.modulate.a = 255
+			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
+			
+			if selected_by_player:
+				toggle_factory_select()
 		else:
 			SFXPlayer.play_failed_action()
 	elif factory_type == GlobalVariables.FACTORY_TYPE.CRATE:
 		if (
-			type in [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL]
+			type == GlobalVariables.RESOURCE_TYPE.WOOD
 			and type not in resources_invested
 		):
-			print("Successfully gave ? to crate factory!")
-			pass # TODO: Success!
+			left_input_sprite.modulate.a = 255
+			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
+			
+			if selected_by_player:
+				toggle_factory_select()
+		elif (
+			type == GlobalVariables.RESOURCE_TYPE.METAL
+			and type not in resources_invested
+		):
+			right_input_sprite.modulate.a = 255
+			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
+			
+			if selected_by_player:
+				toggle_factory_select()
 		else:
 			SFXPlayer.play_failed_action()
 	elif factory_type == GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER:
 		if (
-			type in [GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT]
+			type == GlobalVariables.RESOURCE_TYPE.PLANK
 			and type not in resources_invested
 		):
-			print("Successfully gave ? to shipping cont. factory!")
-			pass # TODO: Success!
+			left_input_sprite.modulate.a = 255
+			resources_invested.append(GlobalVariables.RESOURCE_TYPE.PLANK)
+			
+			if selected_by_player:
+				toggle_factory_select()
+		elif (
+			type == GlobalVariables.RESOURCE_TYPE.INGOT
+			and type not in resources_invested
+		):
+			right_input_sprite.modulate.a = 255
+			resources_invested.append(GlobalVariables.RESOURCE_TYPE.INGOT)
+			
+			if selected_by_player:
+				toggle_factory_select()
 		else:
 			SFXPlayer.play_failed_action()
 	else:
@@ -129,4 +163,75 @@ func toggle_factory_select():
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):
+		if processing_percentage > 0:
+			# Do not allow selection while factory in process
+			SFXPlayer.play_failed_action()
+			return
+		
 		toggle_factory_select()
+
+func run_factory(delta):
+	# Ensure that all correct inputs exist, then continue processing
+	var inputs_satisfied: bool = false
+	
+	if (
+		factory_type == GlobalVariables.FACTORY_TYPE.PLANK
+		and GlobalVariables.RESOURCE_TYPE.WOOD in resources_invested
+	):
+		inputs_satisfied = true
+	elif (
+		factory_type == GlobalVariables.FACTORY_TYPE.INGOT
+		and GlobalVariables.RESOURCE_TYPE.METAL in resources_invested
+	):
+		inputs_satisfied = true
+	elif (
+		factory_type == GlobalVariables.FACTORY_TYPE.CRATE
+		and GlobalVariables.RESOURCE_TYPE.WOOD in resources_invested
+		and GlobalVariables.RESOURCE_TYPE.METAL in resources_invested
+	):
+		inputs_satisfied = true
+	elif (
+		factory_type == GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER
+		and GlobalVariables.RESOURCE_TYPE.PLANK in resources_invested
+		and GlobalVariables.RESOURCE_TYPE.INGOT in resources_invested
+	):
+		inputs_satisfied = true
+	
+	if inputs_satisfied:
+		# All inputs received: if processing has begun, deselect the factory
+		if selected_by_player:
+			toggle_factory_select()
+		
+		# Do not accept new inputs
+		accepting_inputs = false
+		
+		# Progress the factory dependent on time (not frames)
+		processing_percentage += PROCESSING_STEP * delta
+		
+		# If process completed, clean up factory and present output
+		if processing_percentage >= 100:
+			# Ready! Pass the created resource into the completion method
+			complete_output_resource(GlobalVariables.RESOURCE_TYPE.PLANK)
+
+func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
+	# Set the output resource
+	output_resource = type
+	has_output = true
+	
+	# Maximum opacity on output resource
+	output_sprite.modulate.a = 255
+	
+	# Clear the resources_invested
+	resources_invested = []
+	
+	# Reduce opacity on input icons
+	single_input_sprite.modulate.a = 128
+	left_input_sprite.modulate.a = 128
+	right_input_sprite.modulate.a = 128
+	
+	SFXPlayer.play_factory_complete()
+
+func _process(delta):
+	# Process the factory each frame
+	run_factory(delta)
+	progress_bar.value = processing_percentage

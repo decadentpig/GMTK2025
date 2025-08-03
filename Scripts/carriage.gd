@@ -6,8 +6,6 @@ var cargo = GlobalVariables.RESOURCE_TYPE.NONE
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var sprite2d = get_node("Sprite2D")
-@onready var wood_sprite = preload("res://Assets/Icon-Wood.png")
-@onready var metal_sprite = preload("res://Assets/Icon-Rock.png")
 
 
 func _physics_process(delta: float) -> void:
@@ -25,9 +23,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		SFXPlayer.play_pickup_resource()
 		cargo = body.resource_type
 		if cargo == GlobalVariables.RESOURCE_TYPE.WOOD:
-			sprite2d.texture = wood_sprite
+			sprite2d.texture = GlobalVariables.wood_sprite
 		elif cargo == GlobalVariables.RESOURCE_TYPE.METAL:
-			sprite2d.texture = metal_sprite
+			sprite2d.texture = GlobalVariables.metal_sprite
 		else:
 			print("ERROR. UNEXPECTED CARGO", cargo)
 	elif (
@@ -73,3 +71,30 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		and Stats.money < body.cost
 	):
 		SFXPlayer.play_failed_action()
+	
+	# Drop-off resources to factory
+	if (
+		body is Factory_Node
+		and body.selected_by_player
+	):
+		if body.accepting_inputs:
+			body.insert_resource(cargo)
+		elif body.has_output and cargo == GlobalVariables.RESOURCE_TYPE.NONE:
+			cargo = body.output_resource
+			
+			# Reset the factory now that output resource has been collected
+			body.set_factory_type(body.factory_type)
+			
+			# Set resource sprite in carriage
+			if cargo == GlobalVariables.RESOURCE_TYPE.WOOD:
+				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.WOOD
+			elif cargo == GlobalVariables.RESOURCE_TYPE.METAL:
+				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.METAL
+			elif cargo == GlobalVariables.RESOURCE_TYPE.PLANK:
+				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.PLANK
+			elif cargo == GlobalVariables.RESOURCE_TYPE.INGOT:
+				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.INGOT
+			elif cargo == GlobalVariables.RESOURCE_TYPE.CRATE:
+				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.CRATE
+			elif cargo == GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER:
+				sprite2d.texture = GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER
