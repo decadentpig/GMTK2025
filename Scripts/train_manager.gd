@@ -1,7 +1,7 @@
 extends PathFollow2D
 class_name Train_Manager
 
-const SPEED = 500
+const SPEED = 400
 const DEFAULT_CARRIAGES = 3
 const OFFSET = 125
 
