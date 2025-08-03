@@ -12,6 +12,7 @@ const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 
 enum GAME_PHASE {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
 var current_phase: GAME_PHASE = GAME_PHASE.PHASE1
+var num_loops_since_phase_change = -1
 
 var checkpoint_tax = 1
 const PHASE1_TAX_INCREASE = 1
@@ -96,13 +97,9 @@ func get_random_factory() -> GlobalVariables.FACTORY_TYPE:
 	var factory_type_index = randi() % factories.size()
 	return factories[factory_type_index]
 
-func spawn_factory() -> void:
-	var spawn_location = get_item_spawn_location()
-	var chosen_x = spawn_location[0]
-	var chosen_y = spawn_location[1]
-	
-	# Choose factory type
-	var factory_type = get_random_factory()
+func spawn_factory(factory_type: GlobalVariables.FACTORY_TYPE, pos: Vector2) -> void:
+	var chosen_x = pos.x
+	var chosen_y = pos.y
 	
 	# Spawn on grid
 	var factory = factory_node_prefab.instantiate()
@@ -136,10 +133,9 @@ func spawn_contract(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) 
 	contract.initialise(self)
 	contract.position = Vector2(chosen_x, chosen_y)
 	
-func spawn_carriage() -> void:
-	var spawn_location = get_item_spawn_location()
-	var chosen_x = spawn_location[0]
-	var chosen_y = spawn_location[1]
+func spawn_carriage(pos: Vector2) -> void:
+	var chosen_x = pos.x
+	var chosen_y = pos.y
 	var carriage_pickup_node = carriage_pickup_node_prefab.instantiate()
 	carriage_pickup_node.cost = Stats.num_carriages * 10 
 	add_child(carriage_pickup_node)
@@ -174,10 +170,35 @@ func resolve_checkpoint():
 	
 	if Stats.money >= 1:
 		print("Paid the toll!")
+		# TODO: Add a sound for lost moneu
 	else:
 		print("Lost the game!")
 		Stats.apply_defaults()
 		get_tree().change_scene_to_file("res://main_menu.tscn")
+		
+	# Increment num loops since phase change
+	num_loops_since_phase_change += 1
+	
+	# If 3 loops have passed, progress phase
+	if num_loops_since_phase_change >= 3 and current_phase != GAME_PHASE.PHASE7:
+		if current_phase == GAME_PHASE.PHASE1:
+			current_phase = GAME_PHASE.PHASE2
+			num_loops_since_phase_change = 0
+		elif current_phase == GAME_PHASE.PHASE2:
+			current_phase = GAME_PHASE.PHASE3
+			num_loops_since_phase_change = 0
+		elif current_phase == GAME_PHASE.PHASE3:
+			current_phase = GAME_PHASE.PHASE4
+			num_loops_since_phase_change = 0
+		elif current_phase == GAME_PHASE.PHASE4:
+			current_phase = GAME_PHASE.PHASE5
+			num_loops_since_phase_change = 0
+		elif current_phase == GAME_PHASE.PHASE5:
+			current_phase = GAME_PHASE.PHASE6
+			num_loops_since_phase_change = 0
+		elif current_phase == GAME_PHASE.PHASE6:
+			current_phase = GAME_PHASE.PHASE7
+			num_loops_since_phase_change = 0
 
 func create_floating_text(pos: Vector2, text: String, color: Color, frames: int):
 	var floating_text = floating_text_prefab.instantiate()
@@ -189,13 +210,13 @@ func process_finite_state_machine():
 	# Resource Spawns: Wood
 	# Contracts: Wood
 	# Factories: (none)
-	# Rent Increase Per Lap: 2
+	# Rent Increase Per Lap: 1
 	
 	# PHASE 1 CONSTANTS
-	const PHASE1_MAX_CONTRACTS = 3
-	const PHASE1_MAX_NUM_WOOD = 2
-	const PHASE1_WOOD_RAND_CHANCE = 0.002
-	const PHASE1_CONTRACT_RAND_CHANCE = 0.002
+	const PHASE1_MAX_CONTRACTS = 4
+	const PHASE1_MAX_NUM_WOOD = 4
+	const PHASE1_WOOD_RAND_CHANCE = 0.003
+	const PHASE1_CONTRACT_RAND_CHANCE = 0.003
 	
 	if current_phase == GAME_PHASE.PHASE1:
 		# 1. Check how many wood nodes exist to be picked up, and their locations
@@ -242,36 +263,309 @@ func process_finite_state_machine():
 					spawn_contract(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
 					return
 	
-	
 	# PHASE 2
 	# Resource Spawns: Wood, Metal
 	# Contracts: Wood, Metal
 	# Factories (none)
-	# Rent Increase Per Lap: 5
+	# Rent Increase Per Lap: 2
+	
+	# PHASE 2 CONSTANTS
+	const PHASE2_MAX_CONTRACTS = 6
+	const PHASE2_MAX_NUM_WOOD = 6
+	const PHASE2_MAX_NUM_METAL = 6
+	const PHASE2_WOOD_RAND_CHANCE = 0.004
+	const PHASE2_METAL_RAND_CHANCE = 0.004
+	const PHASE2_CONTRACT_RAND_CHANCE = 0.004
+	
 	if current_phase == GAME_PHASE.PHASE2:
-		pass
+		var num_wood = 0
+		var num_metal = 0
+		var num_contracts = 0
+		var used_locations = []
+		
+		for child in get_children():
+			if (
+				child is Raw_Resource
+				and child.resource_type == GlobalVariables.RESOURCE_TYPE.WOOD
+			):
+				num_wood += 1
+				used_locations.append(child.position)
+			elif (
+				child is Raw_Resource
+				and child.resource_type == GlobalVariables.RESOURCE_TYPE.METAL
+			):
+				num_metal += 1
+				used_locations.append(child.position)
+			elif (
+				child is Contract_Node
+			):
+				num_contracts += 1
+				used_locations.append(child.position)
+		
+		# Spawn Wood resources if within limits
+		if num_wood < PHASE2_MAX_NUM_WOOD and randf() < PHASE2_WOOD_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_resource(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
+		
+		# Spawn Metal resources if within limits
+		if num_metal < PHASE2_MAX_NUM_METAL and randf() < PHASE2_METAL_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_resource(GlobalVariables.RESOURCE_TYPE.METAL, spawn.position)
+					return
+		
+		# Spawn Contracts if within limits
+		if num_contracts < PHASE2_MAX_CONTRACTS and randf() < PHASE2_CONTRACT_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
+				var spawn = contract_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_contract(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
 
 	# PHASE 3
 	# Resource Spawns: Wood, Metal, Carriages
 	# Contracts: Wood, Metal
 	# Factories: (none)
-	# Rent Increase Per Lap: 5
+	# Rent Increase Per Lap: 3
+	
+	# PHASE 3 CONSTANTS
+	const PHASE3_MAX_CONTRACTS = 8
+	const PHASE3_MAX_NUM_WOOD = 8
+	const PHASE3_MAX_NUM_METAL = 8
+	const PHASE3_MAX_NUM_CARRIAGES = 1
+	const PHASE3_WOOD_RAND_CHANCE = 0.004
+	const PHASE3_METAL_RAND_CHANCE = 0.004
+	const PHASE3_CONTRACT_RAND_CHANCE = 0.004
+	const PHASE3_CARRIAGE_RAND_CHANCE = 0.0004
+	
 	if current_phase == GAME_PHASE.PHASE3:
-		pass
+		var num_wood = 0
+		var num_metal = 0
+		var num_contracts = 0
+		var num_carriages = 0
+		var used_locations = []
+		
+		for child in get_children():
+			if (
+				child is Raw_Resource
+				and child.resource_type == GlobalVariables.RESOURCE_TYPE.WOOD
+			):
+				num_wood += 1
+				used_locations.append(child.position)
+			elif (
+				child is Raw_Resource
+				and child.resource_type == GlobalVariables.RESOURCE_TYPE.METAL
+			):
+				num_metal += 1
+				used_locations.append(child.position)
+			elif (
+				child is Contract_Node
+			):
+				num_contracts += 1
+				used_locations.append(child.position)
+			elif (
+				child is Carriage_Pickup_Node
+			):
+				num_carriages += 1
+				used_locations.append(child.position)
+		
+		# Spawn Wood resources if within limits
+		if num_wood < PHASE3_MAX_NUM_WOOD and randf() < PHASE3_WOOD_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_resource(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
+		
+		# Spawn Metal resources if within limits
+		if num_metal < PHASE3_MAX_NUM_METAL and randf() < PHASE3_METAL_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_resource(GlobalVariables.RESOURCE_TYPE.METAL, spawn.position)
+					return
+		
+		# Spawn Contracts if within limits
+		if num_contracts < PHASE3_MAX_CONTRACTS and randf() < PHASE3_CONTRACT_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
+				var spawn = contract_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_contract(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
+		
+		# Spawn Carriages if within limits
+		if num_carriages < PHASE3_MAX_NUM_CARRIAGES and randf() < PHASE3_CARRIAGE_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_carriage(spawn.position)
+					return
 
 	# PHASE 4
 	# Resource Spawns: Wood, Metal
 	# Contracts: Wood, Metal, Planks
 	# Factories: Planks
-	# Rent Increase Per Lap: 10
+	# Rent Increase Per Lap: 5
+	
+	# PHASE 4 CONSTANTS
+	const PHASE4_MAX_CONTRACTS = 10
+	const PHASE4_MAX_NUM_WOOD = 9
+	const PHASE4_MAX_NUM_METAL = 9
+	const PHASE4_MAX_NUM_CARRIAGES = 1
+	const PHASE4_MAX_PLANK_FACTORIES = 1
+	const PHASE4_WOOD_RAND_CHANCE = 0.004
+	const PHASE4_METAL_RAND_CHANCE = 0.004
+	const PHASE4_CONTRACT_RAND_CHANCE = 0.004
+	const PHASE4_CARRIAGE_RAND_CHANCE = 0.0004
+	const PHASE4_PLANK_FACTORY_RAND_CHANCE = 0.004
+	
 	if current_phase == GAME_PHASE.PHASE4:
-		pass
+		var num_wood = 0
+		var num_metal = 0
+		var num_contracts = 0
+		var num_carriages = 0
+		var num_plank_factories = 0
+		var used_locations = []
+		
+		for child in get_children():
+			if (
+				child is Raw_Resource
+				and child.resource_type == GlobalVariables.RESOURCE_TYPE.WOOD
+			):
+				num_wood += 1
+				used_locations.append(child.position)
+			elif (
+				child is Raw_Resource
+				and child.resource_type == GlobalVariables.RESOURCE_TYPE.METAL
+			):
+				num_metal += 1
+				used_locations.append(child.position)
+			elif (
+				child is Contract_Node
+			):
+				num_contracts += 1
+				used_locations.append(child.position)
+			elif (
+				child is Carriage_Pickup_Node
+			):
+				num_carriages += 1
+				used_locations.append(child.position)
+			elif (
+				child is Factory_Node
+				and child.factory_type == GlobalVariables.FACTORY_TYPE.PLANK
+			):
+				num_plank_factories += 1
+				used_locations.append(child.position)
+		
+		# Spawn Wood resources if within limits
+		if num_wood < PHASE4_MAX_NUM_WOOD and randf() < PHASE4_WOOD_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_resource(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
+		
+		# Spawn Metal resources if within limits
+		if num_metal < PHASE4_MAX_NUM_METAL and randf() < PHASE4_METAL_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_resource(GlobalVariables.RESOURCE_TYPE.METAL, spawn.position)
+					return
+		
+		# Spawn Contracts if within limits
+		if num_contracts < PHASE4_MAX_CONTRACTS and randf() < PHASE4_CONTRACT_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
+				var spawn = contract_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_contract(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					return
+		
+		# Spawn Carriages if within limits
+		if num_carriages < PHASE4_MAX_NUM_CARRIAGES and randf() < PHASE4_CARRIAGE_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, node_spawns.get_child_count() - 1)
+				var spawn = node_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_carriage(spawn.position)
+					return
+		
+		# Spawn Plank Factories if within limits
+		if num_plank_factories < PHASE4_MAX_PLANK_FACTORIES and randf() < PHASE4_PLANK_FACTORY_RAND_CHANCE:
+			while true:
+				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
+				var spawn = factory_spawns.get_child(rand)
+				
+				if spawn.position in used_locations:
+					# Keep looking for a spawn that is not taken
+					continue
+				else:
+					spawn_factory(GlobalVariables.FACTORY_TYPE.PLANK, spawn.position)
+					return
 	
 	# PHASE 5
 	# Resource Spawns: Wood, Metal
 	# Contracts: Wood, Metal, Planks, Ingots
 	# Factories: Planks, Ingots
-	# Rent Increase Per Lap: 20
+	# Rent Increase Per Lap: 10
 	if current_phase == GAME_PHASE.PHASE5:
 		pass
 	
@@ -279,7 +573,7 @@ func process_finite_state_machine():
 	# Resource Spawns: Wood, Metal
 	# Contracts: Wood, Metal, Planks, Ingots, Crates
 	# Factories: Planks, Ingots, Crates
-	# Rent Increase Per Lap: 30
+	# Rent Increase Per Lap: 15
 	if current_phase == GAME_PHASE.PHASE6:
 		pass
 	
@@ -287,7 +581,7 @@ func process_finite_state_machine():
 	# Resource Spawns: Wood, Metal
 	# Contracts: Wood, Metal, Planks, Ingots, Crates, Shipping Containers
 	# Factories: Planks, Ingots, Crates, Shipping Containers
-	# Rent Increase Per Lap: 50
+	# Rent Increase Per Lap: 20
 	if current_phase == GAME_PHASE.PHASE7:
 		pass
 	
