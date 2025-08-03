@@ -28,6 +28,7 @@ const PHASE7_TAX_INCREASE = 20
 @onready var carriage_pickup_node_prefab = preload("res://Scenes/carriage_pickup_prefab.tscn")
 @onready var factory_node_prefab = preload("res://Scenes/factory_node_prefab.tscn")
 @onready var money_text = get_parent().get_node("Money_Text")
+@onready var phase_text = get_parent().get_node("Phase_Label")
 
 @export var ui_layer: CanvasLayer
 @onready var floating_text_prefab = preload("res://Scenes/floating_text_prefab.tscn")
@@ -214,6 +215,8 @@ func process_finite_state_machine():
 	# Contracts: Wood
 	# Factories: (none)
 	# Rent Increase Per Lap: 1
+	
+	phase_text.text = "Phase: " + str(current_phase)
 	
 	# PHASE 1 CONSTANTS
 	const PHASE1_MAX_CONTRACTS = 4
