@@ -145,6 +145,8 @@ func spawn_carriage(pos: Vector2) -> void:
 
 func resolve_checkpoint():
 	Stats.money -= checkpoint_tax
+	Stats.total_loops += 1
+	print("Loops: ", Stats.total_loops)
 	
 	var y = checkpoint_node.position.y - 128
 	var x = checkpoint_node.position.x - 64
@@ -174,8 +176,9 @@ func resolve_checkpoint():
 		# TODO: Add a sound for lost moneu
 	else:
 		print("Lost the game!")
+		Stats.previous_game_loops = Stats.total_loops
 		Stats.apply_defaults()
-		get_tree().change_scene_to_file("res://main_menu.tscn")
+		get_tree().change_scene_to_file("res://game_over.tscn")
 		
 	# Increment num loops since phase change
 	num_loops_since_phase_change += 1
