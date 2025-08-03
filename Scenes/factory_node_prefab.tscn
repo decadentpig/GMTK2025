@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://hfre5bsk4l0x"]
 
 [ext_resource type="Script" uid="uid://g878vfqiq6x8" path="res://factory_node.gd" id="1_nt4t2"]
-[ext_resource type="Texture2D" uid="uid://byfx0afpgtriv" path="res://Assets/Factory1.png" id="2_owsfw"]
-[ext_resource type="Texture2D" uid="uid://r11cppd6bih2" path="res://Assets/Icon-Wood.png" id="3_o3ars"]
+[ext_resource type="Texture2D" uid="uid://dibcfxu86oler" path="res://Assets/Factory-Prime.png" id="2_nt4t2"]
+[ext_resource type="Texture2D" uid="uid://diif8rjflfkx8" path="res://Assets/Icon-ShippingContainer.png" id="3_nt4t2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5juve"]
-size = Vector2(123, 114.5)
+size = Vector2(144, 167)
 
 [node name="Factory_Node" type="RigidBody2D"]
 input_pickable = true
@@ -13,37 +13,42 @@ gravity_scale = 0.0
 script = ExtResource("1_nt4t2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_owsfw")
+texture = ExtResource("2_nt4t2")
 
 [node name="Single_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(0, -76)
+position = Vector2(34, -76)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_o3ars")
+texture = ExtResource("3_nt4t2")
 
 [node name="Left_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(-25, -76)
+position = Vector2(17, -76)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_o3ars")
+texture = ExtResource("3_nt4t2")
 
 [node name="Right_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(28, -76)
+position = Vector2(55, -76)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_o3ars")
+texture = ExtResource("3_nt4t2")
 
 [node name="Output_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(0, 8)
-texture = ExtResource("3_o3ars")
+position = Vector2(5, 52)
+texture = ExtResource("3_nt4t2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_5juve")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_top = 76.0
+offset_right = 4.0
+offset_bottom = 103.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
