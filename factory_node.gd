@@ -17,6 +17,7 @@ var resources_accepted: Array[GlobalVariables.RESOURCE_TYPE] = []
 
 @onready var sprite2d = get_node("Sprite2D")
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
+@onready var green_highlighted_material = preload("res://Scenes/green_highlight_material.material")
 
 @onready var single_input_sprite = get_node("Single_Input_Sprite")
 @onready var single_input_speech_sprite = get_node("Single_Input_Speech_Sprite")
@@ -44,10 +45,10 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	output_resource = GlobalVariables.RESOURCE_TYPE.NONE
 	resources_accepted = []
 	
-	output_sprite.modulate.a = 128
-	single_input_sprite.modulate.a = 128
-	left_input_sprite.modulate.a = 128
-	right_input_sprite.modulate.a = 128
+	output_sprite.modulate.a = 0.5
+	single_input_sprite.modulate.a = 0.5
+	left_input_sprite.modulate.a = 0.5
+	right_input_sprite.modulate.a = 0.5
 	
 	output_sprite.material = null
 	single_input_speech_sprite.material = null
@@ -131,8 +132,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 	# Deal with incoming type depending on what the factory is
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		if type == GlobalVariables.RESOURCE_TYPE.WOOD:
-			single_input_sprite.modulate.a = 255
-			single_input_speech_sprite.modulate.a = 255
+			single_input_sprite.modulate.a = 1
+			single_input_speech_sprite.modulate.a = 1
 			single_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
 			
@@ -140,8 +141,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			SFXPlayer.play_failed_action()
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
 		if type == GlobalVariables.RESOURCE_TYPE.METAL:
-			single_input_sprite.modulate.a = 255
-			single_input_speech_sprite.modulate.a = 255
+			single_input_sprite.modulate.a = 1
+			single_input_speech_sprite.modulate.a = 1
 			single_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
 
@@ -152,8 +153,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			type == GlobalVariables.RESOURCE_TYPE.WOOD
 			and type not in resources_invested
 		):
-			left_input_sprite.modulate.a = 255
-			left_input_speech_sprite.modulate.a = 255
+			left_input_sprite.modulate.a = 1
+			left_input_speech_sprite.modulate.a = 1
 			left_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
 
@@ -161,8 +162,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			type == GlobalVariables.RESOURCE_TYPE.METAL
 			and type not in resources_invested
 		):
-			right_input_sprite.modulate.a = 255
-			right_input_speech_sprite.modulate.a = 255
+			right_input_sprite.modulate.a = 1
+			right_input_speech_sprite.modulate.a = 1
 			right_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
 			
@@ -173,8 +174,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			type == GlobalVariables.RESOURCE_TYPE.PLANK
 			and type not in resources_invested
 		):
-			left_input_sprite.modulate.a = 255
-			left_input_speech_sprite.modulate.a = 255
+			left_input_sprite.modulate.a = 1
+			left_input_speech_sprite.modulate.a = 1
 			left_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.PLANK)
 			
@@ -182,8 +183,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			type == GlobalVariables.RESOURCE_TYPE.INGOT
 			and type not in resources_invested
 		):
-			right_input_sprite.modulate.a = 255
-			right_input_speech_sprite.modulate.a = 255
+			right_input_sprite.modulate.a = 1
+			right_input_speech_sprite.modulate.a = 1
 			right_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.INGOT)
 			
@@ -256,10 +257,10 @@ func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
 	has_output = true
 	
 	# Maximum opacity on output resource
-	output_sprite.modulate.a = 255
+	output_sprite.modulate.a = 1
 	
 	# Highlight output resource
-	output_sprite.material = highlighted_material
+	output_sprite.material = green_highlighted_material
 	
 	# Clear the resources_invested
 	resources_invested = []
@@ -268,12 +269,12 @@ func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
 	smoke_animation.visible = false
 	
 	# Reduce opacity on input icons
-	single_input_sprite.modulate.a = 128
-	left_input_sprite.modulate.a = 128
-	right_input_sprite.modulate.a = 128
-	single_input_speech_sprite.modulate.a = 128
-	left_input_speech_sprite.modulate.a = 128
-	right_input_speech_sprite.modulate.a = 128
+	single_input_sprite.modulate.a = 0.5
+	left_input_sprite.modulate.a = 0.5
+	right_input_sprite.modulate.a = 0.5
+	single_input_speech_sprite.modulate.a = 0.5
+	left_input_speech_sprite.modulate.a = 0.5
+	right_input_speech_sprite.modulate.a = 0.5
 	
 	# Remove highlights on input icons
 	single_input_speech_sprite.material = null
