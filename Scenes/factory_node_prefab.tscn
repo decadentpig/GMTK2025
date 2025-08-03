@@ -280,7 +280,7 @@ visible = false
 position = Vector2(-43, -112)
 sprite_frames = SubResource("SpriteFrames_wr6sp")
 autoplay = "default"
-frame_progress = 0.571222
+frame_progress = 0.319433
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nt4t2")
@@ -289,21 +289,18 @@ texture = ExtResource("2_nt4t2")
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(34, -76)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_nt4t2")
 
 [node name="Left_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(17, -76)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_nt4t2")
 
 [node name="Right_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(55, -76)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_nt4t2")
 
 [node name="Output_Sprite" type="Sprite2D" parent="."]
