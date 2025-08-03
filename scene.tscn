@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=21 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://game_manager.gd" id="1_u3cyc"]
@@ -7,9 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://udnpmqusbw16" path="res://Assets/Track-Curved.png" id="3_m7jmp"]
 [ext_resource type="Texture2D" uid="uid://dhub01kk6a2gc" path="res://Assets/Train-Engine.png" id="4_u3cyc"]
 [ext_resource type="Script" uid="uid://c6flyx4fgnuos" path="res://checkpoint_node.gd" id="6_y2354"]
-[ext_resource type="Script" uid="uid://dbdxnncj8vik1" path="res://Scripts/contract_houses.gd" id="7_5juve"]
+[ext_resource type="Texture2D" uid="uid://dexpl5m665lsn" path="res://Assets/House-Prime.png" id="7_fy5k1"]
 [ext_resource type="Texture2D" uid="uid://5ocrh8uklhdo" path="res://Assets/Taxgate.png" id="7_xlvrw"]
-[ext_resource type="Texture2D" uid="uid://bbm7ben5vfs2c" path="res://Assets/House1.png" id="8_fy5k1"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
 bake_interval = 0.01
@@ -64,7 +63,7 @@ size = Vector2(128, 128)
 size = Vector2(192, 192)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73fnb"]
-size = Vector2(128, 192)
+size = Vector2(128, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ni31j"]
 size = Vector2(128, 128)
@@ -574,107 +573,106 @@ debug_color = Color(1.05888e-06, 0.610472, 0.635543, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="Contract_Houses" type="Node2D" parent="."]
-script = ExtResource("7_5juve")
 
 [node name="Sprite2D" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1007, 214)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1137, 217)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1548, 544)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1609, 921)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D5" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(984, 925)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(706, 928)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D7" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(141, 914)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D8" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1134, 1255)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D9" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(2235, 807)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Sprite2D10" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(584, 547)
-texture = ExtResource("8_fy5k1")
+texture = ExtResource("7_fy5k1")
 
 [node name="Contract_Spawns" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1141, 155)
+position = Vector2(1141, 118)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1006, 158)
+position = Vector2(1008, 123)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(706, 864)
+position = Vector2(706, 826)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(984, 866)
+position = Vector2(984, 824)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1609, 864)
+position = Vector2(1611, 823)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1542, 486)
+position = Vector2(1542, 450)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(2232, 746)
+position = Vector2(2230, 711)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(139, 853)
+position = Vector2(137, 817)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1133, 1195)
+position = Vector2(1135, 1162)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(584, 487)
+position = Vector2(587, 451)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
 metadata/_edit_lock_ = true
