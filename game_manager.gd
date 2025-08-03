@@ -1086,7 +1086,7 @@ func process_finite_state_machine():
 					return
 
 func _process(delta: float) -> void:
-	money_text.text = str(Stats.money)
+	money_text.text = 'Money: $ ' + str(Stats.money) + ' (Loops: ' + str(Stats.total_loops) + ')'
 	next_tax_label.text = '($' + str(checkpoint_tax) + ')'
 
 func _physics_process(delta: float) -> void:

@@ -1,10 +1,10 @@
 extends Node
 
-const DEFAULT_MONEY = 15
+const DEFAULT_MONEY = 16
 const DEFAULT_CONTRACTS_COMPLETE = 0
 const DEFAULT_NUM_CARRIAGES = 0
 const DEFAULT_AVAILABLE_CARRIAGES = 0
-const DEFAULT_LOOPS = 0
+const DEFAULT_LOOPS = -1
 
 var money = DEFAULT_MONEY
 var contracts_complete = 0

@@ -690,20 +690,12 @@ factory_spawns = NodePath("../Factory_Spawns")
 next_tax_label = NodePath("../Checkpoint_Node/Next_Tax_Label")
 
 [node name="Money_Text" type="Label" parent="."]
-offset_left = 2094.0
+offset_left = 1844.0
 offset_top = 29.0
-offset_right = 2271.0
+offset_right = 2021.0
 offset_bottom = 84.0
 theme_override_font_sizes/font_size = 40
 text = "0"
-
-[node name="Money_Text_Label" type="Label" parent="."]
-offset_left = 1920.0
-offset_top = 28.0
-offset_right = 2121.0
-offset_bottom = 101.0
-theme_override_font_sizes/font_size = 40
-text = "Money: $"
 
 [node name="Phase_Label" type="Label" parent="."]
 visible = false
