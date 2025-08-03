@@ -1,9 +1,11 @@
-[gd_scene load_steps=45 format=3 uid="uid://hfre5bsk4l0x"]
+[gd_scene load_steps=47 format=3 uid="uid://hfre5bsk4l0x"]
 
 [ext_resource type="Script" uid="uid://g878vfqiq6x8" path="res://factory_node.gd" id="1_nt4t2"]
 [ext_resource type="Texture2D" uid="uid://dibcfxu86oler" path="res://Assets/Factory-Prime.png" id="2_nt4t2"]
 [ext_resource type="Texture2D" uid="uid://drgiipse5cv4d" path="res://Assets/ChimneySmoke.png" id="2_owsfw"]
 [ext_resource type="Texture2D" uid="uid://diif8rjflfkx8" path="res://Assets/Icon-ShippingContainer.png" id="3_nt4t2"]
+[ext_resource type="Texture2D" uid="uid://b6e4wafsxwpp5" path="res://Assets/Chibi-Speechbox.png" id="4_ydvbu"]
+[ext_resource type="Texture2D" uid="uid://bemnkqg7gxsjw" path="res://Assets/Chibi-Planks.png" id="5_r8t7s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3ars"]
 atlas = ExtResource("2_owsfw")
@@ -285,23 +287,38 @@ frame_progress = 0.319433
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nt4t2")
 
+[node name="Single_Input_Speech_Sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(34, -76)
+texture = ExtResource("4_ydvbu")
+
 [node name="Single_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(34, -76)
-texture = ExtResource("3_nt4t2")
+texture = ExtResource("5_r8t7s")
+
+[node name="Left_Input_Speech_Sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(9, -75)
+texture = ExtResource("4_ydvbu")
 
 [node name="Left_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(17, -76)
-texture = ExtResource("3_nt4t2")
+position = Vector2(9, -76)
+texture = ExtResource("5_r8t7s")
+
+[node name="Right_Input_Speech_Sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(55, -75)
+texture = ExtResource("4_ydvbu")
 
 [node name="Right_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(55, -76)
-texture = ExtResource("3_nt4t2")
+texture = ExtResource("5_r8t7s")
 
 [node name="Output_Sprite" type="Sprite2D" parent="."]
 visible = false

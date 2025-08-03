@@ -19,8 +19,11 @@ var resources_accepted: Array[GlobalVariables.RESOURCE_TYPE] = []
 @onready var highlighted_material = preload("res://Scenes/resource_highlight_material.material")
 
 @onready var single_input_sprite = get_node("Single_Input_Sprite")
+@onready var single_input_speech_sprite = get_node("Single_Input_Speech_Sprite")
 @onready var left_input_sprite = get_node("Left_Input_Sprite")
+@onready var left_input_speech_sprite = get_node("Left_Input_Speech_Sprite")
 @onready var right_input_sprite = get_node("Right_Input_Sprite")
+@onready var right_input_speech_sprite = get_node("Right_Input_Speech_Sprite")
 @onready var output_sprite = get_node("Output_Sprite")
 
 @onready var progress_bar = get_node("Control").get_node("ProgressBar")
@@ -47,9 +50,9 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	right_input_sprite.modulate.a = 128
 	
 	output_sprite.material = null
-	single_input_sprite.material = null
-	left_input_sprite.material = null
-	right_input_sprite.material = null
+	single_input_speech_sprite.material = null
+	left_input_speech_sprite.material = null
+	right_input_speech_sprite.material = null
 	
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		# PLANK RECIPE: 1 Wood = 1 Plank
@@ -59,6 +62,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# Generate recipe icons
 		single_input_sprite.texture = chibi_wood
 		single_input_sprite.visible = true
+		single_input_speech_sprite.visible = true
 		
 		# Generate output icon (lower opacity by default)
 		output_sprite.texture = GlobalVariables.plank_sprite
@@ -74,6 +78,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# Generate recipe icons
 		single_input_sprite.texture = chibi_metal
 		single_input_sprite.visible = true
+		single_input_speech_sprite.visible = true
 		
 		# Generate output icon (lower opacity by default)
 		output_sprite.texture = GlobalVariables.ingot_sprite
@@ -89,9 +94,11 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# Generate recipe icons (half opacity by default)
 		left_input_sprite.texture = chibi_wood
 		left_input_sprite.visible = true
+		left_input_speech_sprite.visible = true
 		
 		right_input_sprite.texture = chibi_metal
 		right_input_sprite.visible = true
+		right_input_speech_sprite.visible = true
 		
 		# Generate output icon (half opacity by default)
 		output_sprite.texture = GlobalVariables.crate_sprite
@@ -107,9 +114,12 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 		# Generate recipe icons (half opacity by default)
 		left_input_sprite.texture = chibi_plank
 		left_input_sprite.visible = true
+		left_input_speech_sprite.visible = true
+		
 		
 		right_input_sprite.texture = chibi_ingot
 		right_input_sprite.visible = true
+		right_input_speech_sprite.visible = true
 		
 		# Generate output icon (half opacity by default)
 		output_sprite.texture = GlobalVariables.shipping_container_sprite
@@ -122,7 +132,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		if type == GlobalVariables.RESOURCE_TYPE.WOOD:
 			single_input_sprite.modulate.a = 255
-			single_input_sprite.material = highlighted_material
+			single_input_speech_sprite.modulate.a = 255
+			single_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
 			
 		else:
@@ -130,7 +141,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
 		if type == GlobalVariables.RESOURCE_TYPE.METAL:
 			single_input_sprite.modulate.a = 255
-			single_input_sprite.material = highlighted_material
+			single_input_speech_sprite.modulate.a = 255
+			single_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
 
 		else:
@@ -141,7 +153,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			left_input_sprite.modulate.a = 255
-			left_input_sprite.material = highlighted_material
+			left_input_speech_sprite.modulate.a = 255
+			left_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
 
 		elif (
@@ -149,7 +162,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			right_input_sprite.modulate.a = 255
-			right_input_sprite.material = highlighted_material
+			right_input_speech_sprite.modulate.a = 255
+			right_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
 			
 		else:
@@ -160,7 +174,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			left_input_sprite.modulate.a = 255
-			left_input_sprite.material = highlighted_material
+			left_input_speech_sprite.modulate.a = 255
+			left_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.PLANK)
 			
 		elif (
@@ -168,7 +183,8 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			right_input_sprite.modulate.a = 255
-			right_input_sprite.material = highlighted_material
+			right_input_speech_sprite.modulate.a = 255
+			right_input_speech_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.INGOT)
 			
 		else:
@@ -255,11 +271,14 @@ func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
 	single_input_sprite.modulate.a = 128
 	left_input_sprite.modulate.a = 128
 	right_input_sprite.modulate.a = 128
+	single_input_speech_sprite.modulate.a = 128
+	left_input_speech_sprite.modulate.a = 128
+	right_input_speech_sprite.modulate.a = 128
 	
 	# Remove highlights on input icons
-	single_input_sprite.material = null
-	left_input_sprite.material = null
-	right_input_sprite.material = null
+	single_input_speech_sprite.material = null
+	left_input_speech_sprite.material = null
+	right_input_speech_sprite.material = null
 	
 	SFXPlayer.play_factory_complete()
 
