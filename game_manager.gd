@@ -223,8 +223,7 @@ func spawn_contract(resource_type: GlobalVariables.RESOURCE_TYPE, pos: Vector2) 
 func spawn_carriage(pos: Vector2) -> void:
 	var chosen_x = pos.x
 	var chosen_y = pos.y
-	var carriage_pickup_node = carriage_pickup_node_prefab.instantiate()
-	carriage_pickup_node.cost = Stats.num_carriages * 10 
+	var carriage_pickup_node = carriage_pickup_node_prefab.instantiate() 
 	add_child(carriage_pickup_node)
 	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
 	Stats.available_carriages += 1

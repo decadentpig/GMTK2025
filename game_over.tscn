@@ -1,52 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqnpvm0ednoqy"]
+[gd_scene load_steps=4 format=3 uid="uid://dqnpvm0ednoqy"]
 
-[ext_resource type="Script" uid="uid://21q2b35v5t41" path="res://Scripts/game_over.gd" id="1_y26ei"]
+[ext_resource type="Script" uid="uid://dhxayk8olv27m" path="res://Scripts/game_over.gd" id="1_y26ei"]
+[ext_resource type="Texture2D" uid="uid://8sw8ysvs5ggl" path="res://Assets/Background.png" id="2_ccer4"]
+[ext_resource type="Texture2D" uid="uid://f8tgt8kjxkfs" path="res://Assets/Game-Over.png" id="3_8u835"]
 
-[node name="Main_Menu" type="Node2D"]
+[node name="Game_Over" type="Node2D"]
 script = ExtResource("1_y26ei")
 
-[node name="Game_Title" type="Label" parent="."]
-offset_left = 615.0
-offset_top = 75.0
-offset_right = 1762.0
-offset_bottom = 348.0
-theme_override_font_sizes/font_size = 200
-text = "GAME OVER"
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ccer4")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 436.0
+offset_top = 188.0
+offset_right = 1971.0
+offset_bottom = 956.0
+texture = ExtResource("3_8u835")
 
 [node name="By_Line" type="Label" parent="."]
-offset_left = 530.0
-offset_top = 331.0
-offset_right = 1861.0
-offset_bottom = 398.0
+offset_left = 518.0
+offset_top = 1251.0
+offset_right = 1849.0
+offset_bottom = 1318.0
 theme_override_font_sizes/font_size = 48
 text = "GMTK Game Jam 2025 Submission - Harry, Elliott & Jordan"
 
-[node name="Credits" type="Label" parent="."]
-offset_left = 34.0
-offset_top = 1092.0
-offset_right = 372.0
-offset_bottom = 1317.0
-theme_override_font_sizes/font_size = 36
-text = "Music Credits to:
-- JHawk Studios
-- JDSherbert
-- FableFly Music"
-
 [node name="New_Game_Button" type="Button" parent="."]
-offset_left = 908.0
-offset_top = 731.0
-offset_right = 1458.0
-offset_bottom = 876.0
+offset_left = 836.0
+offset_top = 1057.0
+offset_right = 1482.0
+offset_bottom = 1202.0
 theme_override_font_sizes/font_size = 100
-text = "NEW GAME"
+text = "START AGAIN"
 metadata/_edit_use_anchors_ = true
 
 [node name="Loops_Label" type="Label" parent="."]
-offset_left = 1014.0
-offset_top = 503.0
-offset_right = 1366.0
-offset_bottom = 599.0
+custom_minimum_size = Vector2(1028, 0)
+offset_left = 642.0
+offset_top = 933.0
+offset_right = 1670.0
+offset_bottom = 1029.0
 theme_override_font_sizes/font_size = 70
 text = "Loops: "
+horizontal_alignment = 1
 
 [connection signal="pressed" from="New_Game_Button" to="." method="_on_new_game_button_pressed"]
