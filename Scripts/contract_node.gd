@@ -5,10 +5,10 @@ var contract_money: int = 0
 
 const WOOD_MONEY = 5
 const METAL_MONEY = 5
-const PLANK_MONEY = 15
-const INGOT_MONEY = 15
-const CRATE_MONEY = 25
-const SHIPPING_CONTAINER_MONEY = 50
+const PLANK_MONEY = 25
+const INGOT_MONEY = 25
+const CRATE_MONEY = 45
+const SHIPPING_CONTAINER_MONEY = 60
 
 var selected_by_player: bool = false
 var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
