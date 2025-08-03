@@ -6,8 +6,8 @@ var factory_type: GlobalVariables.FACTORY_TYPE = GlobalVariables.FACTORY_TYPE.NO
 var accepting_inputs: bool = true
 var has_output: bool = false
 
-var processing_percentage: int = 0
-const PROCESSING_STEP = 10
+var processing_percentage: float = 0.0
+const PROCESSING_STEP = 50
 
 var output_resource: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
 
@@ -22,7 +22,8 @@ var resources_invested: Array[GlobalVariables.RESOURCE_TYPE] = []
 @onready var right_input_sprite = get_node("Right_Input_Sprite")
 @onready var output_sprite = get_node("Output_Sprite")
 
-@onready var progress_bar = get_node("ProgressBar")
+@onready var progress_bar = get_node("Control").get_node("ProgressBar")
+@onready var smoke_animation = get_node("Smoke_Animation")
 
 func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	factory_type = type
@@ -37,6 +38,11 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	single_input_sprite.modulate.a = 128
 	left_input_sprite.modulate.a = 128
 	right_input_sprite.modulate.a = 128
+	
+	output_sprite.material = null
+	single_input_sprite.material = null
+	left_input_sprite.material = null
+	right_input_sprite.material = null
 	
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		# PLANK RECIPE: 1 Wood = 1 Plank
@@ -93,6 +99,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 	if factory_type == GlobalVariables.FACTORY_TYPE.PLANK:
 		if type == GlobalVariables.RESOURCE_TYPE.WOOD:
 			single_input_sprite.modulate.a = 255
+			single_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
 			
 			if selected_by_player:
@@ -102,6 +109,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
 		if type == GlobalVariables.RESOURCE_TYPE.METAL:
 			single_input_sprite.modulate.a = 255
+			single_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
 			
 			if selected_by_player:
@@ -114,6 +122,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			left_input_sprite.modulate.a = 255
+			left_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.WOOD)
 			
 			if selected_by_player:
@@ -123,6 +132,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			right_input_sprite.modulate.a = 255
+			right_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.METAL)
 			
 			if selected_by_player:
@@ -135,6 +145,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			left_input_sprite.modulate.a = 255
+			left_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.PLANK)
 			
 			if selected_by_player:
@@ -144,6 +155,7 @@ func insert_resource(type: GlobalVariables.RESOURCE_TYPE):
 			and type not in resources_invested
 		):
 			right_input_sprite.modulate.a = 255
+			right_input_sprite.material = highlighted_material
 			resources_invested.append(GlobalVariables.RESOURCE_TYPE.INGOT)
 			
 			if selected_by_player:
@@ -163,12 +175,11 @@ func toggle_factory_select():
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):
-		if processing_percentage > 0:
+		if accepting_inputs or has_output:
+			toggle_factory_select()
+		else:
 			# Do not allow selection while factory in process
 			SFXPlayer.play_failed_action()
-			return
-		
-		toggle_factory_select()
 
 func run_factory(delta):
 	# Ensure that all correct inputs exist, then continue processing
@@ -205,6 +216,9 @@ func run_factory(delta):
 		# Do not accept new inputs
 		accepting_inputs = false
 		
+		# Show smoke animation
+		smoke_animation.visible = true
+		
 		# Progress the factory dependent on time (not frames)
 		processing_percentage += PROCESSING_STEP * delta
 		
@@ -221,6 +235,9 @@ func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
 	# Maximum opacity on output resource
 	output_sprite.modulate.a = 255
 	
+	# Highlight output resource
+	output_sprite.material = highlighted_material
+	
 	# Clear the resources_invested
 	resources_invested = []
 	
@@ -228,6 +245,11 @@ func complete_output_resource(type: GlobalVariables.RESOURCE_TYPE):
 	single_input_sprite.modulate.a = 128
 	left_input_sprite.modulate.a = 128
 	right_input_sprite.modulate.a = 128
+	
+	# Remove highlights on input icons
+	single_input_sprite.material = null
+	left_input_sprite.material = null
+	right_input_sprite.material = null
 	
 	SFXPlayer.play_factory_complete()
 
