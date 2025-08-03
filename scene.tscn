@@ -32,10 +32,11 @@ offset_right = 2400.0
 offset_bottom = 1350.0
 texture = ExtResource("1_xlvrw")
 
-[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node")]
+[node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns")]
 script = ExtResource("1_u3cyc")
 ui_layer = NodePath("../UI_Layer")
 checkpoint_node = NodePath("../Checkpoint_Node")
+node_spawns = NodePath("../Node_Spawns")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u3cyc")

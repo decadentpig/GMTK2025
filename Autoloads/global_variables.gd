@@ -9,5 +9,6 @@ extends Node
 @onready var shipping_container_sprite = preload("res://Assets/Icon-ShippingContainer.png")
 
 var tutorial_on: bool = true
-enum RESOURCE_TYPE {NONE, WOOD, METAL}
+enum RESOURCE_TYPE {NONE, WOOD, METAL, PLANK, INGOT, CRATE, SHIPPING_CONTAINER}
+enum FACTORY_TYPE {NONE, PLANK, INGOT, CRATE, SHIPPING_CONTAINER}
 const MAX_CARRIAGE_PICKUPS = 1

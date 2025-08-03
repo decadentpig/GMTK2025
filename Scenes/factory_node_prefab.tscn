@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://hfre5bsk4l0x"]
+
+[ext_resource type="Script" uid="uid://g878vfqiq6x8" path="res://factory_node.gd" id="1_nt4t2"]
+[ext_resource type="Texture2D" uid="uid://byfx0afpgtriv" path="res://Assets/Factory1.png" id="2_owsfw"]
+[ext_resource type="Texture2D" uid="uid://r11cppd6bih2" path="res://Assets/Icon-Wood.png" id="3_o3ars"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5juve"]
+size = Vector2(123, 114.5)
+
+[node name="Factory_Node" type="RigidBody2D"]
+input_pickable = true
+gravity_scale = 0.0
+script = ExtResource("1_nt4t2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_owsfw")
+
+[node name="Single_Input_Sprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(0, -76)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_o3ars")
+
+[node name="Left_Input_Sprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(-25, -76)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_o3ars")
+
+[node name="Right_Input_Sprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(28, -76)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_o3ars")
+
+[node name="Output_Sprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(0, 8)
+texture = ExtResource("3_o3ars")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_5juve")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
