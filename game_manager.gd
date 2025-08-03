@@ -13,6 +13,15 @@ const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
 enum GAME_PHASE {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
 var current_phase: GAME_PHASE = GAME_PHASE.PHASE1
 
+var checkpoint_tax = 1
+const PHASE1_TAX_INCREASE = 1
+const PHASE2_TAX_INCREASE = 2
+const PHASE3_TAX_INCREASE = 3
+const PHASE4_TAX_INCREASE = 5
+const PHASE5_TAX_INCREASE = 10
+const PHASE6_TAX_INCREASE = 15
+const PHASE7_TAX_INCREASE = 20
+
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
 @onready var carriage_pickup_node_prefab = preload("res://Scenes/carriage_pickup_prefab.tscn")
@@ -138,14 +147,30 @@ func spawn_carriage() -> void:
 	Stats.available_carriages += 1
 
 func resolve_checkpoint():
-	var checkpoint_tax = 1
 	Stats.money -= checkpoint_tax
-	
 	
 	var y = checkpoint_node.position.y - 128
 	var x = checkpoint_node.position.x - 64
 	var str = '- $' + str(checkpoint_tax)
 	create_floating_text(Vector2(x,y), str, Color.RED, 120)
+	
+	# Each time we pass the checkpoint, increase the tax based on phase
+	if current_phase == GAME_PHASE.PHASE1:
+		checkpoint_tax += PHASE1_TAX_INCREASE
+	elif current_phase == GAME_PHASE.PHASE2:
+		checkpoint_tax += PHASE2_TAX_INCREASE
+	elif current_phase == GAME_PHASE.PHASE3:
+		checkpoint_tax += PHASE3_TAX_INCREASE
+	elif current_phase == GAME_PHASE.PHASE4:
+		checkpoint_tax += PHASE4_TAX_INCREASE
+	elif current_phase == GAME_PHASE.PHASE5:
+		checkpoint_tax += PHASE5_TAX_INCREASE
+	elif current_phase == GAME_PHASE.PHASE6:
+		checkpoint_tax += PHASE6_TAX_INCREASE
+	elif current_phase == GAME_PHASE.PHASE7:
+		checkpoint_tax += PHASE7_TAX_INCREASE
+	
+	# TODO: Visually notify player of tax increase
 	
 	if Stats.money >= 1:
 		print("Paid the toll!")
