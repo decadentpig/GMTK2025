@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://hcqviquckjc"]
+
+[ext_resource type="Script" uid="uid://dktvjhspuune" path="res://Scripts/floating_text.gd" id="1_tbc6n"]
+
+[node name="Floating_Text" type="Node2D"]
+script = ExtResource("1_tbc6n")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 55
+text = "+/- Num"
+
+[connection signal="ready" from="." to="." method="_on_ready"]
