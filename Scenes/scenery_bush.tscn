@@ -48,4 +48,4 @@ animations = [{
 [node name="SceneryBush" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_v16n6")
 autoplay = "default"
-frame_progress = 0.230548
+frame_progress = 0.685519

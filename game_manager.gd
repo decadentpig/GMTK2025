@@ -420,7 +420,10 @@ func process_finite_state_machine():
 					# Keep looking for a spawn that is not taken
 					continue
 				else:
-					spawn_contract(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+					var possible_contracts = [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL]
+					var selection = possible_contracts[randi() % possible_contracts.size()]
+					
+					spawn_contract(selection, spawn.position)
 					return
 
 	# PHASE 3
