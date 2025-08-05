@@ -83,8 +83,6 @@ offset_right = 2400.0
 offset_bottom = 1350.0
 texture = ExtResource("1_xlvrw")
 
-[node name="Upper_Decorative" type="Node2D" parent="."]
-
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u3cyc")
 
