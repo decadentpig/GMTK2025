@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=3 uid="uid://hfre5bsk4l0x"]
 
-[ext_resource type="Script" uid="uid://g878vfqiq6x8" path="res://factory_node.gd" id="1_nt4t2"]
+[ext_resource type="Script" uid="uid://g878vfqiq6x8" path="res://Scripts/factory_node.gd" id="1_nt4t2"]
 [ext_resource type="Texture2D" uid="uid://dibcfxu86oler" path="res://Assets/Factory-Prime.png" id="2_nt4t2"]
 [ext_resource type="Texture2D" uid="uid://drgiipse5cv4d" path="res://Assets/ChimneySmoke.png" id="2_owsfw"]
 [ext_resource type="Texture2D" uid="uid://diif8rjflfkx8" path="res://Assets/Icon-ShippingContainer.png" id="3_nt4t2"]

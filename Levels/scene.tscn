@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://f22lupl8lrgp"]
+[gd_scene load_steps=29 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://Scripts/game_manager.gd" id="1_u3cyc"]
