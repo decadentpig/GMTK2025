@@ -36,20 +36,27 @@ var max_num_wood = {
 	Game_Phase.PHASE7: 9
 }
 
+var wood_rand_chance = {
+	Game_Phase.PHASE1: 0.003,
+	Game_Phase.PHASE2: 0.004,
+	Game_Phase.PHASE3: 0.004,
+	Game_Phase.PHASE4: 0.004,
+	Game_Phase.PHASE5: 0.004,
+	Game_Phase.PHASE6: 0.004,
+	Game_Phase.PHASE7: 0.004
+}
+
 # PHASE 1 CONSTANTS
-const PHASE1_WOOD_RAND_CHANCE = 0.003
 const PHASE1_CONTRACT_RAND_CHANCE = 0.003
 
 # PHASE 2 CONSTANTS
 const PHASE2_MAX_NUM_METAL = 4
-const PHASE2_WOOD_RAND_CHANCE = 0.004
 const PHASE2_METAL_RAND_CHANCE = 0.004
 const PHASE2_CONTRACT_RAND_CHANCE = 0.004
 
 # PHASE 3 CONSTANTS
 const PHASE3_MAX_NUM_METAL = 6
 const PHASE3_MAX_NUM_CARRIAGES = 1
-const PHASE3_WOOD_RAND_CHANCE = 0.004
 const PHASE3_METAL_RAND_CHANCE = 0.004
 const PHASE3_CONTRACT_RAND_CHANCE = 0.004
 const PHASE3_CARRIAGE_RAND_CHANCE = 0.0004
@@ -58,7 +65,6 @@ const PHASE3_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE4_MAX_NUM_METAL = 7
 const PHASE4_MAX_NUM_CARRIAGES = 1
 const PHASE4_MAX_PLANK_FACTORIES = 1
-const PHASE4_WOOD_RAND_CHANCE = 0.004
 const PHASE4_METAL_RAND_CHANCE = 0.004
 const PHASE4_CONTRACT_RAND_CHANCE = 0.004
 const PHASE4_CARRIAGE_RAND_CHANCE = 0.0004
@@ -69,7 +75,6 @@ const PHASE5_MAX_NUM_METAL = 8
 const PHASE5_MAX_NUM_CARRIAGES = 1
 const PHASE5_MAX_PLANK_FACTORIES = 1
 const PHASE5_MAX_INGOT_FACTORIES = 1
-const PHASE5_WOOD_RAND_CHANCE = 0.004
 const PHASE5_METAL_RAND_CHANCE = 0.004
 const PHASE5_CONTRACT_RAND_CHANCE = 0.004
 const PHASE5_CARRIAGE_RAND_CHANCE = 0.0004
@@ -82,7 +87,6 @@ const PHASE6_MAX_NUM_CARRIAGES = 1
 const PHASE6_MAX_PLANK_FACTORIES = 1
 const PHASE6_MAX_INGOT_FACTORIES = 1
 const PHASE6_MAX_CRATE_FACTORIES = 1
-const PHASE6_WOOD_RAND_CHANCE = 0.004
 const PHASE6_METAL_RAND_CHANCE = 0.004
 const PHASE6_CONTRACT_RAND_CHANCE = 0.004
 const PHASE6_CARRIAGE_RAND_CHANCE = 0.0004
@@ -97,7 +101,6 @@ const PHASE7_MAX_PLANK_FACTORIES = 2
 const PHASE7_MAX_INGOT_FACTORIES = 2
 const PHASE7_MAX_CRATE_FACTORIES = 1
 const PHASE7_MAX_SHIPPING_CONTAINER_FACTORIES = 1
-const PHASE7_WOOD_RAND_CHANCE = 0.004
 const PHASE7_METAL_RAND_CHANCE = 0.004
 const PHASE7_CONTRACT_RAND_CHANCE = 0.004
 const PHASE7_CARRIAGE_RAND_CHANCE = 0.0004
@@ -260,7 +263,7 @@ func process_finite_state_machine():
 				used_locations.append(child.position)
 		
 		# Spawn Wood resources if within limits
-		if num_wood < max_num_wood[current_phase] and randf() < PHASE1_WOOD_RAND_CHANCE:
+		if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -319,7 +322,7 @@ func process_finite_state_machine():
 				used_locations.append(child.position)
 		
 		# Spawn Wood resources if within limits
-		if num_wood < max_num_wood[current_phase] and randf() < PHASE2_WOOD_RAND_CHANCE:
+		if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -401,7 +404,7 @@ func process_finite_state_machine():
 				used_locations.append(child.position)
 		
 		# Spawn Wood resources if within limits
-		if num_wood < max_num_wood[current_phase] and randf() < PHASE3_WOOD_RAND_CHANCE:
+		if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -500,7 +503,7 @@ func process_finite_state_machine():
 				used_locations.append(child.position)
 		
 		# Spawn Wood resources if within limits
-		if num_wood < max_num_wood[current_phase] and randf() < PHASE4_WOOD_RAND_CHANCE:
+		if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -619,7 +622,7 @@ func process_finite_state_machine():
 				used_locations.append(child.position)
 		
 		# Spawn Wood resources if within limits
-		if num_wood < max_num_wood[current_phase] and randf() < PHASE5_WOOD_RAND_CHANCE:
+		if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -759,7 +762,7 @@ func process_finite_state_machine():
 				used_locations.append(child.position)
 		
 		# Spawn Wood resources if within limits
-		if num_wood < max_num_wood[current_phase] and randf() < PHASE6_WOOD_RAND_CHANCE:
+		if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -919,7 +922,7 @@ func process_finite_state_machine():
 				used_locations.append(child.position)
 		
 		# Spawn Wood resources if within limits
-		if num_wood < max_num_wood[current_phase] and randf() < PHASE7_WOOD_RAND_CHANCE:
+		if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
