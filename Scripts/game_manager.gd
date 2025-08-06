@@ -98,7 +98,7 @@ var contract_rand_chance = {
 
 var carriage_rand_chance = {
 	Game_Phase.PHASE1: 0, # None this phase
-	Game_Phase.PHASE2: 0.004,
+	Game_Phase.PHASE2: 0, # None this phase
 	Game_Phase.PHASE3: 0.004,
 	Game_Phase.PHASE4: 0.004,
 	Game_Phase.PHASE5: 0.004,
@@ -154,6 +154,16 @@ var possible_contracts = {
 	Game_Phase.PHASE5: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT], # Wood, Metal, Planks, Ingots
 	Game_Phase.PHASE6: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT, GlobalVariables.RESOURCE_TYPE.CRATE], # Wood, Metal, Planks, Ingots, Crates
 	Game_Phase.PHASE7: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT, GlobalVariables.RESOURCE_TYPE.CRATE, GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER] # Wood, Metal, Planks, Ingots, Crates, Shipping Containers
+}
+
+var carriage_cost = {
+	Game_Phase.PHASE1: null, # None this phase
+	Game_Phase.PHASE2: null, # None this phase
+	Game_Phase.PHASE3: 30,
+	Game_Phase.PHASE4: 45,
+	Game_Phase.PHASE5: 70,
+	Game_Phase.PHASE6: 110,
+	Game_Phase.PHASE7: 165
 }
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
@@ -224,6 +234,7 @@ func spawn_carriage(pos: Vector2) -> void:
 	var carriage_pickup_node = carriage_pickup_node_prefab.instantiate() 
 	add_child(carriage_pickup_node)
 	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
+	carriage_pickup_node.cost = carriage_cost[current_phase]
 	Stats.available_carriages += 1
 
 func resolve_checkpoint():
@@ -390,6 +401,7 @@ func process_finite_state_machine():
 				
 				# Attempt to select a contract type that represents less than half of all possible contracts
 				while (selection == null):
+					# Select a random resource from possible contracts this phase, check for suitability afterwards
 					var temp = possible_contracts[current_phase][randi() % possible_contracts[current_phase].size()]
 					
 					if current_phase == Game_Phase.PHASE1 or contract_counts[temp] < max_contracts[current_phase] / 2:
