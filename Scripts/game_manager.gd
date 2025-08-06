@@ -1,27 +1,20 @@
 extends Node2D
 class_name Game_Manager
 
-const RESOURCE_SPAWN_CHANCE = 0.002
-#const RESOURCE_SPAWN_CHANCE = 0.01 # FULL SPEEEED
-const RESOURCE_SPAWN_TRACK_OFFSET = 120
-const CARRIAGE_SIZE = 128
-const CONTRACT_SPAWN_CHANCE = 0.0015
-const FACTORY_SPAWN_CHANCE = 0.0005 # TEMPORARY!!
-const CARRIAGE_SPAWN_CHANCE = 0.0002
-const CARRIAGE_SPAWN_AFTER_CONTRACTS = 5
-
 enum GAME_PHASE {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
 var current_phase: GAME_PHASE = GAME_PHASE.PHASE1
 var num_loops_since_phase_change = -1
 
 var checkpoint_tax = 1
-const PHASE1_TAX_INCREASE = 1
-const PHASE2_TAX_INCREASE = 1
-const PHASE3_TAX_INCREASE = 1
-const PHASE4_TAX_INCREASE = 1
-const PHASE5_TAX_INCREASE = 1
-const PHASE6_TAX_INCREASE = 1
-const PHASE7_TAX_INCREASE = 1
+var tax_increase = {
+	GAME_PHASE.PHASE1: 1,
+	GAME_PHASE.PHASE2: 1,
+	GAME_PHASE.PHASE3: 1,
+	GAME_PHASE.PHASE4: 1,
+	GAME_PHASE.PHASE5: 1,
+	GAME_PHASE.PHASE6: 1,
+	GAME_PHASE.PHASE7: 1
+}
 
 # PHASE 1 CONSTANTS
 const PHASE1_MAX_CONTRACTS = 4
@@ -133,57 +126,6 @@ func func_get_cord_for_side(side: Variant) -> int:
 		print("ERROR", side)
 		return 0
 
-func get_item_spawn_location() -> Array:
-	if node_spawns.get_child_count() == 0:
-		print("Error! Could not find children in Node Spawns")
-		return [0, 0]
-	
-	var random_index = randi() % node_spawns.get_child_count()
-	var spawn = node_spawns.get_child(random_index)
-	
-	return [spawn.position.x, spawn.position.y]
-
-#func get_item_spawn_location() -> Array:
-	#var top_left_point = {"x": 300, "y": 320}
-	#var bottom_left_point = {"x": 300, "y": 1030}
-	#var bottom_right_point = {"x": 2100, "y": 1030}
-	#var top_right_point = {"x": 2100, "y": 320}
-	#
-	#var sides = [
-		## Outer left
-		#{"x": top_left_point["x"] - RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_left_point["y"] + CARRIAGE_SIZE, bottom_left_point["y"] - CARRIAGE_SIZE]},
-		## Inner left
-		#{"x": top_left_point["x"] + RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_left_point["y"] + CARRIAGE_SIZE, bottom_left_point["y"] - CARRIAGE_SIZE]},
-		## Outer bottom
-		#{"x": [bottom_left_point["x"] + CARRIAGE_SIZE, bottom_right_point["x"] - CARRIAGE_SIZE], "y": bottom_left_point["y"] + RESOURCE_SPAWN_TRACK_OFFSET},
-		## Inner bottom
-		#{"x": [bottom_left_point["x"] + CARRIAGE_SIZE, bottom_right_point["x"] - CARRIAGE_SIZE], "y": bottom_left_point["y"] - RESOURCE_SPAWN_TRACK_OFFSET},
-		## Outer right
-		#{"x": bottom_right_point["x"] + RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_right_point["y"] + CARRIAGE_SIZE, bottom_right_point["y"] - CARRIAGE_SIZE]},
-		## Inner right
-		#{"x": bottom_right_point["x"] - RESOURCE_SPAWN_TRACK_OFFSET, "y": [top_right_point["y"] + CARRIAGE_SIZE, bottom_right_point["y"] - CARRIAGE_SIZE]},
-		## Outer top
-		#{"x": [top_left_point["x"] + CARRIAGE_SIZE, top_right_point["x"] - CARRIAGE_SIZE], "y": top_right_point["y"] - RESOURCE_SPAWN_TRACK_OFFSET},
-		## Inner top
-		#{"x": [top_left_point["x"] + CARRIAGE_SIZE, top_right_point["x"] - CARRIAGE_SIZE], "y": top_right_point["y"] + RESOURCE_SPAWN_TRACK_OFFSET},
-	#]
-	#
-		#
-	## Pick side that resource spawns on
-	#var random_side_index = randi() % sides.size()
-	#var chosen_side = sides[random_side_index]
-	#
-	## Choose spawn location on side
-	#var chosen_x = func_get_cord_for_side(chosen_side["x"])
-	#var chosen_y = func_get_cord_for_side(chosen_side["y"])
-	#
-	#return [chosen_x, chosen_y]
-
-func get_random_factory() -> GlobalVariables.FACTORY_TYPE:
-	var factories = [GlobalVariables.FACTORY_TYPE.PLANK, GlobalVariables.FACTORY_TYPE.INGOT, GlobalVariables.FACTORY_TYPE.CRATE, GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER]
-	var factory_type_index = randi() % factories.size()
-	return factories[factory_type_index]
-
 func spawn_factory(factory_type: GlobalVariables.FACTORY_TYPE, pos: Vector2) -> void:
 	var chosen_x = pos.x
 	var chosen_y = pos.y
@@ -235,26 +177,13 @@ func resolve_checkpoint():
 	
 	var y = checkpoint_node.position.y - 128
 	var x = checkpoint_node.position.x - 64
-	var str = '- $' + str(checkpoint_tax)
-	create_floating_text(Vector2(x,y), str, Color.RED, 120)
+	var string = '- $' + str(checkpoint_tax)
+	create_floating_text(Vector2(x,y), string, Color.RED, 120)
 	
 	SFXPlayer.play_audio_lost_money()
 	
 	# Each time we pass the checkpoint, increase the tax based on phase
-	if current_phase == GAME_PHASE.PHASE1:
-		checkpoint_tax += PHASE1_TAX_INCREASE
-	elif current_phase == GAME_PHASE.PHASE2:
-		checkpoint_tax += PHASE2_TAX_INCREASE
-	elif current_phase == GAME_PHASE.PHASE3:
-		checkpoint_tax += PHASE3_TAX_INCREASE
-	elif current_phase == GAME_PHASE.PHASE4:
-		checkpoint_tax += PHASE4_TAX_INCREASE
-	elif current_phase == GAME_PHASE.PHASE5:
-		checkpoint_tax += PHASE5_TAX_INCREASE
-	elif current_phase == GAME_PHASE.PHASE6:
-		checkpoint_tax += PHASE6_TAX_INCREASE
-	elif current_phase == GAME_PHASE.PHASE7:
-		checkpoint_tax += PHASE7_TAX_INCREASE
+	checkpoint_tax += tax_increase[current_phase]
 	
 	# TODO: Visually notify player of tax increase
 	
