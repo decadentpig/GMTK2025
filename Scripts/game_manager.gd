@@ -282,13 +282,24 @@ func process_finite_state_machine():
 
 	var num_wood = 0
 	var num_metal = 0
-	var num_contracts = 0
 	var num_carriages = 0
+	var num_contracts = 0
+
 	var num_plank_factories = 0
 	var num_ingot_factories = 0
 	var num_crate_factories = 0
 	var num_shipping_container_factories = 0
+
 	var used_locations = []
+
+	var contract_counts = {
+		GlobalVariables.RESOURCE_TYPE.WOOD: 0,
+		GlobalVariables.RESOURCE_TYPE.METAL: 0,
+		GlobalVariables.RESOURCE_TYPE.PLANK: 0,
+		GlobalVariables.RESOURCE_TYPE.INGOT: 0,
+		GlobalVariables.RESOURCE_TYPE.CRATE: 0,
+		GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER: 0
+	}
 	
 	for child in get_children():
 		if (
@@ -307,6 +318,7 @@ func process_finite_state_machine():
 			child is Contract_Node
 		):
 			num_contracts += 1
+			contract_counts[child.contract_type] += 1
 			used_locations.append(child.position)
 		elif (
 			child is Carriage_Pickup_Node
@@ -374,8 +386,16 @@ func process_finite_state_machine():
 				# Keep looking for a spawn that is not taken
 				continue
 			else:
-				var selection = possible_contracts[current_phase][randi() % possible_contracts[current_phase].size()]
+				var selection = null
 				
+				# Attempt to select a contract type that represents less than half of all possible contracts
+				while (selection == null):
+					var temp = possible_contracts[current_phase][randi() % possible_contracts[current_phase].size()]
+					
+					if current_phase == Game_Phase.PHASE1 or contract_counts[temp] < max_contracts[current_phase] / 2:
+						# If we are in Phase 1, or if this resource accounts for less than half of all possible contracts, select it
+						selection = temp
+
 				spawn_contract(selection, spawn.position)
 				return
 	
