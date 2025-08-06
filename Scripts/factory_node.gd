@@ -204,6 +204,7 @@ func toggle_factory_select():
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and Input.is_action_just_pressed("Click"):
 		if accepting_inputs or has_output:
+			SFXPlayer.play_make_selection()
 			toggle_factory_select()
 		else:
 			# Do not allow selection while factory in process

@@ -7,4 +7,4 @@ func _ready():
 
 func _on_new_game_button_pressed() -> void:
 	GlobalVariables.tutorial_on = true
-	get_tree().change_scene_to_file("res://scene.tscn")
+	get_tree().change_scene_to_file("res://Levels/scene.tscn")

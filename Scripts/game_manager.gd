@@ -12,7 +12,7 @@ var num_loops_in_phase = {
 	Game_Phase.PHASE4: 5,
 	Game_Phase.PHASE5: 5,
 	Game_Phase.PHASE6: 5,
-	Game_Phase.PHASE7: null # Game remains on Phase 7 forever
+	Game_Phase.PHASE7: -1 # Game remains on Phase 7 forever
 }
 
 var checkpoint_tax = 1
@@ -250,7 +250,7 @@ func resolve_checkpoint():
 		print("Lost the game!")
 		Stats.previous_game_loops = Stats.total_loops
 		Stats.apply_defaults()
-		get_tree().change_scene_to_file("res://game_over.tscn")
+		get_tree().change_scene_to_file("res://Levels/game_over.tscn")
 		
 	# Increment num loops since phase change
 	num_loops_since_phase_change += 1
