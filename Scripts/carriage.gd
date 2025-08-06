@@ -79,15 +79,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		cargo = GlobalVariables.RESOURCE_TYPE.NONE
 		sprite2d.texture = null
 		body.complete_contract()
-	elif (
-		body is Contract_Node
-		and body.selected_by_player
-		and train_manager.is_last_carriage(carriage_index)
-		and cargo != body.contract_type
-	):
-		# The final carriage has touched a selected contract without delivering, destroy contract
-		body.queue_free()
-		SFXPlayer.play_failed_action()
 		
 	# Buy carriages
 	if (
@@ -143,3 +134,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				
 			if body.selected_by_player:
 				body.toggle_factory_select()
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	# Detect contracts leaving the collision box of the last carriage
+	# If the contract is unfulfilled, the contract fails
+	
+	if (
+		body is Contract_Node
+		and body.selected_by_player
+		and train_manager.is_last_carriage(carriage_index)
+		and cargo != body.contract_type
+	):
+		body.queue_free()
+		SFXPlayer.play_failed_action()

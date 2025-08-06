@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsvps6y0glkn5"]
 
-[ext_resource type="Script" uid="uid://bct85s5p5bdwa" path="res://Scenes/carriage_pickup.gd" id="1_los3g"]
+[ext_resource type="Script" uid="uid://bct85s5p5bdwa" path="res://Scripts/carriage_pickup.gd" id="1_los3g"]
 [ext_resource type="Texture2D" uid="uid://c33e3ltuborvh" path="res://Assets/Icon-Carriage.png" id="2_los3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_los3g"]
