@@ -1,16 +1,24 @@
 extends PathFollow2D
 signal request_carriage_add()
 
+var carriage_index: int = -1
+
 var speed = 0
 var cargo = GlobalVariables.RESOURCE_TYPE.NONE
 
 var last_position = Vector2.ZERO
+
+var train_manager: Train_Manager = null
 
 @onready var sprite = get_node("AnimatedSprite2D")
 @onready var sprite2d = get_node("Sprite2D")
 
 func _ready():
 	last_position = position
+
+func initialise(instance: Train_Manager, carriage_index):
+	self.train_manager = instance
+	self.carriage_index = carriage_index
 
 func _physics_process(delta: float) -> void:
 	sprite.play("default")
@@ -21,20 +29,16 @@ func _physics_process(delta: float) -> void:
 	# Check horizontal/vertical movement
 	if abs(movement.x) > abs(movement.y):
 		if movement.x > 0:
-			print("Moving right")
 			# TODO: Set sprite to normal rotation
 			sprite2d.rotation_degrees = 0
 		elif movement.x < 0:
-			print("Moving left")
 			# TODO: Set sprite to 180 rotation
 			sprite2d.rotation_degrees = 180
 	else:
 		if movement.y > 0:
-			print("Moving down")
 			# TODO: Set sprite to 90 rotation
 			sprite2d.rotation_degrees = 270
 		elif movement.y < 0:
-			print("Moving up")
 			# TODO: Set sprite to 270 rotation
 			sprite2d.rotation_degrees = 90
 
@@ -78,8 +82,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	elif (
 		body is Contract_Node
 		and body.selected_by_player
+		and train_manager.is_last_carriage(carriage_index)
 		and cargo != body.contract_type
 	):
+		# The final carriage has touched a selected contract without delivering, destroy contract
+		body.queue_free()
 		SFXPlayer.play_failed_action()
 		
 	# Buy carriages

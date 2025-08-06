@@ -20,6 +20,10 @@ func create_carriage() -> void:
 	carriage.request_carriage_add.connect(_on_request_carriage_add)
 	num_carriages += 1
 	Stats.num_carriages += 1
+	carriage.initialise(self, num_carriages)
+
+func is_last_carriage(carriage_index: int):
+	return carriage_index == num_carriages
 
 func _ready() -> void:
 	progress = 100 * DEFAULT_CARRIAGES
