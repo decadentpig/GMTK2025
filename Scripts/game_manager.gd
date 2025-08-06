@@ -36,6 +36,16 @@ var max_num_wood = {
 	Game_Phase.PHASE7: 9
 }
 
+var max_num_metal = {
+	Game_Phase.PHASE1: null,
+	Game_Phase.PHASE2: 4,
+	Game_Phase.PHASE3: 6,
+	Game_Phase.PHASE4: 7,
+	Game_Phase.PHASE5: 8,
+	Game_Phase.PHASE6: 9,
+	Game_Phase.PHASE7: 9
+}
+
 var wood_rand_chance = {
 	Game_Phase.PHASE1: 0.003,
 	Game_Phase.PHASE2: 0.004,
@@ -46,63 +56,64 @@ var wood_rand_chance = {
 	Game_Phase.PHASE7: 0.004
 }
 
+var metal_rand_chance = {
+	Game_Phase.PHASE1: null,
+	Game_Phase.PHASE2: 0.004,
+	Game_Phase.PHASE3: 0.004,
+	Game_Phase.PHASE4: 0.004,
+	Game_Phase.PHASE5: 0.004,
+	Game_Phase.PHASE6: 0.004,
+	Game_Phase.PHASE7: 0.004
+}
+
+var contract_rand_chance = {
+	Game_Phase.PHASE1: 0.003,
+	Game_Phase.PHASE2: 0.004,
+	Game_Phase.PHASE3: 0.004,
+	Game_Phase.PHASE4: 0.004,
+	Game_Phase.PHASE5: 0.004,
+	Game_Phase.PHASE6: 0.004,
+	Game_Phase.PHASE7: 0.004
+}
+
 # PHASE 1 CONSTANTS
-const PHASE1_CONTRACT_RAND_CHANCE = 0.003
 
 # PHASE 2 CONSTANTS
-const PHASE2_MAX_NUM_METAL = 4
-const PHASE2_METAL_RAND_CHANCE = 0.004
-const PHASE2_CONTRACT_RAND_CHANCE = 0.004
 
 # PHASE 3 CONSTANTS
-const PHASE3_MAX_NUM_METAL = 6
 const PHASE3_MAX_NUM_CARRIAGES = 1
-const PHASE3_METAL_RAND_CHANCE = 0.004
-const PHASE3_CONTRACT_RAND_CHANCE = 0.004
 const PHASE3_CARRIAGE_RAND_CHANCE = 0.0004
 
 # PHASE 4 CONSTANTS
-const PHASE4_MAX_NUM_METAL = 7
 const PHASE4_MAX_NUM_CARRIAGES = 1
 const PHASE4_MAX_PLANK_FACTORIES = 1
-const PHASE4_METAL_RAND_CHANCE = 0.004
-const PHASE4_CONTRACT_RAND_CHANCE = 0.004
 const PHASE4_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE4_PLANK_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 5 CONSTANTS
-const PHASE5_MAX_NUM_METAL = 8
 const PHASE5_MAX_NUM_CARRIAGES = 1
 const PHASE5_MAX_PLANK_FACTORIES = 1
 const PHASE5_MAX_INGOT_FACTORIES = 1
-const PHASE5_METAL_RAND_CHANCE = 0.004
-const PHASE5_CONTRACT_RAND_CHANCE = 0.004
 const PHASE5_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE5_PLANK_FACTORY_RAND_CHANCE = 0.004
 const PHASE5_INGOT_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 6 CONSTANTS
-const PHASE6_MAX_NUM_METAL = 9
 const PHASE6_MAX_NUM_CARRIAGES = 1
 const PHASE6_MAX_PLANK_FACTORIES = 1
 const PHASE6_MAX_INGOT_FACTORIES = 1
 const PHASE6_MAX_CRATE_FACTORIES = 1
-const PHASE6_METAL_RAND_CHANCE = 0.004
-const PHASE6_CONTRACT_RAND_CHANCE = 0.004
 const PHASE6_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE6_PLANK_FACTORY_RAND_CHANCE = 0.004
 const PHASE6_INGOT_FACTORY_RAND_CHANCE = 0.004
 const PHASE6_CRATE_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 7 CONSTANTS
-const PHASE7_MAX_NUM_METAL = 9
 const PHASE7_MAX_NUM_CARRIAGES = 1
 const PHASE7_MAX_PLANK_FACTORIES = 2
 const PHASE7_MAX_INGOT_FACTORIES = 2
 const PHASE7_MAX_CRATE_FACTORIES = 1
 const PHASE7_MAX_SHIPPING_CONTAINER_FACTORIES = 1
-const PHASE7_METAL_RAND_CHANCE = 0.004
-const PHASE7_CONTRACT_RAND_CHANCE = 0.004
 const PHASE7_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE7_PLANK_FACTORY_RAND_CHANCE = 0.004
 const PHASE7_INGOT_FACTORY_RAND_CHANCE = 0.004
@@ -276,7 +287,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < max_contracts[current_phase] and randf() < PHASE1_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -338,7 +349,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Metal resources if within limits
-		if num_metal < PHASE2_MAX_NUM_METAL and randf() < PHASE2_METAL_RAND_CHANCE:
+		if num_metal < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -351,7 +362,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < max_contracts[current_phase] and randf() < PHASE2_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -417,7 +428,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Metal resources if within limits
-		if num_metal < PHASE3_MAX_NUM_METAL and randf() < PHASE3_METAL_RAND_CHANCE:
+		if num_metal < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -430,7 +441,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < max_contracts[current_phase] and randf() < PHASE3_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -516,7 +527,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Metal resources if within limits
-		if num_metal < PHASE4_MAX_NUM_METAL and randf() < PHASE4_METAL_RAND_CHANCE:
+		if num_metal < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -529,7 +540,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < max_contracts[current_phase] and randf() < PHASE4_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -635,7 +646,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Metal resources if within limits
-		if num_metal < PHASE5_MAX_NUM_METAL and randf() < PHASE5_METAL_RAND_CHANCE:
+		if num_metal < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -648,7 +659,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < max_contracts[current_phase] and randf() < PHASE5_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -775,7 +786,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Metal resources if within limits
-		if num_metal < PHASE6_MAX_NUM_METAL and randf() < PHASE6_METAL_RAND_CHANCE:
+		if num_metal < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -788,7 +799,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < max_contracts[current_phase] and randf() < PHASE6_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -935,7 +946,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Metal resources if within limits
-		if num_metal < PHASE7_MAX_NUM_METAL and randf() < PHASE7_METAL_RAND_CHANCE:
+		if num_metal < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -948,7 +959,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < max_contracts[current_phase] and randf() < PHASE7_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
