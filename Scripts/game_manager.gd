@@ -136,6 +136,16 @@ var max_shipping_container_factories = {
 	Game_Phase.PHASE7: 1
 }
 
+var possible_contracts = {
+	Game_Phase.PHASE1: [GlobalVariables.RESOURCE_TYPE.WOOD], # Wood
+	Game_Phase.PHASE2: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL], # Wood, Metal
+	Game_Phase.PHASE3: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL], # Wood, Metal
+	Game_Phase.PHASE4: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK], # Wood, Metal, Planks
+	Game_Phase.PHASE5: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT], # Wood, Metal, Planks, Ingots
+	Game_Phase.PHASE6: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT, GlobalVariables.RESOURCE_TYPE.CRATE], # Wood, Metal, Planks, Ingots, Crates
+	Game_Phase.PHASE7: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT, GlobalVariables.RESOURCE_TYPE.CRATE, GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER] # Wood, Metal, Planks, Ingots, Crates, Shipping Containers
+}
+
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
 @onready var carriage_pickup_node_prefab = preload("res://Scenes/carriage_pickup_prefab.tscn")
@@ -364,8 +374,7 @@ func process_finite_state_machine():
 				# Keep looking for a spawn that is not taken
 				continue
 			else:
-				var possible_contracts = [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT, GlobalVariables.RESOURCE_TYPE.CRATE, GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER]
-				var selection = possible_contracts[randi() % possible_contracts.size()]
+				var selection = possible_contracts[current_phase][randi() % possible_contracts[current_phase].size()]
 				
 				spawn_contract(selection, spawn.position)
 				return
