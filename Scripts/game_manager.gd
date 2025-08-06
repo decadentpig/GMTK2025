@@ -1,29 +1,37 @@
 extends Node2D
 class_name Game_Manager
 
-enum GAME_PHASE {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
-var current_phase: GAME_PHASE = GAME_PHASE.PHASE1
+enum Game_Phase {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
+var current_phase: Game_Phase = Game_Phase.PHASE1
 var num_loops_since_phase_change = -1
 
 var checkpoint_tax = 1
 var tax_increase = {
-	GAME_PHASE.PHASE1: 1,
-	GAME_PHASE.PHASE2: 1,
-	GAME_PHASE.PHASE3: 1,
-	GAME_PHASE.PHASE4: 1,
-	GAME_PHASE.PHASE5: 1,
-	GAME_PHASE.PHASE6: 1,
-	GAME_PHASE.PHASE7: 1
+	Game_Phase.PHASE1: 1,
+	Game_Phase.PHASE2: 1,
+	Game_Phase.PHASE3: 1,
+	Game_Phase.PHASE4: 1,
+	Game_Phase.PHASE5: 1,
+	Game_Phase.PHASE6: 1,
+	Game_Phase.PHASE7: 1
+}
+
+var max_contracts = {
+	Game_Phase.PHASE1: 4,
+	Game_Phase.PHASE2: 8,
+	Game_Phase.PHASE3: 8,
+	Game_Phase.PHASE4: 10,
+	Game_Phase.PHASE5: 10,
+	Game_Phase.PHASE6: 10,
+	Game_Phase.PHASE7: 10
 }
 
 # PHASE 1 CONSTANTS
-const PHASE1_MAX_CONTRACTS = 4
 const PHASE1_MAX_NUM_WOOD = 4
 const PHASE1_WOOD_RAND_CHANCE = 0.003
 const PHASE1_CONTRACT_RAND_CHANCE = 0.003
 
 # PHASE 2 CONSTANTS
-const PHASE2_MAX_CONTRACTS = 8
 const PHASE2_MAX_NUM_WOOD = 4
 const PHASE2_MAX_NUM_METAL = 4
 const PHASE2_WOOD_RAND_CHANCE = 0.004
@@ -31,7 +39,6 @@ const PHASE2_METAL_RAND_CHANCE = 0.004
 const PHASE2_CONTRACT_RAND_CHANCE = 0.004
 
 # PHASE 3 CONSTANTS
-const PHASE3_MAX_CONTRACTS = 8
 const PHASE3_MAX_NUM_WOOD = 6
 const PHASE3_MAX_NUM_METAL = 6
 const PHASE3_MAX_NUM_CARRIAGES = 1
@@ -41,7 +48,6 @@ const PHASE3_CONTRACT_RAND_CHANCE = 0.004
 const PHASE3_CARRIAGE_RAND_CHANCE = 0.0004
 
 # PHASE 4 CONSTANTS
-const PHASE4_MAX_CONTRACTS = 10
 const PHASE4_MAX_NUM_WOOD = 7
 const PHASE4_MAX_NUM_METAL = 7
 const PHASE4_MAX_NUM_CARRIAGES = 1
@@ -53,7 +59,6 @@ const PHASE4_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE4_PLANK_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 5 CONSTANTS
-const PHASE5_MAX_CONTRACTS = 10
 const PHASE5_MAX_NUM_WOOD = 8
 const PHASE5_MAX_NUM_METAL = 8
 const PHASE5_MAX_NUM_CARRIAGES = 1
@@ -67,7 +72,6 @@ const PHASE5_PLANK_FACTORY_RAND_CHANCE = 0.004
 const PHASE5_INGOT_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 6 CONSTANTS
-const PHASE6_MAX_CONTRACTS = 10
 const PHASE6_MAX_NUM_WOOD = 9
 const PHASE6_MAX_NUM_METAL = 9
 const PHASE6_MAX_NUM_CARRIAGES = 1
@@ -83,7 +87,6 @@ const PHASE6_INGOT_FACTORY_RAND_CHANCE = 0.004
 const PHASE6_CRATE_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 7 CONSTANTS
-const PHASE7_MAX_CONTRACTS = 10
 const PHASE7_MAX_NUM_WOOD = 9
 const PHASE7_MAX_NUM_METAL = 9
 const PHASE7_MAX_NUM_CARRIAGES = 1
@@ -200,24 +203,24 @@ func resolve_checkpoint():
 	num_loops_since_phase_change += 1
 	
 	# If 3 loops have passed, progress phase
-	if num_loops_since_phase_change >= 3 and current_phase != GAME_PHASE.PHASE7:
-		if current_phase == GAME_PHASE.PHASE1:
-			current_phase = GAME_PHASE.PHASE2
+	if num_loops_since_phase_change >= 3 and current_phase != Game_Phase.PHASE7:
+		if current_phase == Game_Phase.PHASE1:
+			current_phase = Game_Phase.PHASE2
 			num_loops_since_phase_change = 0
-		elif current_phase == GAME_PHASE.PHASE2:
-			current_phase = GAME_PHASE.PHASE3
+		elif current_phase == Game_Phase.PHASE2:
+			current_phase = Game_Phase.PHASE3
 			num_loops_since_phase_change = 0
-		elif current_phase == GAME_PHASE.PHASE3:
-			current_phase = GAME_PHASE.PHASE4
+		elif current_phase == Game_Phase.PHASE3:
+			current_phase = Game_Phase.PHASE4
 			num_loops_since_phase_change = 0
-		elif current_phase == GAME_PHASE.PHASE4:
-			current_phase = GAME_PHASE.PHASE5
+		elif current_phase == Game_Phase.PHASE4:
+			current_phase = Game_Phase.PHASE5
 			num_loops_since_phase_change = 0
-		elif current_phase == GAME_PHASE.PHASE5:
-			current_phase = GAME_PHASE.PHASE6
+		elif current_phase == Game_Phase.PHASE5:
+			current_phase = Game_Phase.PHASE6
 			num_loops_since_phase_change = 0
-		elif current_phase == GAME_PHASE.PHASE6:
-			current_phase = GAME_PHASE.PHASE7
+		elif current_phase == Game_Phase.PHASE6:
+			current_phase = Game_Phase.PHASE7
 			num_loops_since_phase_change = 0
 
 func create_floating_text(pos: Vector2, text: String, color: Color, frames: int):
@@ -234,7 +237,7 @@ func process_finite_state_machine():
 	
 	phase_text.text = "Phase: " + str(current_phase + 1)
 	
-	if current_phase == GAME_PHASE.PHASE1:
+	if current_phase == Game_Phase.PHASE1:
 		# 1. Check how many wood nodes exist to be picked up, and their locations
 		var num_wood = 0
 		var num_contracts = 0
@@ -267,7 +270,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < PHASE1_MAX_CONTRACTS and randf() < PHASE1_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < PHASE1_CONTRACT_RAND_CHANCE:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -287,7 +290,7 @@ func process_finite_state_machine():
 	
 
 	
-	if current_phase == GAME_PHASE.PHASE2:
+	if current_phase == Game_Phase.PHASE2:
 		var num_wood = 0
 		var num_metal = 0
 		var num_contracts = 0
@@ -342,7 +345,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < PHASE2_MAX_CONTRACTS and randf() < PHASE2_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < PHASE2_CONTRACT_RAND_CHANCE:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -363,7 +366,7 @@ func process_finite_state_machine():
 	# Factories: (none)
 	# Rent Increase Per Lap: 3
 	
-	if current_phase == GAME_PHASE.PHASE3:
+	if current_phase == Game_Phase.PHASE3:
 		var num_wood = 0
 		var num_metal = 0
 		var num_contracts = 0
@@ -421,7 +424,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < PHASE3_MAX_CONTRACTS and randf() < PHASE3_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < PHASE3_CONTRACT_RAND_CHANCE:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -455,7 +458,7 @@ func process_finite_state_machine():
 	# Factories: Planks
 	# Rent Increase Per Lap: 5
 	
-	if current_phase == GAME_PHASE.PHASE4:
+	if current_phase == Game_Phase.PHASE4:
 		var num_wood = 0
 		var num_metal = 0
 		var num_contracts = 0
@@ -520,7 +523,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < PHASE4_MAX_CONTRACTS and randf() < PHASE4_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < PHASE4_CONTRACT_RAND_CHANCE:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -567,7 +570,7 @@ func process_finite_state_machine():
 	# Factories: Planks, Ingots
 	# Rent Increase Per Lap: 10
 	
-	if current_phase == GAME_PHASE.PHASE5:
+	if current_phase == Game_Phase.PHASE5:
 		var num_wood = 0
 		var num_metal = 0
 		var num_contracts = 0
@@ -639,7 +642,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < PHASE5_MAX_CONTRACTS and randf() < PHASE5_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < PHASE5_CONTRACT_RAND_CHANCE:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -700,7 +703,7 @@ func process_finite_state_machine():
 	# Rent Increase Per Lap: 15
 	
 	
-	if current_phase == GAME_PHASE.PHASE6:
+	if current_phase == Game_Phase.PHASE6:
 		var num_wood = 0
 		var num_metal = 0
 		var num_contracts = 0
@@ -779,7 +782,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < PHASE6_MAX_CONTRACTS and randf() < PHASE6_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < PHASE6_CONTRACT_RAND_CHANCE:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
@@ -853,7 +856,7 @@ func process_finite_state_machine():
 	# Rent Increase Per Lap: 20
 	
 	
-	if current_phase == GAME_PHASE.PHASE7:
+	if current_phase == Game_Phase.PHASE7:
 		var num_wood = 0
 		var num_metal = 0
 		var num_contracts = 0
@@ -939,7 +942,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Contracts if within limits
-		if num_contracts < PHASE7_MAX_CONTRACTS and randf() < PHASE7_CONTRACT_RAND_CHANCE:
+		if num_contracts < max_contracts[current_phase] and randf() < PHASE7_CONTRACT_RAND_CHANCE:
 			while true:
 				var rand = randi_range(0, contract_spawns.get_child_count() - 1)
 				var spawn = contract_spawns.get_child(rand)
