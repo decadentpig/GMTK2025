@@ -5,6 +5,16 @@ enum Game_Phase {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
 var current_phase: Game_Phase = Game_Phase.PHASE1
 var num_loops_since_phase_change = -1
 
+var num_loops_in_phase = {
+	Game_Phase.PHASE1: 3,
+	Game_Phase.PHASE2: 1,
+	Game_Phase.PHASE3: 2,
+	Game_Phase.PHASE4: 5,
+	Game_Phase.PHASE5: 5,
+	Game_Phase.PHASE6: 5,
+	Game_Phase.PHASE7: null # Game remains on Phase 7 forever
+}
+
 var checkpoint_tax = 1
 var tax_increase = {
 	Game_Phase.PHASE1: 1,
@@ -246,25 +256,21 @@ func resolve_checkpoint():
 	num_loops_since_phase_change += 1
 	
 	# If 3 loops have passed, progress phase
-	if num_loops_since_phase_change >= 3 and current_phase != Game_Phase.PHASE7:
+	if num_loops_since_phase_change >= num_loops_in_phase[current_phase] and current_phase != Game_Phase.PHASE7:
+		num_loops_since_phase_change = 0
+
 		if current_phase == Game_Phase.PHASE1:
 			current_phase = Game_Phase.PHASE2
-			num_loops_since_phase_change = 0
 		elif current_phase == Game_Phase.PHASE2:
 			current_phase = Game_Phase.PHASE3
-			num_loops_since_phase_change = 0
 		elif current_phase == Game_Phase.PHASE3:
 			current_phase = Game_Phase.PHASE4
-			num_loops_since_phase_change = 0
 		elif current_phase == Game_Phase.PHASE4:
 			current_phase = Game_Phase.PHASE5
-			num_loops_since_phase_change = 0
 		elif current_phase == Game_Phase.PHASE5:
 			current_phase = Game_Phase.PHASE6
-			num_loops_since_phase_change = 0
 		elif current_phase == Game_Phase.PHASE6:
 			current_phase = Game_Phase.PHASE7
-			num_loops_since_phase_change = 0
 
 func create_floating_text(pos: Vector2, text: String, color: Color, frames: int):
 	var floating_text = floating_text_prefab.instantiate()
@@ -272,12 +278,6 @@ func create_floating_text(pos: Vector2, text: String, color: Color, frames: int)
 	floating_text.setup_floating_text(pos, text, color, frames)
 
 func process_finite_state_machine():
-	# PHASE 1
-	# Resource Spawns: Wood
-	# Contracts: Wood
-	# Factories: (none)
-	# Rent Increase Per Lap: 1
-	
 	phase_text.text = "Phase: " + str(current_phase + 1)
 
 	var num_wood = 0
