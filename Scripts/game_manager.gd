@@ -46,6 +46,16 @@ var max_num_metal = {
 	Game_Phase.PHASE7: 9
 }
 
+var max_num_carriages = {
+	Game_Phase.PHASE1: null,
+	Game_Phase.PHASE2: null,
+	Game_Phase.PHASE3: 1,
+	Game_Phase.PHASE4: 1,
+	Game_Phase.PHASE5: 1,
+	Game_Phase.PHASE6: 1,
+	Game_Phase.PHASE7: 1
+}
+
 var wood_rand_chance = {
 	Game_Phase.PHASE1: 0.003,
 	Game_Phase.PHASE2: 0.004,
@@ -76,45 +86,46 @@ var contract_rand_chance = {
 	Game_Phase.PHASE7: 0.004
 }
 
+var carriage_rand_chance = {
+	Game_Phase.PHASE1: 0.004,
+	Game_Phase.PHASE2: 0.004,
+	Game_Phase.PHASE3: 0.004,
+	Game_Phase.PHASE4: 0.004,
+	Game_Phase.PHASE5: 0.004,
+	Game_Phase.PHASE6: 0.004,
+	Game_Phase.PHASE7: 0.004
+}
+
 # PHASE 1 CONSTANTS
 
 # PHASE 2 CONSTANTS
 
 # PHASE 3 CONSTANTS
-const PHASE3_MAX_NUM_CARRIAGES = 1
-const PHASE3_CARRIAGE_RAND_CHANCE = 0.0004
 
 # PHASE 4 CONSTANTS
-const PHASE4_MAX_NUM_CARRIAGES = 1
 const PHASE4_MAX_PLANK_FACTORIES = 1
-const PHASE4_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE4_PLANK_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 5 CONSTANTS
 const PHASE5_MAX_NUM_CARRIAGES = 1
 const PHASE5_MAX_PLANK_FACTORIES = 1
 const PHASE5_MAX_INGOT_FACTORIES = 1
-const PHASE5_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE5_PLANK_FACTORY_RAND_CHANCE = 0.004
 const PHASE5_INGOT_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 6 CONSTANTS
-const PHASE6_MAX_NUM_CARRIAGES = 1
 const PHASE6_MAX_PLANK_FACTORIES = 1
 const PHASE6_MAX_INGOT_FACTORIES = 1
 const PHASE6_MAX_CRATE_FACTORIES = 1
-const PHASE6_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE6_PLANK_FACTORY_RAND_CHANCE = 0.004
 const PHASE6_INGOT_FACTORY_RAND_CHANCE = 0.004
 const PHASE6_CRATE_FACTORY_RAND_CHANCE = 0.004
 
 # PHASE 7 CONSTANTS
-const PHASE7_MAX_NUM_CARRIAGES = 1
 const PHASE7_MAX_PLANK_FACTORIES = 2
 const PHASE7_MAX_INGOT_FACTORIES = 2
 const PHASE7_MAX_CRATE_FACTORIES = 1
 const PHASE7_MAX_SHIPPING_CONTAINER_FACTORIES = 1
-const PHASE7_CARRIAGE_RAND_CHANCE = 0.0004
 const PHASE7_PLANK_FACTORY_RAND_CHANCE = 0.004
 const PHASE7_INGOT_FACTORY_RAND_CHANCE = 0.004
 const PHASE7_CRATE_FACTORY_RAND_CHANCE = 0.004
@@ -457,7 +468,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Carriages if within limits
-		if num_carriages < PHASE3_MAX_NUM_CARRIAGES and randf() < PHASE3_CARRIAGE_RAND_CHANCE:
+		if num_carriages < max_num_carriages[current_phase] and randf() < carriage_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -556,7 +567,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Carriages if within limits
-		if num_carriages < PHASE4_MAX_NUM_CARRIAGES and randf() < PHASE4_CARRIAGE_RAND_CHANCE:
+		if num_carriages < max_num_carriages[current_phase] and randf() < carriage_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -675,7 +686,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Carriages if within limits
-		if num_carriages < PHASE5_MAX_NUM_CARRIAGES and randf() < PHASE5_CARRIAGE_RAND_CHANCE:
+		if num_carriages < PHASE5_MAX_NUM_CARRIAGES and randf() < carriage_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -815,7 +826,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Carriages if within limits
-		if num_carriages < PHASE6_MAX_NUM_CARRIAGES and randf() < PHASE6_CARRIAGE_RAND_CHANCE:
+		if num_carriages < max_num_carriages[current_phase] and randf() < carriage_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -975,7 +986,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Carriages if within limits
-		if num_carriages < PHASE7_MAX_NUM_CARRIAGES and randf() < PHASE7_CARRIAGE_RAND_CHANCE:
+		if num_carriages < max_num_carriages[current_phase] and randf() < carriage_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
