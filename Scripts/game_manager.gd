@@ -96,40 +96,45 @@ var carriage_rand_chance = {
 	Game_Phase.PHASE7: 0.004
 }
 
-# PHASE 1 CONSTANTS
+var max_plank_factories = {
+	Game_Phase.PHASE1: null,
+	Game_Phase.PHASE2: null,
+	Game_Phase.PHASE3: null,
+	Game_Phase.PHASE4: 1,
+	Game_Phase.PHASE5: 1,
+	Game_Phase.PHASE6: 1,
+	Game_Phase.PHASE7: 1
+}
 
-# PHASE 2 CONSTANTS
+var max_ingot_factories = {
+	Game_Phase.PHASE1: null,
+	Game_Phase.PHASE2: null,
+	Game_Phase.PHASE3: null,
+	Game_Phase.PHASE4: null,
+	Game_Phase.PHASE5: 1,
+	Game_Phase.PHASE6: 1,
+	Game_Phase.PHASE7: 1
+}
 
-# PHASE 3 CONSTANTS
+var max_crate_factories = {
+	Game_Phase.PHASE1: null,
+	Game_Phase.PHASE2: null,
+	Game_Phase.PHASE3: null,
+	Game_Phase.PHASE4: null,
+	Game_Phase.PHASE5: null,
+	Game_Phase.PHASE6: 1,
+	Game_Phase.PHASE7: 1
+}
 
-# PHASE 4 CONSTANTS
-const PHASE4_MAX_PLANK_FACTORIES = 1
-const PHASE4_PLANK_FACTORY_RAND_CHANCE = 0.004
-
-# PHASE 5 CONSTANTS
-const PHASE5_MAX_NUM_CARRIAGES = 1
-const PHASE5_MAX_PLANK_FACTORIES = 1
-const PHASE5_MAX_INGOT_FACTORIES = 1
-const PHASE5_PLANK_FACTORY_RAND_CHANCE = 0.004
-const PHASE5_INGOT_FACTORY_RAND_CHANCE = 0.004
-
-# PHASE 6 CONSTANTS
-const PHASE6_MAX_PLANK_FACTORIES = 1
-const PHASE6_MAX_INGOT_FACTORIES = 1
-const PHASE6_MAX_CRATE_FACTORIES = 1
-const PHASE6_PLANK_FACTORY_RAND_CHANCE = 0.004
-const PHASE6_INGOT_FACTORY_RAND_CHANCE = 0.004
-const PHASE6_CRATE_FACTORY_RAND_CHANCE = 0.004
-
-# PHASE 7 CONSTANTS
-const PHASE7_MAX_PLANK_FACTORIES = 2
-const PHASE7_MAX_INGOT_FACTORIES = 2
-const PHASE7_MAX_CRATE_FACTORIES = 1
-const PHASE7_MAX_SHIPPING_CONTAINER_FACTORIES = 1
-const PHASE7_PLANK_FACTORY_RAND_CHANCE = 0.004
-const PHASE7_INGOT_FACTORY_RAND_CHANCE = 0.004
-const PHASE7_CRATE_FACTORY_RAND_CHANCE = 0.004
-const PHASE7_SHIPPING_CONTAINER_FACTORY_RAND_CHANCE = 0.004
+var max_shipping_container_factories = {
+	Game_Phase.PHASE1: null,
+	Game_Phase.PHASE2: null,
+	Game_Phase.PHASE3: null,
+	Game_Phase.PHASE4: null,
+	Game_Phase.PHASE5: null,
+	Game_Phase.PHASE6: null,
+	Game_Phase.PHASE7: 1
+}
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
 @onready var contract_node_prefab = preload("res://Scenes/contract_node_prefab.tscn")
@@ -580,7 +585,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Plank Factories if within limits
-		if num_plank_factories < PHASE4_MAX_PLANK_FACTORIES and randf() < PHASE4_PLANK_FACTORY_RAND_CHANCE:
+		if num_plank_factories < max_plank_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -686,7 +691,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Carriages if within limits
-		if num_carriages < PHASE5_MAX_NUM_CARRIAGES and randf() < carriage_rand_chance[current_phase]:
+		if num_carriages < max_num_carriages[current_phase] and randf() < carriage_rand_chance[current_phase]:
 			while true:
 				var rand = randi_range(0, node_spawns.get_child_count() - 1)
 				var spawn = node_spawns.get_child(rand)
@@ -699,7 +704,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Plank Factories if within limits
-		if num_plank_factories < PHASE5_MAX_PLANK_FACTORIES and randf() < PHASE5_PLANK_FACTORY_RAND_CHANCE:
+		if num_plank_factories < max_plank_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -712,7 +717,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Ingot factories if within limits
-		if num_ingot_factories < PHASE5_MAX_INGOT_FACTORIES and randf() < PHASE5_INGOT_FACTORY_RAND_CHANCE:
+		if num_ingot_factories < max_ingot_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -839,7 +844,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Plank Factories if within limits
-		if num_plank_factories < PHASE6_MAX_PLANK_FACTORIES and randf() < PHASE6_PLANK_FACTORY_RAND_CHANCE:
+		if num_plank_factories < max_plank_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -852,7 +857,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Ingot factories if within limits
-		if num_ingot_factories < PHASE6_MAX_INGOT_FACTORIES and randf() < PHASE6_INGOT_FACTORY_RAND_CHANCE:
+		if num_ingot_factories < max_ingot_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -865,7 +870,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Crate factories if within limits
-		if num_crate_factories < PHASE6_MAX_CRATE_FACTORIES and randf() < PHASE6_CRATE_FACTORY_RAND_CHANCE:
+		if num_crate_factories < max_crate_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -999,7 +1004,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Plank Factories if within limits
-		if num_plank_factories < PHASE7_MAX_PLANK_FACTORIES and randf() < PHASE7_PLANK_FACTORY_RAND_CHANCE:
+		if num_plank_factories < max_plank_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -1012,7 +1017,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Ingot factories if within limits
-		if num_ingot_factories < PHASE7_MAX_INGOT_FACTORIES and randf() < PHASE7_INGOT_FACTORY_RAND_CHANCE:
+		if num_ingot_factories < max_ingot_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -1025,7 +1030,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn Crate factories if within limits
-		if num_crate_factories < PHASE7_MAX_CRATE_FACTORIES and randf() < PHASE7_CRATE_FACTORY_RAND_CHANCE:
+		if num_crate_factories < max_crate_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
@@ -1038,7 +1043,7 @@ func process_finite_state_machine():
 					return
 		
 		# Spawn shipping container factories if within limits
-		if num_shipping_container_factories < PHASE7_MAX_SHIPPING_CONTAINER_FACTORIES and randf() < PHASE7_SHIPPING_CONTAINER_FACTORY_RAND_CHANCE:
+		if num_shipping_container_factories < max_shipping_container_factories[current_phase]:
 			while true:
 				var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 				var spawn = factory_spawns.get_child(rand)
