@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://h3npyt56js6a"]
+[gd_scene load_steps=8 format=3 uid="uid://h3npyt56js6a"]
 
 [ext_resource type="Script" uid="uid://b01333watfjur" path="res://Scripts/main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://8sw8ysvs5ggl" path="res://Assets/Background.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://b2qbpwbjvqu67" path="res://Assets/Game-Title.png" id="3_jix8l"]
+[ext_resource type="FontFile" uid="uid://bhw246q2fq5oe" path="res://Fonts/Jersey15-Regular.ttf" id="4_hllw6"]
 [ext_resource type="Texture2D" uid="uid://bspiqrsp0y3ti" path="res://Assets/Button-Newgame-unhovered.png" id="4_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://cy3pdhoowx2en" path="res://Assets/Button-Newgame-clicked.png" id="5_qe12f"]
 [ext_resource type="Texture2D" uid="uid://bepka5v0qks30" path="res://Assets/Button-Newgame-hovered.png" id="6_8qtwp"]
@@ -27,19 +28,29 @@ offset_left = 517.0
 offset_top = 1271.0
 offset_right = 1848.0
 offset_bottom = 1338.0
-theme_override_font_sizes/font_size = 48
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("4_hllw6")
+theme_override_font_sizes/font_size = 62
 text = "GMTK Game Jam 2025 Submission - Harry, Elliott & Jordan"
+horizontal_alignment = 1
 
 [node name="Credits" type="Label" parent="."]
-offset_left = 34.0
-offset_top = 1092.0
-offset_right = 372.0
-offset_bottom = 1317.0
-theme_override_font_sizes/font_size = 36
+offset_left = 1920.0
+offset_top = 16.0
+offset_right = 2374.0
+offset_bottom = 241.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("4_hllw6")
+theme_override_font_sizes/font_size = 54
 text = "Music / SFX Credits to:
 - JHawk Studios
 - JDSherbert
 - FableFly Music"
+horizontal_alignment = 2
 
 [node name="New_Game_Button" type="TextureButton" parent="."]
 offset_left = 914.0
