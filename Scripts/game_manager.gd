@@ -340,7 +340,7 @@ func create_floating_text(pos: Vector2, text: String, color: Color, frames: int)
 	floating_text.setup_floating_text(pos, text, color, frames)
 
 func process_finite_state_machine():
-	phase_text.text = "Phase: " + str(current_phase + 1)
+	phase_text.text = "(DEBUG ONLY) Phase: " + str(current_phase + 1)
 
 	var num_wood = 0
 	var num_metal = 0

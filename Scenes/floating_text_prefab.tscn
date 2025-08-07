@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://hcqviquckjc"]
+[gd_scene load_steps=3 format=3 uid="uid://hcqviquckjc"]
 
 [ext_resource type="Script" uid="uid://dktvjhspuune" path="res://Scripts/floating_text.gd" id="1_tbc6n"]
+[ext_resource type="FontFile" uid="uid://bhw246q2fq5oe" path="res://Fonts/Jersey15-Regular.ttf" id="2_hdw2l"]
 
 [node name="Floating_Text" type="Node2D"]
 script = ExtResource("1_tbc6n")
@@ -8,7 +9,11 @@ script = ExtResource("1_tbc6n")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-theme_override_font_sizes/font_size = 55
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_hdw2l")
+theme_override_font_sizes/font_size = 72
 text = "+/- Num"
 
 [connection signal="ready" from="." to="." method="_on_ready"]

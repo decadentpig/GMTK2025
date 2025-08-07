@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://sxkq3ocwt4ox"]
+[gd_scene load_steps=5 format=3 uid="uid://sxkq3ocwt4ox"]
 
 [ext_resource type="Script" uid="uid://bbw1uxq61h1fd" path="res://Scripts/contract_node.gd" id="1_5p8iy"]
 [ext_resource type="Texture2D" uid="uid://bcr0elw31uwe5" path="res://Assets/Customer-Speechbox.png" id="2_2yvq6"]
+[ext_resource type="FontFile" uid="uid://bhw246q2fq5oe" path="res://Fonts/Jersey15-Regular.ttf" id="3_2yvq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ni31j"]
 size = Vector2(116, 120)
@@ -21,12 +22,16 @@ shape = SubResource("RectangleShape2D_ni31j")
 
 [node name="Contract_Value" type="Label" parent="."]
 custom_minimum_size = Vector2(128, 0)
-offset_left = -62.0
-offset_top = 62.0
-offset_right = 66.0
-offset_bottom = 101.0
-theme_override_colors/font_color = Color(1, 0.968627, 0, 1)
-theme_override_font_sizes/font_size = 28
+offset_left = -64.0
+offset_top = 90.0
+offset_right = 64.0
+offset_bottom = 141.0
+theme_override_colors/font_color = Color(1, 0.968627, 0.254902, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_2yvq6")
+theme_override_font_sizes/font_size = 50
 text = "($0)"
 horizontal_alignment = 1
 

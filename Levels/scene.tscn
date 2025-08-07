@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=30 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://Scripts/game_manager.gd" id="1_u3cyc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c6flyx4fgnuos" path="res://Scripts/checkpoint_node.gd" id="6_y2354"]
 [ext_resource type="Texture2D" uid="uid://dexpl5m665lsn" path="res://Assets/House-Prime.png" id="7_fy5k1"]
 [ext_resource type="Texture2D" uid="uid://5ocrh8uklhdo" path="res://Assets/Taxgate.png" id="7_xlvrw"]
+[ext_resource type="FontFile" uid="uid://bhw246q2fq5oe" path="res://Fonts/Jersey15-Regular.ttf" id="8_4xgwt"]
 [ext_resource type="Texture2D" uid="uid://3p3hiseeripa" path="res://Assets/Tree2-1.png" id="10_5juve"]
 [ext_resource type="Texture2D" uid="uid://dc56gy4v65fdx" path="res://Assets/Tree2-2.png" id="11_17rhs"]
 [ext_resource type="Texture2D" uid="uid://cxlrp0pv6yalj" path="res://Assets/Tree2-3.png" id="12_8j1ou"]
@@ -697,15 +698,19 @@ offset_left = 1844.0
 offset_top = 29.0
 offset_right = 2021.0
 offset_bottom = 84.0
-theme_override_font_sizes/font_size = 40
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_4xgwt")
+theme_override_font_sizes/font_size = 55
 text = "0"
 
 [node name="Phase_Label" type="Label" parent="."]
-visible = false
-offset_left = 1922.0
-offset_top = 78.0
-offset_right = 2116.0
-offset_bottom = 133.0
+offset_left = 1844.0
+offset_top = 74.0
+offset_right = 2038.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Phase"
 
@@ -729,7 +734,11 @@ offset_top = -18.0
 offset_right = 62.0
 offset_bottom = 5.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 37
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_4xgwt")
+theme_override_font_sizes/font_size = 51
 text = "($???)"
 horizontal_alignment = 1
 

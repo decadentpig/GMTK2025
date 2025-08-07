@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsvps6y0glkn5"]
+[gd_scene load_steps=5 format=3 uid="uid://dsvps6y0glkn5"]
 
 [ext_resource type="Script" uid="uid://bct85s5p5bdwa" path="res://Scripts/carriage_pickup.gd" id="1_los3g"]
 [ext_resource type="Texture2D" uid="uid://c33e3ltuborvh" path="res://Assets/Icon-Carriage.png" id="2_los3g"]
+[ext_resource type="FontFile" uid="uid://bhw246q2fq5oe" path="res://Fonts/Jersey15-Regular.ttf" id="3_ssu1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_los3g"]
 size = Vector2(64, 64)
@@ -18,12 +19,29 @@ texture = ExtResource("2_los3g")
 shape = SubResource("RectangleShape2D_los3g")
 
 [node name="Cost" type="Label" parent="."]
-offset_left = -22.0
-offset_top = 15.0
-offset_right = 17.0
-offset_bottom = 47.0
+offset_left = -28.0
+offset_top = 10.0
+offset_right = 25.0
+offset_bottom = 51.0
 theme_override_colors/font_color = Color(0.996078, 0.839216, 0.309804, 1)
-theme_override_font_sizes/font_size = 23
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_ssu1y")
+theme_override_font_sizes/font_size = 40
 text = "$50"
+
+[node name="Plus_Symbol" type="Label" parent="."]
+offset_left = 14.0
+offset_top = -43.0
+offset_right = 33.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(0, 0.839216, 0.309804, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_ssu1y")
+theme_override_font_sizes/font_size = 40
+text = "+"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

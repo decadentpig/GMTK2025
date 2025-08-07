@@ -26,4 +26,4 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		toggle_player_select()
 
 func _process(delta):
-	cost_label.text = str(cost)
+	cost_label.text = '$' + str(cost)
