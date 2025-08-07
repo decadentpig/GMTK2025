@@ -347,10 +347,12 @@ func process_finite_state_machine():
 	var num_carriages = 0
 	var num_contracts = 0
 
-	var num_plank_factories = 0
-	var num_ingot_factories = 0
-	var num_crate_factories = 0
-	var num_shipping_container_factories = 0
+	var num_factories = {
+		GlobalVariables.FACTORY_TYPE.PLANK: 0,
+		GlobalVariables.FACTORY_TYPE.INGOT: 0,
+		GlobalVariables.FACTORY_TYPE.CRATE: 0,
+		GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER: 0
+	}
 
 	var used_locations = []
 
@@ -389,27 +391,8 @@ func process_finite_state_machine():
 			used_locations.append(child.position)
 		elif (
 			child is Factory_Node
-			and child.factory_type == GlobalVariables.FACTORY_TYPE.PLANK
 		):
-			num_plank_factories += 1
-			used_locations.append(child.position)
-		elif (
-			child is Factory_Node
-			and child.factory_type == GlobalVariables.FACTORY_TYPE.INGOT
-		):
-			num_ingot_factories += 1
-			used_locations.append(child.position)
-		elif (
-			child is Factory_Node
-			and child.factory_type == GlobalVariables.FACTORY_TYPE.CRATE
-		):
-			num_crate_factories += 1
-			used_locations.append(child.position)
-		elif (
-			child is Factory_Node
-			and child.factory_type == GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER
-		):
-			num_shipping_container_factories += 1
+			num_factories[child.factory_type] += 1
 			used_locations.append(child.position)
 	
 	# Spawn Wood resources if within limits
@@ -476,7 +459,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn Plank Factories if within limits
-	if num_plank_factories < max_factories[GlobalVariables.FACTORY_TYPE.PLANK][current_phase]:
+	if num_factories[GlobalVariables.FACTORY_TYPE.PLANK] < max_factories[GlobalVariables.FACTORY_TYPE.PLANK][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
@@ -489,7 +472,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn Ingot factories if within limits
-	if num_ingot_factories < max_factories[GlobalVariables.FACTORY_TYPE.INGOT][current_phase]:
+	if num_factories[GlobalVariables.FACTORY_TYPE.INGOT] < max_factories[GlobalVariables.FACTORY_TYPE.INGOT][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
@@ -502,7 +485,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn Crate factories if within limits
-	if num_crate_factories < max_factories[GlobalVariables.FACTORY_TYPE.CRATE][current_phase]:
+	if num_factories[GlobalVariables.FACTORY_TYPE.CRATE] < max_factories[GlobalVariables.FACTORY_TYPE.CRATE][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
@@ -515,7 +498,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn shipping container factories if within limits
-	if num_shipping_container_factories < max_factories[GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER][current_phase]:
+	if num_factories[GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER] < max_factories[GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
