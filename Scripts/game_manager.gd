@@ -106,44 +106,43 @@ var carriage_rand_chance = {
 	Game_Phase.PHASE7: 0.004
 }
 
-var max_plank_factories = {
-	Game_Phase.PHASE1: 0, # None this phase
-	Game_Phase.PHASE2: 0, # None this phase
-	Game_Phase.PHASE3: 0, # None this phase
-	Game_Phase.PHASE4: 1,
-	Game_Phase.PHASE5: 1,
-	Game_Phase.PHASE6: 1,
-	Game_Phase.PHASE7: 1
-}
-
-var max_ingot_factories = {
-	Game_Phase.PHASE1: 0, # None this phase
-	Game_Phase.PHASE2: 0, # None this phase
-	Game_Phase.PHASE3: 0, # None this phase
-	Game_Phase.PHASE4: 0, # None this phase
-	Game_Phase.PHASE5: 1,
-	Game_Phase.PHASE6: 1,
-	Game_Phase.PHASE7: 1
-}
-
-var max_crate_factories = {
-	Game_Phase.PHASE1: 0, # None this phase
-	Game_Phase.PHASE2: 0, # None this phase
-	Game_Phase.PHASE3: 0, # None this phase
-	Game_Phase.PHASE4: 0, # None this phase
-	Game_Phase.PHASE5: 0, # None this phase
-	Game_Phase.PHASE6: 1,
-	Game_Phase.PHASE7: 1
-}
-
-var max_shipping_container_factories = {
-	Game_Phase.PHASE1: 0, # None this phase
-	Game_Phase.PHASE2: 0, # None this phase
-	Game_Phase.PHASE3: 0, # None this phase
-	Game_Phase.PHASE4: 0, # None this phase
-	Game_Phase.PHASE5: 0, # None this phase
-	Game_Phase.PHASE6: 0, # None this phase
-	Game_Phase.PHASE7: 1
+var max_factories = {
+	GlobalVariables.FACTORY_TYPE.PLANK: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 1,
+		Game_Phase.PHASE5: 1,
+		Game_Phase.PHASE6: 1,
+		Game_Phase.PHASE7: 2
+	},
+	GlobalVariables.FACTORY_TYPE.INGOT: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 0, # None this phase
+		Game_Phase.PHASE5: 1,
+		Game_Phase.PHASE6: 1,
+		Game_Phase.PHASE7: 2
+	},
+	GlobalVariables.FACTORY_TYPE.CRATE: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 0, # None this phase
+		Game_Phase.PHASE5: 0, # None this phase
+		Game_Phase.PHASE6: 1,
+		Game_Phase.PHASE7: 1
+	},
+	GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 0, # None this phase
+		Game_Phase.PHASE5: 0, # None this phase
+		Game_Phase.PHASE6: 0, # None this phase
+		Game_Phase.PHASE7: 1
+	}
 }
 
 var possible_contracts = {
@@ -164,6 +163,63 @@ var carriage_cost = {
 	Game_Phase.PHASE5: 70,
 	Game_Phase.PHASE6: 110,
 	Game_Phase.PHASE7: 165
+}
+
+var contract_money = {
+	GlobalVariables.RESOURCE_TYPE.WOOD: {
+		Game_Phase.PHASE1: 5,
+		Game_Phase.PHASE2: 5,
+		Game_Phase.PHASE3: 5,
+		Game_Phase.PHASE4: 10,
+		Game_Phase.PHASE5: 10,
+		Game_Phase.PHASE6: 10,
+		Game_Phase.PHASE7: 20
+	},
+	GlobalVariables.RESOURCE_TYPE.METAL: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 5,
+		Game_Phase.PHASE3: 5,
+		Game_Phase.PHASE4: 10,
+		Game_Phase.PHASE5: 10,
+		Game_Phase.PHASE6: 10,
+		Game_Phase.PHASE7: 10
+	},
+	GlobalVariables.RESOURCE_TYPE.PLANK: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 25,
+		Game_Phase.PHASE5: 25,
+		Game_Phase.PHASE6: 35,
+		Game_Phase.PHASE7: 35
+	},
+	GlobalVariables.RESOURCE_TYPE.INGOT: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 0, # None this phase
+		Game_Phase.PHASE5: 25,
+		Game_Phase.PHASE6: 35,
+		Game_Phase.PHASE7: 35
+	},
+	GlobalVariables.RESOURCE_TYPE.CRATE: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 0, # None this phase
+		Game_Phase.PHASE5: 0, # None this phase
+		Game_Phase.PHASE6: 45,
+		Game_Phase.PHASE7: 60
+	},
+	GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER: {
+		Game_Phase.PHASE1: 0, # None this phase
+		Game_Phase.PHASE2: 0, # None this phase
+		Game_Phase.PHASE3: 0, # None this phase
+		Game_Phase.PHASE4: 0, # None this phase
+		Game_Phase.PHASE5: 0, # None this phase
+		Game_Phase.PHASE6: 0, # None this phase
+		Game_Phase.PHASE7: 100
+	}
 }
 
 @onready var raw_resource_prefab = preload("res://Scenes/raw_resource_prefab.tscn")
@@ -252,13 +308,8 @@ func resolve_checkpoint():
 	# Each time we pass the checkpoint, increase the tax based on phase
 	checkpoint_tax += tax_increase[current_phase]
 	
-	# TODO: Visually notify player of tax increase
-	
-	if Stats.money >= 1:
-		# TODO: Add a sound for lost money
-		pass
-	else:
-		print("Lost the game!")
+	if Stats.money < 1:
+		# Bankrupted!
 		Stats.previous_game_loops = Stats.total_loops
 		Stats.apply_defaults()
 		get_tree().change_scene_to_file("res://Levels/game_over.tscn")
@@ -425,7 +476,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn Plank Factories if within limits
-	if num_plank_factories < max_plank_factories[current_phase]:
+	if num_plank_factories < max_factories[GlobalVariables.FACTORY_TYPE.PLANK][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
@@ -438,7 +489,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn Ingot factories if within limits
-	if num_ingot_factories < max_ingot_factories[current_phase]:
+	if num_ingot_factories < max_factories[GlobalVariables.FACTORY_TYPE.INGOT][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
@@ -451,7 +502,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn Crate factories if within limits
-	if num_crate_factories < max_crate_factories[current_phase]:
+	if num_crate_factories < max_factories[GlobalVariables.FACTORY_TYPE.CRATE][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
@@ -464,7 +515,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn shipping container factories if within limits
-	if num_shipping_container_factories < max_shipping_container_factories[current_phase]:
+	if num_shipping_container_factories < max_factories[GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER][current_phase]:
 		while true:
 			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
 			var spawn = factory_spawns.get_child(rand)
