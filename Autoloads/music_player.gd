@@ -1,5 +1,7 @@
 extends AudioStreamPlayer2D
 
+var muted: bool = false
+
 @onready var audio_menu_track = preload("res://Sounds/Menu_Music.wav")
 @onready var audio_bg_track = preload("res://Sounds/ClockWork (BG music).mp3")
 @onready var audio_test = preload("res://Sounds/Factory Complete.wav")
@@ -20,3 +22,11 @@ func play_background_music():
 
 func stop_background_music():
 	stop()
+
+func toggle_mute():
+	if muted:
+		muted = false
+		volume_db = 0
+	elif !muted:
+		muted = true
+		volume_db = -1000

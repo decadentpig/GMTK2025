@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=26 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://Scripts/game_manager.gd" id="1_u3cyc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://di0tobjofn741" path="res://Assets/Tree3-2.png" id="11_wn1b8"]
 [ext_resource type="Texture2D" uid="uid://70r0yym3d2p5" path="res://Assets/Tree3-1.png" id="11_yn7hb"]
 [ext_resource type="Texture2D" uid="uid://dnm1yoxik3o1j" path="res://Assets/Tree-1.png" id="13_lw5om"]
+[ext_resource type="Script" uid="uid://v4ye6g8mjahn" path="res://Scripts/mute_button.gd" id="14_qhhtk"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
 bake_interval = 0.01
@@ -765,5 +766,14 @@ texture = ExtResource("13_lw5om")
 position = Vector2(824, 598)
 texture = ExtResource("11_wn1b8")
 
+[node name="Button" type="Button" parent="."]
+offset_left = 28.0
+offset_top = 24.0
+offset_right = 173.0
+offset_bottom = 60.0
+text = "MUTE"
+script = ExtResource("14_qhhtk")
+
 [connection signal="area_entered" from="Path2D/Train/Area2D" to="Path2D/Train" method="_on_area_2d_area_entered"]
 [connection signal="ready" from="Contract_Houses" to="Contract_Houses" method="_on_ready"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
