@@ -12,3 +12,12 @@ var tutorial_on: bool = true
 enum RESOURCE_TYPE {NONE, WOOD, METAL, PLANK, INGOT, CRATE, SHIPPING_CONTAINER}
 enum FACTORY_TYPE {NONE, PLANK, INGOT, CRATE, SHIPPING_CONTAINER}
 const MAX_CARRIAGE_PICKUPS = 1
+
+@onready var resource_sprite_map = {
+	RESOURCE_TYPE.WOOD: preload("res://Assets/Icon-Wood.png"),
+	RESOURCE_TYPE.METAL: preload("res://Assets/Icon-Rock.png"),
+	RESOURCE_TYPE.PLANK: preload("res://Assets/Icon-Planks.png"),
+	RESOURCE_TYPE.INGOT: preload("res://Assets/Icon_Ingot.png"),
+	RESOURCE_TYPE.CRATE: preload("res://Assets/Icon-Crate.png"),
+	RESOURCE_TYPE.SHIPPING_CONTAINER: preload("res://Assets/Icon-ShippingContainer.png")
+}

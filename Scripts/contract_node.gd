@@ -3,13 +3,6 @@ class_name Contract_Node
 
 var contract_money: int = 0
 
-const WOOD_MONEY = 5
-const METAL_MONEY = 5
-const PLANK_MONEY = 25
-const INGOT_MONEY = 25
-const CRATE_MONEY = 45
-const SHIPPING_CONTAINER_MONEY = 60
-
 var selected_by_player: bool = false
 var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
 
@@ -23,30 +16,14 @@ var game_manager: Game_Manager = null
 func initialise(game_manager: Game_Manager):
 	self.game_manager = game_manager
 
-func set_contract_type(type: GlobalVariables.RESOURCE_TYPE):
-	contract_type = type
-	if contract_type == GlobalVariables.RESOURCE_TYPE.WOOD:
-		resource_sprite.texture = GlobalVariables.wood_sprite
-		contract_money = WOOD_MONEY
-	elif contract_type == GlobalVariables.RESOURCE_TYPE.METAL:
-		resource_sprite.texture = GlobalVariables.metal_sprite
-		contract_money = METAL_MONEY
-	elif contract_type == GlobalVariables.RESOURCE_TYPE.PLANK:
-		resource_sprite.texture = GlobalVariables.plank_sprite
-		contract_money = PLANK_MONEY
-	elif contract_type == GlobalVariables.RESOURCE_TYPE.INGOT:
-		resource_sprite.texture = GlobalVariables.ingot_sprite
-		contract_money = INGOT_MONEY
-	elif contract_type == GlobalVariables.RESOURCE_TYPE.CRATE:
-		resource_sprite.texture = GlobalVariables.crate_sprite
-		contract_money = CRATE_MONEY
-	elif contract_type == GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER:
-		resource_sprite.texture = GlobalVariables.shipping_container_sprite
-		contract_money = SHIPPING_CONTAINER_MONEY
-	else:
-		print("Have only implemented wood and metal sprites on contract nodes! Whoops")
+func _process(delta: float) -> void:
+	contract_money = game_manager.contract_money[contract_type][game_manager.current_phase]
 
 	contract_value.text = '($' + str(contract_money) + ')'
+
+func set_contract_type(type: GlobalVariables.RESOURCE_TYPE):
+	contract_type = type
+	resource_sprite.texture = GlobalVariables.resource_sprite_map[type]
 
 func toggle_player_select():
 	if selected_by_player:
