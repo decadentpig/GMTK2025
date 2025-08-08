@@ -257,11 +257,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5juve"]
-size = Vector2(144, 167)
+size = Vector2(171, 167.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owsfw"]
 
@@ -276,57 +276,56 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_o3ars")
 input_pickable = true
 script = ExtResource("1_nt4t2")
 
-[node name="Smoke_Animation" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(-43, -112)
-sprite_frames = SubResource("SpriteFrames_wr6sp")
-autoplay = "default"
-frame_progress = 0.319433
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nt4t2")
 
+[node name="Smoke_Animation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-58, -100)
+sprite_frames = SubResource("SpriteFrames_wr6sp")
+autoplay = "default"
+frame_progress = 0.818512
+
 [node name="Single_Input_Speech_Sprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(34, -76)
+position = Vector2(30, -91)
 texture = ExtResource("4_ydvbu")
 
 [node name="Single_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(34, -76)
+position = Vector2(30, -91)
 texture = ExtResource("5_r8t7s")
 
 [node name="Left_Input_Speech_Sprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(9, -75)
+position = Vector2(16, -91)
 texture = ExtResource("4_ydvbu")
 
 [node name="Left_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(9, -76)
+position = Vector2(16, -92)
 texture = ExtResource("5_r8t7s")
 
 [node name="Right_Input_Speech_Sprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(55, -75)
+position = Vector2(62, -91)
 texture = ExtResource("4_ydvbu")
 
 [node name="Right_Input_Sprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(55, -76)
+position = Vector2(62, -92)
 texture = ExtResource("5_r8t7s")
 
 [node name="Output_Sprite" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(5, 52)
+position = Vector2(2, 39)
 texture = ExtResource("3_nt4t2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(-1.5, 9.25)
 shape = SubResource("RectangleShape2D_5juve")
 
 [node name="Control" type="Control" parent="."]
