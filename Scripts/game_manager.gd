@@ -342,10 +342,13 @@ func create_floating_text(pos: Vector2, text: String, color: Color, frames: int)
 func process_finite_state_machine():
 	phase_text.text = "(DEBUG ONLY) Phase: " + str(current_phase + 1)
 
-	var num_wood = 0
-	var num_metal = 0
 	var num_carriages = 0
 	var num_contracts = 0
+
+	var num_resources = {
+		GlobalVariables.RESOURCE_TYPE.WOOD: 0,
+		GlobalVariables.RESOURCE_TYPE.METAL: 0
+	}
 
 	var num_factories = {
 		GlobalVariables.FACTORY_TYPE.PLANK: 0,
@@ -353,8 +356,6 @@ func process_finite_state_machine():
 		GlobalVariables.FACTORY_TYPE.CRATE: 0,
 		GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER: 0
 	}
-
-	var used_locations = []
 
 	var contract_counts = {
 		GlobalVariables.RESOURCE_TYPE.WOOD: 0,
@@ -364,19 +365,14 @@ func process_finite_state_machine():
 		GlobalVariables.RESOURCE_TYPE.CRATE: 0,
 		GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER: 0
 	}
+
+	var used_locations = []
 	
 	for child in get_children():
 		if (
 			child is Raw_Resource
-			and child.resource_type == GlobalVariables.RESOURCE_TYPE.WOOD
 		):
-			num_wood += 1
-			used_locations.append(child.position)
-		elif (
-			child is Raw_Resource
-			and child.resource_type == GlobalVariables.RESOURCE_TYPE.METAL
-		):
-			num_metal += 1
+			num_resources[child.resource_type] += 1
 			used_locations.append(child.position)
 		elif (
 			child is Contract_Node
@@ -396,7 +392,7 @@ func process_finite_state_machine():
 			used_locations.append(child.position)
 	
 	# Spawn Wood resources if within limits
-	if num_wood < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
+	if num_resources[GlobalVariables.RESOURCE_TYPE.WOOD] < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
 		while true:
 			var rand = randi_range(0, node_spawns.get_child_count() - 1)
 			var spawn = node_spawns.get_child(rand)
@@ -409,7 +405,7 @@ func process_finite_state_machine():
 				return
 	
 	# Spawn Metal resources if within limits
-	if num_metal < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
+	if num_resources[GlobalVariables.RESOURCE_TYPE.METAL] < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
 		while true:
 			var rand = randi_range(0, node_spawns.get_child_count() - 1)
 			var spawn = node_spawns.get_child(rand)
