@@ -299,13 +299,13 @@ shape = SubResource("RectangleShape2D_y2354")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(433, 605)
+position = Vector2(437, 588)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(433, 752)
+position = Vector2(448, 721)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
@@ -328,14 +328,8 @@ shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D62" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(173, 325)
-shape = SubResource("RectangleShape2D_m7jmp")
-debug_color = Color(0.994199, 0, 0.225894, 0.42)
-metadata/_edit_lock_ = true
-
 [node name="CollisionShape2D69" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(164, 460)
+position = Vector2(155, 305)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
@@ -353,31 +347,31 @@ debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(570, 902)
+position = Vector2(608, 897)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(845, 896)
+position = Vector2(881, 896)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(1127, 903)
+position = Vector2(1163, 903)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(1265, 905)
+position = Vector2(1301, 905)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D17" type="CollisionShape2D" parent="Node_Spawns"]
-position = Vector2(1758, 893)
+position = Vector2(1778, 894)
 shape = SubResource("RectangleShape2D_m7jmp")
 debug_color = Color(0.994199, 0, 0.225894, 0.42)
 metadata/_edit_lock_ = true
@@ -536,7 +530,7 @@ debug_color = Color(1.05888e-06, 0.610472, 0.635543, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Factory_Spawns"]
-position = Vector2(134, 650)
+position = Vector2(133, 476)
 shape = SubResource("RectangleShape2D_xlvrw")
 debug_color = Color(1.05888e-06, 0.610472, 0.635543, 0.42)
 metadata/_edit_lock_ = true
@@ -554,7 +548,7 @@ debug_color = Color(1.05888e-06, 0.610472, 0.635543, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Factory_Spawns"]
-position = Vector2(1435, 865)
+position = Vector2(1471, 865)
 shape = SubResource("RectangleShape2D_xlvrw")
 debug_color = Color(1.05888e-06, 0.610472, 0.635543, 0.42)
 metadata/_edit_lock_ = true
@@ -578,98 +572,120 @@ debug_color = Color(1.05888e-06, 0.610472, 0.635543, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="Contract_Houses" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1007, 205)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1137, 208)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D3" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1548, 544)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D4" type="Sprite2D" parent="Contract_Houses"]
-position = Vector2(1609, 915)
+position = Vector2(1645, 915)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D5" type="Sprite2D" parent="Contract_Houses"]
-position = Vector2(984, 918)
+position = Vector2(1020, 918)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D6" type="Sprite2D" parent="Contract_Houses"]
-position = Vector2(706, 917)
+position = Vector2(742, 917)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D7" type="Sprite2D" parent="Contract_Houses"]
-position = Vector2(141, 914)
+position = Vector2(147, 737)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D8" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(1134, 1255)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D9" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(2235, 807)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D10" type="Sprite2D" parent="Contract_Houses"]
 position = Vector2(584, 547)
 texture = ExtResource("7_fy5k1")
+metadata/_edit_lock_ = true
 
 [node name="Contract_Spawns" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Contract_Spawns"]
 position = Vector2(1137, 108)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Contract_Spawns"]
 position = Vector2(1007, 107)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(706, 818)
+position = Vector2(742, 818)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(984, 820)
+position = Vector2(1020, 820)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(1609, 816)
+position = Vector2(1645, 816)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Contract_Spawns"]
 position = Vector2(1548, 446)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="Contract_Spawns"]
 position = Vector2(2235, 709)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="Contract_Spawns"]
-position = Vector2(141, 815)
+position = Vector2(147, 638)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="Contract_Spawns"]
 position = Vector2(1134, 1158)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="Contract_Spawns"]
 position = Vector2(584, 448)
 shape = SubResource("RectangleShape2D_73fnb")
 debug_color = Color(0.936779, 0.0082163, 0.627694, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="Game_Manager" type="Node2D" parent="." node_paths=PackedStringArray("ui_layer", "checkpoint_node", "node_spawns", "contract_spawns", "factory_spawns", "next_tax_label")]
 script = ExtResource("1_u3cyc")
