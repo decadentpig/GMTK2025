@@ -3,6 +3,8 @@ class_name Contract_Node
 
 var contract_money: int = 0
 
+var clicked_at = -1
+
 var selected_by_player: bool = false
 var contract_type: GlobalVariables.RESOURCE_TYPE = GlobalVariables.RESOURCE_TYPE.NONE
 
@@ -30,10 +32,19 @@ func toggle_player_select():
 		selected_by_player = false
 		SFXPlayer.play_make_selection()
 		sprite2d.material = null
+
+		# Reset timer
+		clicked_at = -1
 	elif !selected_by_player:
 		selected_by_player = true
 		SFXPlayer.play_make_selection()
 		sprite2d.material = highlighted_material
+
+		# Start timer since selection was made
+		clicked_at = Time.get_ticks_msec()
+
+func get_lifetime_ms():
+	return Time.get_ticks_msec() - clicked_at
 
 func complete_contract() -> void:
 	SFXPlayer.play_audio_earned_money()

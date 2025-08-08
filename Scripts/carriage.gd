@@ -144,6 +144,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		and body.selected_by_player
 		and train_manager.is_last_carriage(carriage_index)
 		and cargo != body.contract_type
+		and body.get_lifetime_ms() > 1000
 	):
+		print("Lifetime was " + str(body.get_lifetime_ms()))
 		body.queue_free()
 		SFXPlayer.play_failed_action()
