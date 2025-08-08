@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=25 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://Scripts/game_manager.gd" id="1_u3cyc"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://bhw246q2fq5oe" path="res://Fonts/Jersey15-Regular.ttf" id="8_4xgwt"]
 [ext_resource type="Texture2D" uid="uid://di0tobjofn741" path="res://Assets/Tree3-2.png" id="11_wn1b8"]
 [ext_resource type="Texture2D" uid="uid://70r0yym3d2p5" path="res://Assets/Tree3-1.png" id="11_yn7hb"]
+[ext_resource type="Texture2D" uid="uid://dnm1yoxik3o1j" path="res://Assets/Tree-1.png" id="13_lw5om"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
 bake_interval = 0.01
@@ -745,15 +746,15 @@ position = Vector2(723, 594)
 texture = ExtResource("11_wn1b8")
 
 [node name="Tree03" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(771, 603)
+position = Vector2(772, 606)
 texture = ExtResource("11_yn7hb")
 
 [node name="Tree04" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(865, 581)
-texture = ExtResource("11_yn7hb")
+position = Vector2(1190, 709)
+texture = ExtResource("13_lw5om")
 
 [node name="Tree02" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(821, 598)
+position = Vector2(824, 598)
 texture = ExtResource("11_wn1b8")
 
 [connection signal="area_entered" from="Path2D/Train/Area2D" to="Path2D/Train" method="_on_area_2d_area_entered"]
