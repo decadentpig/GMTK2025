@@ -1,6 +1,8 @@
 extends Node2D
 class_name Game_Manager
 
+# This is just a test
+
 enum Game_Phase {PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, PHASE6, PHASE7}
 var current_phase: Game_Phase = Game_Phase.PHASE1
 var num_loops_since_phase_change = -1
