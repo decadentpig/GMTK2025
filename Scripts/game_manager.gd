@@ -157,15 +157,7 @@ var possible_contracts = {
 	Game_Phase.PHASE7: [GlobalVariables.RESOURCE_TYPE.WOOD, GlobalVariables.RESOURCE_TYPE.METAL, GlobalVariables.RESOURCE_TYPE.PLANK, GlobalVariables.RESOURCE_TYPE.INGOT, GlobalVariables.RESOURCE_TYPE.CRATE, GlobalVariables.RESOURCE_TYPE.SHIPPING_CONTAINER] # Wood, Metal, Planks, Ingots, Crates, Shipping Containers
 }
 
-var carriage_cost = {
-	Game_Phase.PHASE1: null, # None this phase
-	Game_Phase.PHASE2: null, # None this phase
-	Game_Phase.PHASE3: 30,
-	Game_Phase.PHASE4: 45,
-	Game_Phase.PHASE5: 70,
-	Game_Phase.PHASE6: 110,
-	Game_Phase.PHASE7: 165
-}
+var carriage_costs = [0, 0, 0, 30, 45, 70, 110, 165]
 
 var contract_money = {
 	GlobalVariables.RESOURCE_TYPE.WOOD: {
@@ -292,7 +284,7 @@ func spawn_carriage(pos: Vector2) -> void:
 	var carriage_pickup_node = carriage_pickup_node_prefab.instantiate() 
 	add_child(carriage_pickup_node)
 	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
-	carriage_pickup_node.cost = carriage_cost[current_phase]
+	carriage_pickup_node.cost = carriage_costs[min(Stats.num_carriages, len(carriage_costs)-1)]
 	Stats.available_carriages += 1
 
 func resolve_checkpoint():
