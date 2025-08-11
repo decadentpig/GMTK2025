@@ -89,7 +89,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.queue_free()
 		SFXPlayer.play_audio_lost_money()
 		Stats.money -= body.cost
-		Stats.available_carriages -= 1
 		emit_signal("request_carriage_add")
 	elif (
 		body is Carriage_Pickup_Node

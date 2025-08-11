@@ -285,7 +285,6 @@ func spawn_carriage(pos: Vector2) -> void:
 	add_child(carriage_pickup_node)
 	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
 	carriage_pickup_node.cost = carriage_costs[min(Stats.num_carriages, len(carriage_costs)-1)]
-	Stats.available_carriages += 1
 
 func resolve_checkpoint():
 	Stats.money -= checkpoint_tax
