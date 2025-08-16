@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d2vvaaur2r211"]
+[gd_scene load_steps=28 format=3 uid="uid://d2vvaaur2r211"]
 
 [ext_resource type="Script" uid="uid://ca3vd21cdbsob" path="res://Scripts/train_manager.gd" id="1_3253y"]
 [ext_resource type="Script" uid="uid://djyec5cwx160w" path="res://Scripts/game_manager.gd" id="1_u3cyc"]
@@ -12,7 +12,9 @@
 [ext_resource type="FontFile" uid="uid://bhw246q2fq5oe" path="res://Fonts/Jersey15-Regular.ttf" id="8_4xgwt"]
 [ext_resource type="Texture2D" uid="uid://di0tobjofn741" path="res://Assets/Tree3-2.png" id="11_wn1b8"]
 [ext_resource type="Texture2D" uid="uid://70r0yym3d2p5" path="res://Assets/Tree3-1.png" id="11_yn7hb"]
+[ext_resource type="Texture2D" uid="uid://bprrolsousg84" path="res://Assets/Tree3-3.png" id="12_2i41o"]
 [ext_resource type="Texture2D" uid="uid://dnm1yoxik3o1j" path="res://Assets/Tree-1.png" id="13_lw5om"]
+[ext_resource type="Texture2D" uid="uid://dqu5fh65xxc6a" path="res://Assets/Tree3-4.png" id="14_10ent"]
 [ext_resource type="Script" uid="uid://v4ye6g8mjahn" path="res://Scripts/mute_button.gd" id="14_qhhtk"]
 
 [sub_resource type="Curve2D" id="Curve2D_u3cyc"]
@@ -750,27 +752,623 @@ horizontal_alignment = 1
 
 [node name="Lower_Decorative" type="Node2D" parent="."]
 
-[node name="Tree01" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(723, 594)
+[node name="Tree20" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(291, -28)
 texture = ExtResource("11_wn1b8")
 
+[node name="Tree32" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1137, 644)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree33" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1253, 576)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree41" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1481, 577)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree49" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1437, 607)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree51" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1505, 653)
+texture = ExtResource("14_10ent")
+
+[node name="Tree42" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1612, 570)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree48" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1638, 598)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree61" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1600, 680)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree64" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1663, 691)
+texture = ExtResource("14_10ent")
+
+[node name="Tree43" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1704, 572)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree52" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1739, 629)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree67" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1788, 753)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree45" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1857, 571)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree46" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1802, 603)
+texture = ExtResource("14_10ent")
+
+[node name="Tree47" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1854, 661)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree35" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1304, 626)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree40" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1358, 655)
+texture = ExtResource("14_10ent")
+
+[node name="Tree56" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1422, 711)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree36" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1253, 713)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree26" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(353, -27)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree30" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(438, -27)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree38" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(560, -23)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree50" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(715, -28)
+texture = ExtResource("14_10ent")
+
+[node name="Tree57" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(839, -33)
+texture = ExtResource("14_10ent")
+
+[node name="Tree72" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(916, -25)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree90" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(976, -39)
+texture = ExtResource("14_10ent")
+
+[node name="Tree91" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1082, -10)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree92" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1144, -32)
+texture = ExtResource("14_10ent")
+
+[node name="Tree118" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1559, 1)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree119" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1616, -22)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree125" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2322, 29)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree131" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2174, 240)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree126" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2354, 74)
+texture = ExtResource("14_10ent")
+
+[node name="Tree129" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2348, 217)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree130" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2393, 245)
+texture = ExtResource("14_10ent")
+
+[node name="Tree132" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2335, 304)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree134" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2359, 697)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree136" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2381, 850)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree137" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2340, 878)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree138" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2393, 940)
+texture = ExtResource("14_10ent")
+
+[node name="Tree139" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2169, 1073)
+texture = ExtResource("14_10ent")
+
+[node name="Tree145" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2245, 1208)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree147" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2274, 1250)
+texture = ExtResource("14_10ent")
+
+[node name="Tree148" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2376, 1295)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree146" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2205, 1242)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree153" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1903, 1279)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree154" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1984, 1277)
+texture = ExtResource("14_10ent")
+
+[node name="Tree156" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2090, 1280)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree157" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2137, 1308)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree155" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1949, 1314)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree140" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2246, 1042)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree142" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2353, 1031)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree143" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2390, 1083)
+texture = ExtResource("14_10ent")
+
+[node name="Tree144" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2347, 1103)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree141" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2233, 1086)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree135" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(2334, 745)
+texture = ExtResource("14_10ent")
+
+[node name="Tree121" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1762, -12)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree122" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1732, 29)
+texture = ExtResource("14_10ent")
+
+[node name="Tree123" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1795, 63)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree120" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1653, -3)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree95" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1330, 9)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree116" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1365, 29)
+texture = ExtResource("14_10ent")
+
+[node name="Tree115" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1279, 32)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree117" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1451, 67)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree94" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1139, -5)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree16" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(263, -11)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree27" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(387, -10)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree01" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(732, 578)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree08" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(665, 644)
+texture = ExtResource("14_10ent")
+
+[node name="Tree09" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(577, 650)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree11" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(621, 670)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree19" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(733, 697)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree23" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(831, 687)
+texture = ExtResource("14_10ent")
+
+[node name="Tree24" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(786, 707)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree12" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(562, 756)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree13" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(618, 765)
+texture = ExtResource("14_10ent")
+
+[node name="Tree15" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(71, -18)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree21" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(3, 22)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree07" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(110, 34)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree14" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(220, 14)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree44" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(614, 10)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree54" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(745, 11)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree60" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(814, 15)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree89" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(875, -10)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree93" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(896, 62)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree99" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(835, 70)
+texture = ExtResource("14_10ent")
+
+[node name="Tree05" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(35, 40)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree06" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(82, 53)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree53" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(572, 42)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree22" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(22, 83)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree10" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(222, 46)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree37" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(354, 37)
+texture = ExtResource("14_10ent")
+
+[node name="Tree55" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(425, 59)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree39" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(331, 68)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree39" type="Sprite2D" parent="Lower_Decorative/Tree39"]
+position = Vector2(206, -5)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree59" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(102, 123)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree58" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(36, 150)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree62" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(0, 178)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree66" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(68, 182)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree73" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(34, 230)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree74" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(57, 299)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree75" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(20, 320)
+texture = ExtResource("14_10ent")
+
+[node name="Tree76" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(-10, 401)
+texture = ExtResource("14_10ent")
+
+[node name="Tree77" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(3, 442)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree79" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(47, 624)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree81" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(53, 682)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree82" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(12, 696)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree83" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(78, 753)
+texture = ExtResource("14_10ent")
+
+[node name="Tree84" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(5, 751)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree86" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(8, 837)
+texture = ExtResource("14_10ent")
+
+[node name="Tree87" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(78, 803)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree88" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(129, 849)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree97" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(67, 918)
+texture = ExtResource("14_10ent")
+
+[node name="Tree96" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(16, 934)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree98" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(108, 943)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree100" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(147, 1074)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree101" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(91, 1100)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree103" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(135, 1130)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree109" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(287, 1265)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree110" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(440, 1280)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree111" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(511, 1280)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree113" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(714, 1341)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree124" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(917, 1296)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree127" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(978, 1277)
+texture = ExtResource("14_10ent")
+
+[node name="Tree133" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1185, 1288)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree149" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1387, 1290)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree152" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1593, 1296)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree150" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1464, 1279)
+texture = ExtResource("14_10ent")
+
+[node name="Tree151" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1441, 1347)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree128" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(945, 1343)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree114" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(632, 1339)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree112" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(473, 1337)
+texture = ExtResource("14_10ent")
+
+[node name="Tree104" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(20, 1240)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree105" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(85, 1245)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree106" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(42, 1288)
+texture = ExtResource("14_10ent")
+
+[node name="Tree107" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(107, 1331)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree102" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(193, 1098)
+texture = ExtResource("14_10ent")
+
+[node name="Tree108" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(337, 1280)
+texture = ExtResource("14_10ent")
+
 [node name="Tree03" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(772, 606)
+position = Vector2(778, 603)
 texture = ExtResource("11_yn7hb")
 
 [node name="Tree04" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(1190, 709)
 texture = ExtResource("13_lw5om")
 
+[node name="Tree28" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(250, 77)
+texture = ExtResource("12_2i41o")
+
 [node name="Tree02" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(824, 598)
+position = Vector2(839, 584)
 texture = ExtResource("11_wn1b8")
 
+[node name="Tree17" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(922, 581)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree18" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(961, 638)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree31" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1061, 647)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree34" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(1085, 711)
+texture = ExtResource("14_10ent")
+
+[node name="Tree25" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(926, 672)
+texture = ExtResource("12_2i41o")
+
+[node name="Tree29" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(891, 763)
+texture = ExtResource("14_10ent")
+
+[node name="Tree63" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(228, 141)
+texture = ExtResource("11_yn7hb")
+
+[node name="Tree65" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(291, 139)
+texture = ExtResource("14_10ent")
+
+[node name="Tree71" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(287, 203)
+texture = ExtResource("11_wn1b8")
+
+[node name="Tree70" type="Sprite2D" parent="Lower_Decorative"]
+position = Vector2(250, 232)
+texture = ExtResource("11_yn7hb")
+
 [node name="Button" type="Button" parent="."]
-offset_left = 28.0
-offset_top = 24.0
-offset_right = 173.0
-offset_bottom = 60.0
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 175.0
+offset_bottom = 58.0
 text = "MUTE"
 script = ExtResource("14_qhhtk")
 
