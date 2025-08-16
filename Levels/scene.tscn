@@ -881,7 +881,7 @@ position = Vector2(2322, 29)
 texture = ExtResource("11_wn1b8")
 
 [node name="Tree131" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(2174, 240)
+position = Vector2(2230, 243)
 texture = ExtResource("11_yn7hb")
 
 [node name="Tree126" type="Sprite2D" parent="Lower_Decorative"]
@@ -1359,10 +1359,6 @@ texture = ExtResource("14_10ent")
 [node name="Tree71" type="Sprite2D" parent="Lower_Decorative"]
 position = Vector2(287, 203)
 texture = ExtResource("11_wn1b8")
-
-[node name="Tree70" type="Sprite2D" parent="Lower_Decorative"]
-position = Vector2(250, 232)
-texture = ExtResource("11_yn7hb")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 30.0
