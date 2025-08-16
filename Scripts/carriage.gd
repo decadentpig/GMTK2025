@@ -145,6 +145,5 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		and cargo != body.contract_type
 		and body.get_lifetime_ms() > 500
 	):
-		print("Lifetime was " + str(body.get_lifetime_ms()))
-		body.queue_free()
 		SFXPlayer.play_failed_action()
+		body.trigger_contract_failed() # Node destroys self
