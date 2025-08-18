@@ -286,6 +286,21 @@ func spawn_carriage(pos: Vector2) -> void:
 	carriage_pickup_node.position = Vector2(chosen_x, chosen_y)
 	carriage_pickup_node.cost = carriage_costs[min(Stats.num_carriages, len(carriage_costs)-1)]
 
+
+func _pick_available_spawn(spawn_container: Node2D, used_locations: Array) -> Node2D:
+	var available: Array = []
+	var child_count = spawn_container.get_child_count()
+
+	for i in range(child_count):
+		var s = spawn_container.get_child(i)
+		if s.position not in used_locations:
+			available.append(s)
+
+	if available.size() == 0:
+		return null
+
+	return available[randi() % available.size()]
+
 func resolve_checkpoint():
 	Stats.money -= checkpoint_tax
 	Stats.total_loops += 1
@@ -386,118 +401,67 @@ func process_finite_state_machine():
 	
 	# Spawn Wood resources if within limits
 	if num_resources[GlobalVariables.RESOURCE_TYPE.WOOD] < max_num_wood[current_phase] and randf() < wood_rand_chance[current_phase]:
-		while true:
-			var rand = randi_range(0, node_spawns.get_child_count() - 1)
-			var spawn = node_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				spawn_resource(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
-				return
+		var spawn = _pick_available_spawn(node_spawns, used_locations)
+		if spawn != null:
+			spawn_resource(GlobalVariables.RESOURCE_TYPE.WOOD, spawn.position)
+			return
 	
 	# Spawn Metal resources if within limits
 	if num_resources[GlobalVariables.RESOURCE_TYPE.METAL] < max_num_metal[current_phase] and randf() < metal_rand_chance[current_phase]:
-		while true:
-			var rand = randi_range(0, node_spawns.get_child_count() - 1)
-			var spawn = node_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				spawn_resource(GlobalVariables.RESOURCE_TYPE.METAL, spawn.position)
-				return
+		var spawn = _pick_available_spawn(node_spawns, used_locations)
+		if spawn != null:
+			spawn_resource(GlobalVariables.RESOURCE_TYPE.METAL, spawn.position)
+			return
 	
 	# Spawn Contracts if within limits
 	if num_contracts < max_contracts[current_phase] and randf() < contract_rand_chance[current_phase]:
-		while true:
-			var rand = randi_range(0, contract_spawns.get_child_count() - 1)
-			var spawn = contract_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				var selection = null
-				
-				# Attempt to select a contract type that represents less than half of all possible contracts
-				while (selection == null):
-					# Select a random resource from possible contracts this phase, check for suitability afterwards
-					var temp = possible_contracts[current_phase][randi() % possible_contracts[current_phase].size()]
-					
-					if current_phase == Game_Phase.PHASE1 or contract_counts[temp] < max_contracts[current_phase] / 2:
-						# If we are in Phase 1, or if this resource accounts for less than half of all possible contracts, select it
-						selection = temp
-
-				spawn_contract(selection, spawn.position)
-				return
+		var spawn = _pick_available_spawn(contract_spawns, used_locations)
+		if spawn != null:
+			var selection = null
+			# Attempt to select a contract type that represents less than half of all possible contracts
+			while selection == null:
+				# Select a random resource from possible contracts this phase, check for suitability afterwards
+				var temp = possible_contracts[current_phase][randi() % possible_contracts[current_phase].size()]
+				if current_phase == Game_Phase.PHASE1 or contract_counts[temp] < max_contracts[current_phase] / 2:
+					# If we are in Phase 1, or if this resource accounts for less than half of all possible contracts, select it
+					selection = temp
+			spawn_contract(selection, spawn.position)
+			return
 	
 	# Spawn Carriages if within limits
 	if num_carriages < max_num_carriages[current_phase] and randf() < carriage_rand_chance[current_phase]:
-		while true:
-			var rand = randi_range(0, node_spawns.get_child_count() - 1)
-			var spawn = node_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				spawn_carriage(spawn.position)
-				return
+		var spawn = _pick_available_spawn(node_spawns, used_locations)
+		if spawn != null:
+			spawn_carriage(spawn.position)
+			return
 	
 	# Spawn Plank Factories if within limits
 	if num_factories[GlobalVariables.FACTORY_TYPE.PLANK] < max_factories[GlobalVariables.FACTORY_TYPE.PLANK][current_phase]:
-		while true:
-			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
-			var spawn = factory_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				spawn_factory(GlobalVariables.FACTORY_TYPE.PLANK, spawn.position)
-				return
+		var spawn = _pick_available_spawn(factory_spawns, used_locations)
+		if spawn != null:
+			spawn_factory(GlobalVariables.FACTORY_TYPE.PLANK, spawn.position)
+			return
 	
 	# Spawn Ingot factories if within limits
 	if num_factories[GlobalVariables.FACTORY_TYPE.INGOT] < max_factories[GlobalVariables.FACTORY_TYPE.INGOT][current_phase]:
-		while true:
-			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
-			var spawn = factory_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				spawn_factory(GlobalVariables.FACTORY_TYPE.INGOT, spawn.position)
-				return
+		var spawn = _pick_available_spawn(factory_spawns, used_locations)
+		if spawn != null:
+			spawn_factory(GlobalVariables.FACTORY_TYPE.INGOT, spawn.position)
+			return
 	
 	# Spawn Crate factories if within limits
 	if num_factories[GlobalVariables.FACTORY_TYPE.CRATE] < max_factories[GlobalVariables.FACTORY_TYPE.CRATE][current_phase]:
-		while true:
-			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
-			var spawn = factory_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				spawn_factory(GlobalVariables.FACTORY_TYPE.CRATE, spawn.position)
-				return
+		var spawn = _pick_available_spawn(factory_spawns, used_locations)
+		if spawn != null:
+			spawn_factory(GlobalVariables.FACTORY_TYPE.CRATE, spawn.position)
+			return
 	
 	# Spawn shipping container factories if within limits
 	if num_factories[GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER] < max_factories[GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER][current_phase]:
-		while true:
-			var rand = randi_range(0, factory_spawns.get_child_count() - 1)
-			var spawn = factory_spawns.get_child(rand)
-			
-			if spawn.position in used_locations:
-				# Keep looking for a spawn that is not taken
-				continue
-			else:
-				spawn_factory(GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER, spawn.position)
-				return
+		var spawn = _pick_available_spawn(factory_spawns, used_locations)
+		if spawn != null:
+			spawn_factory(GlobalVariables.FACTORY_TYPE.SHIPPING_CONTAINER, spawn.position)
+			return
 
 func _process(delta: float) -> void:
 	money_text.text = 'Money: $ ' + str(Stats.money) + ' (Loops: ' + str(Stats.total_loops) + ')'
