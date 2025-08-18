@@ -71,8 +71,7 @@ func set_factory_type(type: GlobalVariables.FACTORY_TYPE):
 	elif factory_type == GlobalVariables.FACTORY_TYPE.INGOT:
 		# INGOT RECIPE: 1 Metal = 1 Ingot
 		resources_accepted = [
-			GlobalVariables.RESOURCE_TYPE.METAL, 
-			GlobalVariables.RESOURCE_TYPE.INGOT
+			GlobalVariables.RESOURCE_TYPE.METAL
 		]
 		output_resource = GlobalVariables.RESOURCE_TYPE.INGOT
 		
