@@ -60,14 +60,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			sprite2d.texture = GlobalVariables.metal_sprite
 		else:
 			print("ERROR. UNEXPECTED CARGO", cargo)
-	elif (
-		body is Raw_Resource
-		and body.selected_by_player
-		and cargo != GlobalVariables.RESOURCE_TYPE.NONE
-	):
-		SFXPlayer.play_failed_action()
-
-		
+	
 	# Complete contracts
 	if (
 		body is Contract_Node
@@ -147,3 +140,12 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	):
 		SFXPlayer.play_failed_action()
 		body.trigger_contract_failed() # Node destroys self
+
+	# If a selected resource is fully passed by the last carriage without pickup, 
+	# play failed SFX once
+	elif (
+		body is Raw_Resource
+		and body.selected_by_player
+		and train_manager.is_last_carriage(carriage_index)
+	):
+		SFXPlayer.play_failed_action()
