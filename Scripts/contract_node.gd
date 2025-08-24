@@ -26,11 +26,12 @@ func _process(delta: float) -> void:
 	contract_value.text = '($' + str(contract_money) + ')'
 
 func trigger_contract_failed() -> void:
-	# 1. Show red bubble
+	# 1. Show red bubble, deselect contract
+	toggle_player_select()
 	sprite2d.texture = failed_contract_bubble
 	
 	# 2. Set a timer
-	var timer = get_tree().create_timer(3.0)
+	var timer = get_tree().create_timer(1.0)
 	timer.timeout.connect(_on_timer_timeout)
 
 func _on_timer_timeout():
